@@ -38,12 +38,12 @@ function AppsPage() {
       <Panel title="Fila de takedown">
         <div className="space-y-3">
           {fakes.map((f, i) => (
-            <div key={i} className="glass-strong flex items-center gap-4 rounded-xl p-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted">
+            <div key={i} className="glass-strong flex flex-wrap items-center gap-4 rounded-xl p-4 sm:flex-nowrap">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-muted">
                 <Smartphone className="h-6 w-6 text-primary" />
               </div>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="truncate text-sm font-semibold">{f.name}</span>
                   <span
                     className={`rounded px-2 py-0.5 text-[10px] uppercase ${
@@ -57,7 +57,7 @@ function AppsPage() {
                     {f.severity}
                   </span>
                 </div>
-                <div className="mt-1 flex items-center gap-4 text-xs text-muted-foreground">
+                <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                   <span>{f.store}</span>
                   <span>· {f.dev}</span>
                   <span className="flex items-center gap-1">
@@ -68,7 +68,7 @@ function AppsPage() {
                   </span>
                 </div>
               </div>
-              <Button size="sm" className="bg-[image:var(--gradient-primary)] text-primary-foreground">
+              <Button size="sm" className="ml-auto shrink-0 bg-[image:var(--gradient-primary)] text-primary-foreground">
                 <ShieldAlert className="mr-1 h-3.5 w-3.5" /> Takedown
               </Button>
             </div>

@@ -30,41 +30,45 @@ function AlertsPage() {
       </div>
 
       <div className="overflow-hidden rounded-2xl glass ring-gradient">
-        <div className="grid grid-cols-[100px_140px_1fr_120px_120px_140px] gap-4 border-b border-border/60 px-5 py-3 text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-          <span>Risco</span>
-          <span>Fonte</span>
-          <span>Descrição</span>
-          <span>Data</span>
-          <span>Status</span>
-          <span className="text-right">Ação</span>
-        </div>
-        {alerts.map((a, i) => (
-          <div
-            key={i}
-            className="grid grid-cols-[100px_140px_1fr_120px_120px_140px] items-center gap-4 border-b border-border/60 px-5 py-4 text-sm last:border-0 hover:bg-muted/20"
-          >
-            <span
-              className={`inline-flex w-fit items-center rounded-full px-2 py-0.5 text-xs font-medium ${
-                a.tone === "danger"
-                  ? "bg-destructive/15 text-destructive"
-                  : a.tone === "warning"
-                  ? "bg-[color:var(--warning)]/15 text-[color:var(--warning)]"
-                  : "bg-[color:var(--success)]/15 text-[color:var(--success)]"
-              }`}
-            >
-              🔴 {a.risk}
-            </span>
-            <span className="text-muted-foreground">{a.src}</span>
-            <span>{a.desc}</span>
-            <span className="text-muted-foreground">{a.date}</span>
-            <span className="text-muted-foreground">{a.status}</span>
-            <div className="text-right">
-              <Button size="sm" variant="outline" className="border-primary/40 text-primary hover:bg-primary/10">
-                <Sparkles className="mr-1 h-3.5 w-3.5" /> Resolver com IA
-              </Button>
+        <div className="overflow-x-auto">
+          <div className="min-w-[860px]">
+            <div className="grid grid-cols-[100px_140px_1fr_120px_120px_140px] gap-4 border-b border-border/60 px-5 py-3 text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+              <span>Risco</span>
+              <span>Fonte</span>
+              <span>Descrição</span>
+              <span>Data</span>
+              <span>Status</span>
+              <span className="text-right">Ação</span>
             </div>
+            {alerts.map((a, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-[100px_140px_1fr_120px_120px_140px] items-center gap-4 border-b border-border/60 px-5 py-4 text-sm last:border-0 hover:bg-muted/20"
+              >
+                <span
+                  className={`inline-flex w-fit items-center rounded-full px-2 py-0.5 text-xs font-medium ${
+                    a.tone === "danger"
+                      ? "bg-destructive/15 text-destructive"
+                      : a.tone === "warning"
+                      ? "bg-[color:var(--warning)]/15 text-[color:var(--warning)]"
+                      : "bg-[color:var(--success)]/15 text-[color:var(--success)]"
+                  }`}
+                >
+                  🔴 {a.risk}
+                </span>
+                <span className="text-muted-foreground">{a.src}</span>
+                <span>{a.desc}</span>
+                <span className="text-muted-foreground">{a.date}</span>
+                <span className="text-muted-foreground">{a.status}</span>
+                <div className="text-right">
+                  <Button size="sm" variant="outline" className="border-primary/40 text-primary hover:bg-primary/10">
+                    <Sparkles className="mr-1 h-3.5 w-3.5" /> Resolver com IA
+                  </Button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
