@@ -30,15 +30,26 @@ export function SiteHeader() {
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
-            {nav.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            ))}
+            {nav.map((item) =>
+              item.to ? (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  activeProps={{ className: "text-foreground" }}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                >
+                  {item.label}
+                </a>
+              ),
+            )}
             <Link
               to="/dashboard"
               className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
