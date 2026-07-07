@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 const WHATSAPP_NUMBER = "5511999998888"; // placeholder
-const EMAIL = "contato@brandshield.ai";
+const EMAIL = "contato@radarbrand.com.br";
 const PHONE_DISPLAY = "+55 (11) 99999-8888";
 
 const schema = z.object({
@@ -68,7 +68,7 @@ export function Contact() {
               subtitle="Resposta em minutos • Seg–Sex 8h às 22h"
               action="Abrir conversa"
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                "Olá! Quero conhecer a BrandShield AI.",
+                "Olá! Quero conhecer a Radar | brand.",
               )}`}
               accent
             />
@@ -77,7 +77,7 @@ export function Contact() {
               title="E-mail comercial"
               subtitle={EMAIL}
               action="Enviar e-mail"
-              href={`mailto:${EMAIL}?subject=Quero%20conhecer%20a%20BrandShield%20AI`}
+              href={`mailto:${EMAIL}?subject=Quero%20conhecer%20a%20Radar | brand%20AI`}
             />
             <ChannelCard
               icon={<Phone className="h-5 w-5" />}
@@ -279,7 +279,7 @@ export function WhatsAppFab() {
   return (
     <a
       href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-        "Olá! Vim pelo site da BrandShield AI.",
+        "Olá! Vim pelo site da Radar | brand.",
       )}`}
       target="_blank"
       rel="noopener noreferrer"

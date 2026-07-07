@@ -125,7 +125,7 @@ export function Hero() {
                     Scan em andamento
                   </div>
                   <div className="mt-1 font-display text-lg font-semibold">
-                    {brand || "brandshield.ai"}
+                    {brand || "radarbrand.com.br"}
                   </div>
                 </div>
                 <div className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">

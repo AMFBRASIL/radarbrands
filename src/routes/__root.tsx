@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "BrandShield AI — Proteção e monitoramento de marca com IA" },
+      { title: "Radar | brand — Proteção e monitoramento de marca com IA" },
       {
         name: "description",
         content:
           "Plataforma de inteligência artificial que monitora domínios, redes sociais, anúncios e marketplaces 24/7 para proteger sua marca contra fraudes e uso indevido.",
       },
-      { name: "author", content: "BrandShield AI" },
-      { property: "og:title", content: "BrandShield AI — Proteção de marca com IA" },
+      { name: "author", content: "Radar | brand" },
+      { property: "og:title", content: "Radar | brand — Proteção de marca com IA" },
       {
         property: "og:description",
         content:
@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@BrandShieldAI" },
+      { name: "twitter:site", content: "@Radar | brandAI" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

@@ -454,7 +454,7 @@ export function TrademarkCenter() {
           </div>
           <ul className="mt-3 space-y-3">
             <li className="flex items-center justify-between text-sm">
-              <span className="font-mono">BRANDSHIELD PRO</span>
+              <span className="font-mono">RADAR | BRAND PRO</span>
               <RiskBadge tone="warning">Médio</RiskBadge>
             </li>
             <li className="flex items-center justify-between text-sm">

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard · BrandShield AI" },
+      { title: "Dashboard · Radar | brand" },
       { name: "robots", content: "noindex" },
     ],
   }),
