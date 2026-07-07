@@ -64,9 +64,10 @@ export function SiteHeader() {
               <a href="#scan">Teste gratuito</a>
             </Button>
             <Button size="sm" asChild className="bg-[image:var(--gradient-primary)] text-primary-foreground hover:opacity-90">
-              <a href="#scan">Monitorar marca agora</a>
+              <Link to="/proposta">Gerar proposta</Link>
             </Button>
           </div>
+
 
           <button
             className="rounded-md p-2 md:hidden"

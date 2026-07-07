@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreNosRouteImport } from './routes/sobre-nos'
+import { Route as PropostaRouteImport } from './routes/proposta'
 import { Route as JuridicoRouteImport } from './routes/juridico'
 import { Route as DiferencialRouteImport } from './routes/diferencial'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -42,6 +43,11 @@ import { Route as DashboardAdsRouteImport } from './routes/dashboard.ads'
 const SobreNosRoute = SobreNosRouteImport.update({
   id: '/sobre-nos',
   path: '/sobre-nos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PropostaRoute = PropostaRouteImport.update({
+  id: '/proposta',
+  path: '/proposta',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JuridicoRoute = JuridicoRouteImport.update({
@@ -191,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteWithChildren
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
+  '/proposta': typeof PropostaRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -221,6 +228,7 @@ export interface FileRoutesByTo {
   '/como-funciona': typeof ComoFuncionaRoute
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
+  '/proposta': typeof PropostaRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -253,6 +261,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRouteWithChildren
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
+  '/proposta': typeof PropostaRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -286,6 +295,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/diferencial'
     | '/juridico'
+    | '/proposta'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -316,6 +326,7 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/diferencial'
     | '/juridico'
+    | '/proposta'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -347,6 +358,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/diferencial'
     | '/juridico'
+    | '/proposta'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -379,6 +391,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRouteWithChildren
   DiferencialRoute: typeof DiferencialRoute
   JuridicoRoute: typeof JuridicoRoute
+  PropostaRoute: typeof PropostaRoute
   SobreNosRoute: typeof SobreNosRoute
 }
 
@@ -389,6 +402,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre-nos'
       fullPath: '/sobre-nos'
       preLoaderRoute: typeof SobreNosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proposta': {
+      id: '/proposta'
+      path: '/proposta'
+      fullPath: '/proposta'
+      preLoaderRoute: typeof PropostaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/juridico': {
@@ -652,6 +672,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRouteWithChildren,
   DiferencialRoute: DiferencialRoute,
   JuridicoRoute: JuridicoRoute,
+  PropostaRoute: PropostaRoute,
   SobreNosRoute: SobreNosRoute,
 }
 export const routeTree = rootRouteImport
