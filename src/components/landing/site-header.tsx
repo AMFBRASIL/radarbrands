@@ -53,11 +53,12 @@ export function SiteHeader() {
               ),
             )}
             <Link
-              to="/dashboard"
+              to="/login"
               className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               Login
             </Link>
+
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
