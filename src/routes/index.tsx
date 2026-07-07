@@ -10,7 +10,9 @@ import {
   MarketplaceMonitor,
   TrademarkCenter,
 } from "@/components/landing/modules";
-import { Pricing, CtaBand, SiteFooter } from "@/components/landing/pricing-footer";
+import { Investment } from "@/components/landing/investment";
+import { Contact, WhatsAppFab } from "@/components/landing/contact";
+import { CtaBand, SiteFooter } from "@/components/landing/pricing-footer";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -29,10 +31,12 @@ function LandingPage() {
         <AdsGuardian />
         <MarketplaceMonitor />
         <TrademarkCenter />
-        <Pricing />
+        <Investment />
+        <Contact />
         <CtaBand />
       </main>
       <SiteFooter />
+      <WhatsAppFab />
     </div>
   );
 }
