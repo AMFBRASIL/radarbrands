@@ -3,9 +3,9 @@ import { Shield, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const nav = [
+const nav: { label: string; href: string; to?: string }[] = [
   { label: "Plataforma", href: "#plataforma" },
-  { label: "Monitoramento", href: "#monitor" },
+  { label: "Como funciona", href: "/como-funciona", to: "/como-funciona" },
   { label: "Proteção", href: "#protecao" },
   { label: "IA", href: "#ia" },
   { label: "Preços", href: "#precos" },
