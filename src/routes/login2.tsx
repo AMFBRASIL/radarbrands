@@ -81,7 +81,7 @@ function Login2Page() {
             Autentique-se para acessar seu cockpit de proteção.
           </p>
 
-          {/* Radar visual (sem blips nem rótulos) */}
+          {/* Radar visual com marcas fictícias de exemplo */}
           <div className="relative mx-auto mt-10 h-[320px] w-[320px]">
             {[80, 140, 200, 260, 320].map((s, i) => (
               <div
@@ -104,6 +104,33 @@ function Login2Page() {
             <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-400/10 backdrop-blur-xl">
               <Shield className="h-6 w-6 text-cyan-300" />
             </div>
+
+            {/* Blips fictícios de marcas detectadas */}
+            {[
+              { name: "Marca 1", angle: 35, distance: 95, delay: "0s" },
+              { name: "Marca 2", angle: 120, distance: 135, delay: "1.2s" },
+              { name: "Marca 3", angle: 215, distance: 110, delay: "2.4s" },
+              { name: "Marca 4", angle: 305, distance: 155, delay: "3.1s" },
+            ].map((brand) => {
+              const rad = (brand.angle * Math.PI) / 180;
+              const x = 160 + brand.distance * Math.cos(rad);
+              const y = 160 + brand.distance * Math.sin(rad);
+              return (
+                <div
+                  key={brand.name}
+                  className="absolute flex items-center gap-2"
+                  style={{ left: x, top: y, transform: "translate(-50%, -50%)", animationDelay: brand.delay }}
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400/60" style={{ animationDelay: brand.delay }} />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-300" />
+                  </span>
+                  <span className="whitespace-nowrap rounded-md bg-[#050b14]/70 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-cyan-200/80 backdrop-blur-sm">
+                    {brand.name}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </section>
 
