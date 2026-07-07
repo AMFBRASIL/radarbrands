@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { SettingsWizard, type WizardPreset } from "@/components/dashboard/settings-wizard";
+import { useEmailWizardSteps } from "@/components/dashboard/email-wizard-steps";
 import {
   Bell,
   Bot,
