@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreNosRouteImport } from './routes/sobre-nos'
 import { Route as PropostaRouteImport } from './routes/proposta'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as JuridicoRouteImport } from './routes/juridico'
 import { Route as DiferencialRouteImport } from './routes/diferencial'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -48,6 +49,11 @@ const SobreNosRoute = SobreNosRouteImport.update({
 const PropostaRoute = PropostaRouteImport.update({
   id: '/proposta',
   path: '/proposta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JuridicoRoute = JuridicoRouteImport.update({
@@ -197,6 +203,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteWithChildren
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
+  '/login': typeof LoginRoute
   '/proposta': typeof PropostaRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
@@ -228,6 +235,7 @@ export interface FileRoutesByTo {
   '/como-funciona': typeof ComoFuncionaRoute
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
+  '/login': typeof LoginRoute
   '/proposta': typeof PropostaRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
@@ -261,6 +269,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRouteWithChildren
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
+  '/login': typeof LoginRoute
   '/proposta': typeof PropostaRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
@@ -295,6 +304,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/diferencial'
     | '/juridico'
+    | '/login'
     | '/proposta'
     | '/sobre-nos'
     | '/dashboard/ads'
@@ -326,6 +336,7 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/diferencial'
     | '/juridico'
+    | '/login'
     | '/proposta'
     | '/sobre-nos'
     | '/dashboard/ads'
@@ -358,6 +369,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/diferencial'
     | '/juridico'
+    | '/login'
     | '/proposta'
     | '/sobre-nos'
     | '/dashboard/ads'
@@ -391,6 +403,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRouteWithChildren
   DiferencialRoute: typeof DiferencialRoute
   JuridicoRoute: typeof JuridicoRoute
+  LoginRoute: typeof LoginRoute
   PropostaRoute: typeof PropostaRoute
   SobreNosRoute: typeof SobreNosRoute
 }
@@ -409,6 +422,13 @@ declare module '@tanstack/react-router' {
       path: '/proposta'
       fullPath: '/proposta'
       preLoaderRoute: typeof PropostaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/juridico': {
@@ -672,6 +692,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRouteWithChildren,
   DiferencialRoute: DiferencialRoute,
   JuridicoRoute: JuridicoRoute,
+  LoginRoute: LoginRoute,
   PropostaRoute: PropostaRoute,
   SobreNosRoute: SobreNosRoute,
 }
