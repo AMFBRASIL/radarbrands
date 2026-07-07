@@ -1,9 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import {
   Shield, Mail, Lock, Eye, EyeOff, Fingerprint, ArrowRight,
-  Radar, Activity, CheckCircle2, AlertTriangle, Sparkles, Command,
+  Radar, Sparkles, Command,
   Loader2, User, Building2,
 } from "lucide-react";
 
@@ -11,44 +11,18 @@ export const Route = createFileRoute("/register2")({
   head: () => ({
     meta: [
       { title: "Criar conta · Radar | brand" },
-      { name: "description", content: "Cadastre-se no Radar | brand — monitoramento INPI, anúncios e marketplaces em tempo real." },
+      { name: "description", content: "Cadastre-se no Radar | brand." },
     ],
   }),
   component: Register2Page,
 });
-
-const feed = [
-  { t: "há 8s", icon: AlertTriangle, tone: "amber", text: "Anúncio suspeito · brand.com.br", tag: "ADS" },
-  { t: "há 32s", icon: CheckCircle2, tone: "emerald", text: "Similar arquivado · classe 35", tag: "INPI" },
-  { t: "há 1m", icon: Radar, tone: "cyan", text: "Varredura completa · 2.814 registros", tag: "SCAN" },
-  { t: "há 2m", icon: Shield, tone: "cyan", text: "Notificação extrajudicial enviada", tag: "LEGAL" },
-  { t: "há 4m", icon: CheckCircle2, tone: "emerald", text: "Marca AURORA · concedida", tag: "INPI" },
-];
-
-const toneMap: Record<string, string> = {
-  amber: "text-amber-400 bg-amber-400/10",
-  emerald: "text-emerald-400 bg-emerald-400/10",
-  cyan: "text-cyan-400 bg-cyan-400/10",
-};
 
 function Register2Page() {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [count, setCount] = useState(2813);
-  const [time, setTime] = useState("");
 
-  useEffect(() => {
-    const t = setInterval(() => setCount((c) => c + (Math.random() > 0.7 ? 1 : 0)), 1800);
-    const tick = () => {
-      const d = new Date();
-      setTime(d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" }));
-    };
-    tick();
-    const clock = setInterval(tick, 1000);
-    return () => { clearInterval(t); clearInterval(clock); };
-  }, []);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[#050b14] text-white">
@@ -65,18 +39,6 @@ function Register2Page() {
             maskImage: "radial-gradient(ellipse at center, black 40%, transparent 80%)",
           }}
         />
-      </div>
-
-      {/* HUD top bar */}
-      <div className="relative z-20 flex items-center justify-between border-b border-white/5 px-6 py-3 font-mono text-[11px] uppercase tracking-widest text-white/40">
-        <div className="flex items-center gap-4">
-          <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" /> Sistema operacional</span>
-          <span className="hidden sm:inline">INPI · RPI 2.814 · sincronizado</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="hidden md:inline">Latência 52ms</span>
-          <span>{time}</span>
-        </div>
       </div>
 
       <header className="relative z-20 mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6">
@@ -98,37 +60,30 @@ function Register2Page() {
         </Link>
       </header>
 
-      <main className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 pb-10 lg:grid-cols-[1.15fr_.85fr]">
-        {/* LEFT — HUD radar + live feed */}
-        <section className="relative hidden overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent p-8 lg:block">
-          {/* corner accents */}
+      <main className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 pb-10 lg:grid-cols-[1.05fr_.95fr]">
+        {/* LEFT — brand panel (sem dados) */}
+        <section className="relative hidden overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent p-10 lg:flex lg:flex-col lg:justify-center">
           <Corner className="left-3 top-3" pos="tl" />
           <Corner className="right-3 top-3" pos="tr" />
           <Corner className="left-3 bottom-3" pos="bl" />
           <Corner className="right-3 bottom-3" pos="br" />
 
-          <div className="flex items-center justify-between">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-cyan-300">
-              <Radar className="h-3 w-3" /> Torre de controle · Live
-            </div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-white/40">
-              NODE_BR-01 · v2.0.4
-            </div>
+          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-cyan-300">
+            <Radar className="h-3 w-3" /> Novo acesso
           </div>
 
-          <h2 className="mt-8 max-w-md font-display text-4xl font-bold leading-[1.05] tracking-tight">
+          <h2 className="mt-6 max-w-md font-display text-4xl font-bold leading-[1.05] tracking-tight">
             Comece a proteger sua{" "}
             <span className="italic text-cyan-300" style={{ fontFamily: "'Fraunces', serif" }}>
               marca agora
             </span>
           </h2>
           <p className="mt-3 max-w-md text-sm text-white/60">
-            Cadastre-se em segundos. Nosso radar já começa a varrer anúncios, marketplaces e o INPI enquanto você configura sua conta.
+            Crie sua conta em segundos e ative seu radar.
           </p>
 
-          {/* Radar visual */}
-          <div className="relative mx-auto mt-8 h-[340px] w-[340px]">
-            {/* rings */}
+          {/* Radar visual (sem blips nem rótulos) */}
+          <div className="relative mx-auto mt-10 h-[320px] w-[320px]">
             {[80, 140, 200, 260, 320].map((s, i) => (
               <div
                 key={s}
@@ -136,10 +91,8 @@ function Register2Page() {
                 style={{ width: s, height: s, opacity: 1 - i * 0.12 }}
               />
             ))}
-            {/* crosshair */}
             <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-cyan-400/10" />
             <div className="absolute top-1/2 left-0 h-px w-full -translate-y-1/2 bg-cyan-400/10" />
-            {/* sweep */}
             <div
               className="absolute left-1/2 top-1/2 h-[160px] w-[160px] origin-top-left"
               style={{
@@ -149,57 +102,12 @@ function Register2Page() {
                 borderRadius: "0 100% 0 0",
               }}
             />
-            {/* blips */}
-            {[
-              { x: 60, y: 40, label: "AURORA" },
-              { x: -80, y: 70, label: "NIMBUS" },
-              { x: 40, y: -90, label: "LUME" },
-              { x: -50, y: -50, label: "ATLAS" },
-            ].map((b) => (
-              <div
-                key={b.label}
-                className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5"
-                style={{ transform: `translate(calc(-50% + ${b.x}px), calc(-50% + ${b.y}px))` }}
-              >
-                <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_#22d3ee] animate-pulse" />
-                <span className="rounded bg-black/60 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-widest text-cyan-200">
-                  {b.label}
-                </span>
-              </div>
-            ))}
-            {/* center */}
             <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-400/10 backdrop-blur-xl">
               <Shield className="h-6 w-6 text-cyan-300" />
             </div>
           </div>
-
-          {/* Stats row */}
-          <div className="mt-4 grid grid-cols-3 gap-3">
-            <Stat label="Registros varridos" value={count.toLocaleString("pt-BR")} sub="+12/min" />
-            <Stat label="Marcas protegidas" value="27" sub="ativas" />
-            <Stat label="Alertas críticos" value="03" sub="pendentes" tone="amber" />
-          </div>
-
-          {/* Live feed */}
-          <div className="mt-6">
-            <div className="mb-2 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-white/40">
-              <span className="flex items-center gap-2"><Activity className="h-3 w-3 text-cyan-400" /> Feed ao vivo</span>
-              <span>últimos 5</span>
-            </div>
-            <ul className="space-y-1.5">
-              {feed.map((f, i) => (
-                <li key={i} className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] px-3 py-2.5 text-sm">
-                  <span className={`flex h-7 w-7 items-center justify-center rounded-lg ${toneMap[f.tone]}`}>
-                    <f.icon className="h-3.5 w-3.5" />
-                  </span>
-                  <span className="flex-1 truncate text-white/80">{f.text}</span>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">{f.tag}</span>
-                  <span className="font-mono text-[10px] text-white/30">{f.t}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </section>
+
 
         {/* RIGHT — form */}
         <section className="flex items-center">
@@ -374,17 +282,6 @@ function Register2Page() {
   );
 }
 
-function Stat({ label, value, sub, tone = "cyan" }: { label: string; value: string; sub: string; tone?: "cyan" | "amber" }) {
-  return (
-    <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
-      <div className="font-mono text-[9px] uppercase tracking-widest text-white/40">{label}</div>
-      <div className={`mt-1 font-display text-2xl font-bold tabular-nums ${tone === "amber" ? "text-amber-300" : "text-white"}`}>
-        {value}
-      </div>
-      <div className={`mt-0.5 font-mono text-[10px] ${tone === "amber" ? "text-amber-400/80" : "text-cyan-400/80"}`}>{sub}</div>
-    </div>
-  );
-}
 
 function Corner({ className = "", pos, small = false }: { className?: string; pos: "tl" | "tr" | "bl" | "br"; small?: boolean }) {
   const s = small ? "h-3 w-3" : "h-4 w-4";
