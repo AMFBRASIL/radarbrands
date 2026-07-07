@@ -12,9 +12,16 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardSocialRouteImport } from './routes/dashboard.social'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardReportsRouteImport } from './routes/dashboard.reports'
+import { Route as DashboardMonitoringRouteImport } from './routes/dashboard.monitoring'
+import { Route as DashboardMarketplaceRouteImport } from './routes/dashboard.marketplace'
+import { Route as DashboardLegalRouteImport } from './routes/dashboard.legal'
 import { Route as DashboardDomainsRouteImport } from './routes/dashboard.domains'
 import { Route as DashboardAlertsRouteImport } from './routes/dashboard.alerts'
 import { Route as DashboardAiRouteImport } from './routes/dashboard.ai'
+import { Route as DashboardAdsRouteImport } from './routes/dashboard.ads'
 
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
@@ -29,6 +36,36 @@ const IndexRoute = IndexRouteImport.update({
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSocialRoute = DashboardSocialRouteImport.update({
+  id: '/social',
+  path: '/social',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardReportsRoute = DashboardReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardMonitoringRoute = DashboardMonitoringRouteImport.update({
+  id: '/monitoring',
+  path: '/monitoring',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardMarketplaceRoute = DashboardMarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardLegalRoute = DashboardLegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardDomainsRoute = DashboardDomainsRouteImport.update({
@@ -46,29 +83,55 @@ const DashboardAiRoute = DashboardAiRouteImport.update({
   path: '/ai',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardAdsRoute = DashboardAdsRouteImport.update({
+  id: '/ads',
+  path: '/ads',
+  getParentRoute: () => DashboardRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteWithChildren
+  '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
   '/dashboard/domains': typeof DashboardDomainsRoute
+  '/dashboard/legal': typeof DashboardLegalRoute
+  '/dashboard/marketplace': typeof DashboardMarketplaceRoute
+  '/dashboard/monitoring': typeof DashboardMonitoringRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
   '/dashboard/domains': typeof DashboardDomainsRoute
+  '/dashboard/legal': typeof DashboardLegalRoute
+  '/dashboard/marketplace': typeof DashboardMarketplaceRoute
+  '/dashboard/monitoring': typeof DashboardMonitoringRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteWithChildren
+  '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
   '/dashboard/domains': typeof DashboardDomainsRoute
+  '/dashboard/legal': typeof DashboardLegalRoute
+  '/dashboard/marketplace': typeof DashboardMarketplaceRoute
+  '/dashboard/monitoring': typeof DashboardMonitoringRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -76,24 +139,45 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
     | '/dashboard/domains'
+    | '/dashboard/legal'
+    | '/dashboard/marketplace'
+    | '/dashboard/monitoring'
+    | '/dashboard/reports'
+    | '/dashboard/settings'
+    | '/dashboard/social'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
     | '/dashboard/domains'
+    | '/dashboard/legal'
+    | '/dashboard/marketplace'
+    | '/dashboard/monitoring'
+    | '/dashboard/reports'
+    | '/dashboard/settings'
+    | '/dashboard/social'
     | '/dashboard'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
     | '/dashboard/domains'
+    | '/dashboard/legal'
+    | '/dashboard/marketplace'
+    | '/dashboard/monitoring'
+    | '/dashboard/reports'
+    | '/dashboard/settings'
+    | '/dashboard/social'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -125,6 +209,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/social': {
+      id: '/dashboard/social'
+      path: '/social'
+      fullPath: '/dashboard/social'
+      preLoaderRoute: typeof DashboardSocialRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/reports': {
+      id: '/dashboard/reports'
+      path: '/reports'
+      fullPath: '/dashboard/reports'
+      preLoaderRoute: typeof DashboardReportsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/monitoring': {
+      id: '/dashboard/monitoring'
+      path: '/monitoring'
+      fullPath: '/dashboard/monitoring'
+      preLoaderRoute: typeof DashboardMonitoringRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/marketplace': {
+      id: '/dashboard/marketplace'
+      path: '/marketplace'
+      fullPath: '/dashboard/marketplace'
+      preLoaderRoute: typeof DashboardMarketplaceRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/legal': {
+      id: '/dashboard/legal'
+      path: '/legal'
+      fullPath: '/dashboard/legal'
+      preLoaderRoute: typeof DashboardLegalRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/domains': {
       id: '/dashboard/domains'
       path: '/domains'
@@ -146,20 +272,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardAiRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/ads': {
+      id: '/dashboard/ads'
+      path: '/ads'
+      fullPath: '/dashboard/ads'
+      preLoaderRoute: typeof DashboardAdsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
 
 interface DashboardRouteChildren {
+  DashboardAdsRoute: typeof DashboardAdsRoute
   DashboardAiRoute: typeof DashboardAiRoute
   DashboardAlertsRoute: typeof DashboardAlertsRoute
   DashboardDomainsRoute: typeof DashboardDomainsRoute
+  DashboardLegalRoute: typeof DashboardLegalRoute
+  DashboardMarketplaceRoute: typeof DashboardMarketplaceRoute
+  DashboardMonitoringRoute: typeof DashboardMonitoringRoute
+  DashboardReportsRoute: typeof DashboardReportsRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardSocialRoute: typeof DashboardSocialRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAdsRoute: DashboardAdsRoute,
   DashboardAiRoute: DashboardAiRoute,
   DashboardAlertsRoute: DashboardAlertsRoute,
   DashboardDomainsRoute: DashboardDomainsRoute,
+  DashboardLegalRoute: DashboardLegalRoute,
+  DashboardMarketplaceRoute: DashboardMarketplaceRoute,
+  DashboardMonitoringRoute: DashboardMonitoringRoute,
+  DashboardReportsRoute: DashboardReportsRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardSocialRoute: DashboardSocialRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
