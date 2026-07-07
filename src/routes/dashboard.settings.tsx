@@ -244,6 +244,7 @@ function SettingsPage() {
           presets={presetsBySection[active]}
           configStep={renderBody(active)}
           reviewSummary={reviewBySection[active]}
+          customSteps={active === "email" ? emailSteps : undefined}
         />
       )}
     </SimplePage>
