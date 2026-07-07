@@ -3,9 +3,9 @@ import { Shield, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const nav = [
+const nav: { label: string; href: string; to?: string }[] = [
   { label: "Plataforma", href: "#plataforma" },
-  { label: "Monitoramento", href: "#monitor" },
+  { label: "Como funciona", href: "/como-funciona", to: "/como-funciona" },
   { label: "Proteção", href: "#protecao" },
   { label: "IA", href: "#ia" },
   { label: "Preços", href: "#precos" },
@@ -30,15 +30,26 @@ export function SiteHeader() {
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
-            {nav.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                {item.label}
-              </a>
-            ))}
+            {nav.map((item) =>
+              item.to ? (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  activeProps={{ className: "text-foreground" }}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                >
+                  {item.label}
+                </a>
+              ),
+            )}
             <Link
               to="/dashboard"
               className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
