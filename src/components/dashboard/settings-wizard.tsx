@@ -27,9 +27,10 @@ type Props = {
   description: string;
   icon: ComponentType<{ className?: string }>;
   gradient: string;
-  presets: WizardPreset[];
-  configStep: ReactNode;
-  reviewSummary: { label: string; value: string }[];
+  presets?: WizardPreset[];
+  configStep?: ReactNode;
+  reviewSummary?: { label: string; value: string }[];
+  customSteps?: WizardStep[];
 };
 
 export function SettingsWizard({
@@ -40,9 +41,10 @@ export function SettingsWizard({
   description,
   icon: Icon,
   gradient,
-  presets,
+  presets = [],
   configStep,
-  reviewSummary,
+  reviewSummary = [],
+  customSteps,
 }: Props) {
   const [stepIndex, setStepIndex] = useState(0);
   const [preset, setPreset] = useState<string>(presets[0]?.id ?? "");
