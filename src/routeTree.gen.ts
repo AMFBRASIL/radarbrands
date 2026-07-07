@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreNosRouteImport } from './routes/sobre-nos'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PropostaRouteImport } from './routes/proposta'
+import { Route as Login2RouteImport } from './routes/login2'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JuridicoRouteImport } from './routes/juridico'
 import { Route as DiferencialRouteImport } from './routes/diferencial'
@@ -55,6 +56,11 @@ const RegisterRoute = RegisterRouteImport.update({
 const PropostaRoute = PropostaRouteImport.update({
   id: '/proposta',
   path: '/proposta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Login2Route = Login2RouteImport.update({
+  id: '/login2',
+  path: '/login2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -210,6 +216,7 @@ export interface FileRoutesByFullPath {
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
+  '/login2': typeof Login2Route
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
   '/sobre-nos': typeof SobreNosRoute
@@ -243,6 +250,7 @@ export interface FileRoutesByTo {
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
+  '/login2': typeof Login2Route
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
   '/sobre-nos': typeof SobreNosRoute
@@ -278,6 +286,7 @@ export interface FileRoutesById {
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
+  '/login2': typeof Login2Route
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
   '/sobre-nos': typeof SobreNosRoute
@@ -314,6 +323,7 @@ export interface FileRouteTypes {
     | '/diferencial'
     | '/juridico'
     | '/login'
+    | '/login2'
     | '/proposta'
     | '/register'
     | '/sobre-nos'
@@ -347,6 +357,7 @@ export interface FileRouteTypes {
     | '/diferencial'
     | '/juridico'
     | '/login'
+    | '/login2'
     | '/proposta'
     | '/register'
     | '/sobre-nos'
@@ -381,6 +392,7 @@ export interface FileRouteTypes {
     | '/diferencial'
     | '/juridico'
     | '/login'
+    | '/login2'
     | '/proposta'
     | '/register'
     | '/sobre-nos'
@@ -416,6 +428,7 @@ export interface RootRouteChildren {
   DiferencialRoute: typeof DiferencialRoute
   JuridicoRoute: typeof JuridicoRoute
   LoginRoute: typeof LoginRoute
+  Login2Route: typeof Login2Route
   PropostaRoute: typeof PropostaRoute
   RegisterRoute: typeof RegisterRoute
   SobreNosRoute: typeof SobreNosRoute
@@ -442,6 +455,13 @@ declare module '@tanstack/react-router' {
       path: '/proposta'
       fullPath: '/proposta'
       preLoaderRoute: typeof PropostaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login2': {
+      id: '/login2'
+      path: '/login2'
+      fullPath: '/login2'
+      preLoaderRoute: typeof Login2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -713,6 +733,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiferencialRoute: DiferencialRoute,
   JuridicoRoute: JuridicoRoute,
   LoginRoute: LoginRoute,
+  Login2Route: Login2Route,
   PropostaRoute: PropostaRoute,
   RegisterRoute: RegisterRoute,
   SobreNosRoute: SobreNosRoute,
