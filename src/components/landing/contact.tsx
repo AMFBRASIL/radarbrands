@@ -237,7 +237,7 @@ function ChannelCard({
         <div className="font-semibold">{title}</div>
         <div className="truncate text-xs text-muted-foreground">{subtitle}</div>
       </div>
-      <span className="text-xs font-mono uppercase tracking-widest text-primary opacity-0 transition-opacity group-hover:opacity-100">
+      <span className="hidden shrink-0 whitespace-nowrap text-xs font-mono uppercase tracking-widest text-primary opacity-0 transition-opacity group-hover:opacity-100 md:inline">
         {action} →
       </span>
     </a>
