@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreNosRouteImport } from './routes/sobre-nos'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PropostaRouteImport } from './routes/proposta'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JuridicoRouteImport } from './routes/juridico'
@@ -44,6 +45,11 @@ import { Route as DashboardAdsRouteImport } from './routes/dashboard.ads'
 const SobreNosRoute = SobreNosRouteImport.update({
   id: '/sobre-nos',
   path: '/sobre-nos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PropostaRoute = PropostaRouteImport.update({
@@ -205,6 +211,7 @@ export interface FileRoutesByFullPath {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/proposta': typeof PropostaRoute
+  '/register': typeof RegisterRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -237,6 +244,7 @@ export interface FileRoutesByTo {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/proposta': typeof PropostaRoute
+  '/register': typeof RegisterRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -271,6 +279,7 @@ export interface FileRoutesById {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/proposta': typeof PropostaRoute
+  '/register': typeof RegisterRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -306,6 +315,7 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/proposta'
+    | '/register'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -338,6 +348,7 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/proposta'
+    | '/register'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -371,6 +382,7 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/proposta'
+    | '/register'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -405,6 +417,7 @@ export interface RootRouteChildren {
   JuridicoRoute: typeof JuridicoRoute
   LoginRoute: typeof LoginRoute
   PropostaRoute: typeof PropostaRoute
+  RegisterRoute: typeof RegisterRoute
   SobreNosRoute: typeof SobreNosRoute
 }
 
@@ -415,6 +428,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre-nos'
       fullPath: '/sobre-nos'
       preLoaderRoute: typeof SobreNosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/proposta': {
@@ -694,6 +714,7 @@ const rootRouteChildren: RootRouteChildren = {
   JuridicoRoute: JuridicoRoute,
   LoginRoute: LoginRoute,
   PropostaRoute: PropostaRoute,
+  RegisterRoute: RegisterRoute,
   SobreNosRoute: SobreNosRoute,
 }
 export const routeTree = rootRouteImport
