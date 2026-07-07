@@ -20,13 +20,13 @@ import { SiteFooter, CtaBand } from "@/components/landing/pricing-footer";
 export const Route = createFileRoute("/juridico")({
   head: () => ({
     meta: [
-      { title: "Jurídico · BrandShield AI — Base legal e dossiê probatório" },
+      { title: "Jurídico · Radar | brand — Base legal e dossiê probatório" },
       {
         name: "description",
         content:
-          "Brand bidding e uso indevido de marca sem autorização é concorrência desleal. A BrandShield AI transforma cada detecção em dossiê probatório pronto para a mediação, notificação extrajudicial ou ação judicial.",
+          "Brand bidding e uso indevido de marca sem autorização é concorrência desleal. A Radar | brand transforma cada detecção em dossiê probatório pronto para a mediação, notificação extrajudicial ou ação judicial.",
       },
-      { property: "og:title", content: "Jurídico · BrandShield AI" },
+      { property: "og:title", content: "Jurídico · Radar | brand" },
       {
         property: "og:description",
         content:
@@ -58,7 +58,7 @@ const evidence = [
   {
     icon: FileText,
     title: "Parecer técnico",
-    text: "Análise da operação BrandShield sobre o caso, pronta para anexar ao processo.",
+    text: "Análise da operação Radar | brand sobre o caso, pronta para anexar ao processo.",
   },
 ];
 
@@ -83,7 +83,7 @@ const escalation = [
     step: "03",
     icon: Gavel,
     title: "Ação judicial",
-    text: "Jurídico do cliente ou escritório parceiro BrandShield entra com a ação — com o dossiê probatório já formado.",
+    text: "Jurídico do cliente ou escritório parceiro Radar | brand entra com a ação — com o dossiê probatório já formado.",
     stat: "Dossiê",
     statLabel: "pronto para juízo",
   },
@@ -114,7 +114,7 @@ function JuridicoPage() {
               </h1>
               <p className="mt-6 text-lg text-muted-foreground">
                 A maioria das mediações fecha em acordo. Para os casos que
-                insistem, cada detecção da BrandShield AI já é um dossiê
+                insistem, cada detecção da Radar | brand já é um dossiê
                 probatório pronto para a Justiça.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -278,7 +278,7 @@ function JuridicoPage() {
                     <span className="text-gradient">especialista jurídico</span>
                   </h2>
                   <p className="mt-4 text-muted-foreground">
-                    A BrandShield entrega o dossiê e o caminho — não vende
+                    A Radar | brand entrega o dossiê e o caminho — não vende
                     serviço jurídico. Se o caso precisa de ação judicial, o
                     cliente aciona o próprio jurídico interno, agora com tudo
                     pré-empacotado, ou conta com a nossa rede de escritórios

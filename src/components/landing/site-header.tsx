@@ -23,7 +23,7 @@ export function SiteHeader() {
               <Shield className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="font-display text-sm font-bold tracking-tight">BrandShield</span>
+              <span className="font-display text-sm font-bold tracking-tight">Radar | brand</span>
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
                 AI
               </span>

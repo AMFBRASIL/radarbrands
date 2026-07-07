@@ -17,13 +17,13 @@ import { SiteHeader } from "@/components/landing/site-header";
 export const Route = createFileRoute("/proposta")({
   head: () => ({
     meta: [
-      { title: "Monte sua proposta — BrandShield AI" },
+      { title: "Monte sua proposta — Radar | brand" },
       {
         name: "description",
         content:
           "Configure os módulos que sua marca precisa e receba uma proposta personalizada em segundos. Sem preço engessado, sem contrato longo.",
       },
-      { property: "og:title", content: "Monte sua proposta — BrandShield AI" },
+      { property: "og:title", content: "Monte sua proposta — Radar | brand" },
       {
         property: "og:description",
         content:
@@ -400,7 +400,7 @@ function ProposalView(props: {
               <Shield className="h-6 w-6 text-primary-foreground" />
             </div>
             <div>
-              <div className="font-display text-lg font-bold">BrandShield AI</div>
+              <div className="font-display text-lg font-bold">Radar | brand</div>
               <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
                 Proposta Comercial
               </div>
@@ -512,7 +512,7 @@ function ProposalView(props: {
         </section>
 
         <footer className="mt-8 border-t border-border/60 pt-4 text-center text-[11px] text-muted-foreground">
-          BrandShield AI · proposta {proposalId} · confidencial
+          Radar | brand · proposta {proposalId} · confidencial
         </footer>
       </article>
     </div>

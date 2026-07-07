@@ -151,7 +151,7 @@ export function SiteFooter() {
               <Shield className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
             </div>
             <div>
-              <div className="font-display font-bold">BrandShield AI</div>
+              <div className="font-display font-bold">Radar | brand</div>
               <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
                 Brand Intelligence
               </div>
@@ -169,7 +169,7 @@ export function SiteFooter() {
         <FooterCol title="Empresa" items={["Sobre", "Clientes", "Segurança", "Contato"]} />
       </div>
       <div className="mx-auto mt-10 flex max-w-7xl flex-col items-center justify-between gap-3 border-t border-border/60 px-4 pt-6 text-xs text-muted-foreground md:flex-row">
-        <span>© {new Date().getFullYear()} BrandShield AI · Todos os direitos reservados</span>
+        <span>© {new Date().getFullYear()} Radar | brand · Todos os direitos reservados</span>
         <span className="font-mono">SOC2 · LGPD · ISO 27001</span>
       </div>
     </footer>

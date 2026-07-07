@@ -65,7 +65,7 @@ function AIPage() {
             {m.role === "ai" ? (
               <div className="max-w-[80%] whitespace-pre-line rounded-2xl bg-muted/40 px-4 py-3 text-sm">
                 <div className="mb-1 flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest text-primary">
-                  <Sparkles className="h-3 w-3" /> BrandShield AI
+                  <Sparkles className="h-3 w-3" /> Radar | brand
                 </div>
                 {m.text}
               </div>

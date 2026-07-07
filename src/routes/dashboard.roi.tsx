@@ -25,7 +25,7 @@ function RoiPage() {
   return (
     <SimplePage
       eyebrow="ROI Calculator"
-      title="Retorno real da BrandShield"
+      title="Retorno real da Radar | brand"
       description="Cada ameaça neutralizada vira R$ economizados ou receita protegida. Números atualizados em tempo real."
     >
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">

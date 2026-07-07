@@ -34,7 +34,7 @@ export function Investment() {
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
             Cansamos de ver marcas pagando fortunas por dashboards travados e relatórios em PDF.
-            Na BrandShield AI, o preço é calibrado pelo tamanho da sua operação — e a
+            Na Radar | brand, o preço é calibrado pelo tamanho da sua operação — e a
             tecnologia é uma geração à frente.
           </p>
         </div>
@@ -67,7 +67,7 @@ export function Investment() {
             </ul>
           </div>
 
-          {/* BrandShield */}
+          {/* Radar | brand */}
           <div className="relative overflow-hidden rounded-3xl glass-strong ring-gradient glow-primary p-8">
             <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
             <div className="relative">
@@ -75,7 +75,7 @@ export function Investment() {
                 <div className="inline-flex items-center gap-2">
                   <Shield className="h-4 w-4 text-primary" />
                   <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                    BrandShield AI
+                    Radar | brand
                   </div>
                 </div>
                 <span className="rounded-full bg-[image:var(--gradient-primary)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">

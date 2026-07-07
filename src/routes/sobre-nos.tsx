@@ -21,13 +21,13 @@ import { SiteFooter, CtaBand } from "@/components/landing/pricing-footer";
 export const Route = createFileRoute("/sobre-nos")({
   head: () => ({
     meta: [
-      { title: "Sobre nós · BrandShield AI — Proteção de marcas com IA" },
+      { title: "Sobre nós · Radar | brand — Proteção de marcas com IA" },
       {
         name: "description",
         content:
-          "Somos a BrandShield AI: uma equipe de engenheiros, cientistas de dados e especialistas em propriedade intelectual construindo a plataforma mais avançada de proteção de marcas da América Latina.",
+          "Somos a Radar | brand: uma equipe de engenheiros, cientistas de dados e especialistas em propriedade intelectual construindo a plataforma mais avançada de proteção de marcas da América Latina.",
       },
-      { property: "og:title", content: "Sobre nós · BrandShield AI" },
+      { property: "og:title", content: "Sobre nós · Radar | brand" },
       {
         property: "og:description",
         content:
@@ -107,7 +107,7 @@ const leadership = [
   {
     name: "Diego Farias",
     role: "CTO & Cofundador",
-    bio: "Ex-engenheiro de IA em big tech. Lidera os modelos de detecção da BrandShield.",
+    bio: "Ex-engenheiro de IA em big tech. Lidera os modelos de detecção da Radar | brand.",
   },
   {
     name: "Marina Prates",
@@ -138,7 +138,7 @@ function SobreNosPage() {
             <div className="mx-auto max-w-3xl text-center">
               <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
                 <Sparkles className="h-3.5 w-3.5 text-primary" />
-                Sobre a BrandShield AI
+                Sobre a Radar | brand
               </div>
               <h1 className="font-display text-4xl font-bold tracking-tight md:text-6xl">
                 Construindo a plataforma mais{" "}

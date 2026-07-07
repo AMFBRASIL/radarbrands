@@ -101,7 +101,7 @@ export function AppSidebar() {
             <Shield className="h-4 w-4 text-primary-foreground" strokeWidth={2.5} />
           </div>
           <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
-            <span className="font-display text-sm font-bold">BrandShield</span>
+            <span className="font-display text-sm font-bold">Radar | brand</span>
             <span className="font-mono text-[9px] uppercase tracking-widest text-primary">
               AI Console
             </span>
