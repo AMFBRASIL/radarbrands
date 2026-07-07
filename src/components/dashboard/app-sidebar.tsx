@@ -170,7 +170,7 @@ export function AppSidebar() {
         {/* Fade + indicador de mais itens abaixo */}
         <div
           aria-hidden
-          className={`pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-sidebar to-transparent transition-opacity duration-300 ${
+          className={`pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-sidebar via-sidebar/90 to-transparent transition-opacity duration-300 ${
             hasMore ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -178,11 +178,14 @@ export function AppSidebar() {
           type="button"
           onClick={scrollDown}
           aria-label="Ver mais itens do menu"
-          className={`absolute bottom-2 left-1/2 -translate-x-1/2 flex h-7 w-7 items-center justify-center rounded-full border border-sidebar-border bg-sidebar text-primary shadow-md transition-all duration-300 hover:bg-sidebar-accent group-data-[collapsible=icon]:hidden ${
-            hasMore ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-2"
+          className={`absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 rounded-2xl border border-sidebar-border/70 bg-sidebar/95 px-4 py-2 text-primary shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-sidebar-accent group-data-[collapsible=icon]:hidden ${
+            hasMore ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
           }`}
         >
-          <ChevronDown className="h-4 w-4 animate-bounce" />
+          <span className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-widest text-sidebar-foreground/80">
+            Mais módulos
+          </span>
+          <ChevronDown className="h-5 w-5 animate-bounce" />
         </button>
       </div>
     </Sidebar>
