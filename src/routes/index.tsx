@@ -11,6 +11,14 @@ import {
   TrademarkCenter,
 } from "@/components/landing/modules";
 import { Investment } from "@/components/landing/investment";
+import {
+  WhyNow,
+  SilentAttack,
+  LegalBase,
+  MediationRevenue,
+  ToolVsSpecialist,
+  BrandFAQ,
+} from "@/components/landing/brand-bidding";
 import { Contact, WhatsAppFab } from "@/components/landing/contact";
 import { CtaBand, SiteFooter } from "@/components/landing/pricing-footer";
 
