@@ -238,9 +238,15 @@ function Login2Page() {
 
               <form
                 className="space-y-4"
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  navigate({ to: "/dashboard" });
+                  setIsLoading(true);
+                  await new Promise((resolve) => setTimeout(resolve, 1400));
+                  setIsLoading(false);
+                  toast.success("Login realizado com sucesso", {
+                    description: "Redirecionando para o dashboard...",
+                  });
+                  setTimeout(() => navigate({ to: "/dashboard" }), 800);
                 }}
               >
                 <FieldLabel label="E-mail corporativo" hint="verificado por SPF/DKIM" />
@@ -283,16 +289,27 @@ function Login2Page() {
 
                 <button
                   type="submit"
-                  className="group relative mt-2 flex h-13 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 py-4 text-sm font-bold uppercase tracking-widest text-[#050b14] shadow-[0_10px_40px_-10px_rgba(34,211,238,0.6)] transition active:scale-[0.99]"
+                  disabled={isLoading}
+                  className="group relative mt-2 flex h-13 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 py-4 text-sm font-bold uppercase tracking-widest text-[#050b14] shadow-[0_10px_40px_-10px_rgba(34,211,238,0.6)] transition active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   <span className="relative z-10 flex items-center gap-2">
-                    <Sparkles className="h-4 w-4" /> Iniciar sessão
-                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" /> Autenticando...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="h-4 w-4" /> Iniciar sessão
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                      </>
+                    )}
                   </span>
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full"
-                  />
+                  {!isLoading && (
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full"
+                    />
+                  )}
                 </button>
               </form>
 
