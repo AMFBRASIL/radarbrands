@@ -32,6 +32,8 @@ function LandingPage() {
       <SiteHeader />
       <main>
         <Hero />
+        <WhyNow />
+        <SilentAttack />
         <BrandMonitor />
         <BrandAI />
         <DomainWatch />
@@ -39,7 +41,11 @@ function LandingPage() {
         <AdsGuardian />
         <MarketplaceMonitor />
         <TrademarkCenter />
+        <LegalBase />
+        <MediationRevenue />
+        <ToolVsSpecialist />
         <Investment />
+        <BrandFAQ />
         <Contact />
         <CtaBand />
       </main>
