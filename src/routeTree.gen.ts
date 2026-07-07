@@ -15,13 +15,25 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardThreatsRouteImport } from './routes/dashboard.threats'
 import { Route as DashboardSocialRouteImport } from './routes/dashboard.social'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
+import { Route as DashboardRoiRouteImport } from './routes/dashboard.roi'
 import { Route as DashboardReportsRouteImport } from './routes/dashboard.reports'
+import { Route as DashboardPredictRouteImport } from './routes/dashboard.predict'
+import { Route as DashboardPlaybooksRouteImport } from './routes/dashboard.playbooks'
 import { Route as DashboardMonitoringRouteImport } from './routes/dashboard.monitoring'
 import { Route as DashboardMarketplaceRouteImport } from './routes/dashboard.marketplace'
 import { Route as DashboardLegalRouteImport } from './routes/dashboard.legal'
+import { Route as DashboardInfluencersRouteImport } from './routes/dashboard.influencers'
 import { Route as DashboardDomainsRouteImport } from './routes/dashboard.domains'
+import { Route as DashboardDeepfakeRouteImport } from './routes/dashboard.deepfake'
+import { Route as DashboardDarkwebRouteImport } from './routes/dashboard.darkweb'
+import { Route as DashboardCrisisRouteImport } from './routes/dashboard.crisis'
+import { Route as DashboardCompetitorsRouteImport } from './routes/dashboard.competitors'
+import { Route as DashboardBriefingRouteImport } from './routes/dashboard.briefing'
+import { Route as DashboardAutopilotRouteImport } from './routes/dashboard.autopilot'
+import { Route as DashboardAppsRouteImport } from './routes/dashboard.apps'
 import { Route as DashboardAlertsRouteImport } from './routes/dashboard.alerts'
 import { Route as DashboardAiRouteImport } from './routes/dashboard.ai'
 import { Route as DashboardAdsRouteImport } from './routes/dashboard.ads'
@@ -56,6 +68,11 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardThreatsRoute = DashboardThreatsRouteImport.update({
+  id: '/threats',
+  path: '/threats',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardSocialRoute = DashboardSocialRouteImport.update({
   id: '/social',
   path: '/social',
@@ -66,9 +83,24 @@ const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardRoiRoute = DashboardRoiRouteImport.update({
+  id: '/roi',
+  path: '/roi',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardReportsRoute = DashboardReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPredictRoute = DashboardPredictRouteImport.update({
+  id: '/predict',
+  path: '/predict',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardPlaybooksRoute = DashboardPlaybooksRouteImport.update({
+  id: '/playbooks',
+  path: '/playbooks',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardMonitoringRoute = DashboardMonitoringRouteImport.update({
@@ -86,9 +118,49 @@ const DashboardLegalRoute = DashboardLegalRouteImport.update({
   path: '/legal',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardInfluencersRoute = DashboardInfluencersRouteImport.update({
+  id: '/influencers',
+  path: '/influencers',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardDomainsRoute = DashboardDomainsRouteImport.update({
   id: '/domains',
   path: '/domains',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardDeepfakeRoute = DashboardDeepfakeRouteImport.update({
+  id: '/deepfake',
+  path: '/deepfake',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardDarkwebRoute = DashboardDarkwebRouteImport.update({
+  id: '/darkweb',
+  path: '/darkweb',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCrisisRoute = DashboardCrisisRouteImport.update({
+  id: '/crisis',
+  path: '/crisis',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCompetitorsRoute = DashboardCompetitorsRouteImport.update({
+  id: '/competitors',
+  path: '/competitors',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardBriefingRoute = DashboardBriefingRouteImport.update({
+  id: '/briefing',
+  path: '/briefing',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAutopilotRoute = DashboardAutopilotRouteImport.update({
+  id: '/autopilot',
+  path: '/autopilot',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardAppsRoute = DashboardAppsRouteImport.update({
+  id: '/apps',
+  path: '/apps',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardAlertsRoute = DashboardAlertsRouteImport.update({
@@ -116,13 +188,25 @@ export interface FileRoutesByFullPath {
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
+  '/dashboard/apps': typeof DashboardAppsRoute
+  '/dashboard/autopilot': typeof DashboardAutopilotRoute
+  '/dashboard/briefing': typeof DashboardBriefingRoute
+  '/dashboard/competitors': typeof DashboardCompetitorsRoute
+  '/dashboard/crisis': typeof DashboardCrisisRoute
+  '/dashboard/darkweb': typeof DashboardDarkwebRoute
+  '/dashboard/deepfake': typeof DashboardDeepfakeRoute
   '/dashboard/domains': typeof DashboardDomainsRoute
+  '/dashboard/influencers': typeof DashboardInfluencersRoute
   '/dashboard/legal': typeof DashboardLegalRoute
   '/dashboard/marketplace': typeof DashboardMarketplaceRoute
   '/dashboard/monitoring': typeof DashboardMonitoringRoute
+  '/dashboard/playbooks': typeof DashboardPlaybooksRoute
+  '/dashboard/predict': typeof DashboardPredictRoute
   '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/roi': typeof DashboardRoiRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
+  '/dashboard/threats': typeof DashboardThreatsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -133,13 +217,25 @@ export interface FileRoutesByTo {
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
+  '/dashboard/apps': typeof DashboardAppsRoute
+  '/dashboard/autopilot': typeof DashboardAutopilotRoute
+  '/dashboard/briefing': typeof DashboardBriefingRoute
+  '/dashboard/competitors': typeof DashboardCompetitorsRoute
+  '/dashboard/crisis': typeof DashboardCrisisRoute
+  '/dashboard/darkweb': typeof DashboardDarkwebRoute
+  '/dashboard/deepfake': typeof DashboardDeepfakeRoute
   '/dashboard/domains': typeof DashboardDomainsRoute
+  '/dashboard/influencers': typeof DashboardInfluencersRoute
   '/dashboard/legal': typeof DashboardLegalRoute
   '/dashboard/marketplace': typeof DashboardMarketplaceRoute
   '/dashboard/monitoring': typeof DashboardMonitoringRoute
+  '/dashboard/playbooks': typeof DashboardPlaybooksRoute
+  '/dashboard/predict': typeof DashboardPredictRoute
   '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/roi': typeof DashboardRoiRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
+  '/dashboard/threats': typeof DashboardThreatsRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -152,13 +248,25 @@ export interface FileRoutesById {
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
+  '/dashboard/apps': typeof DashboardAppsRoute
+  '/dashboard/autopilot': typeof DashboardAutopilotRoute
+  '/dashboard/briefing': typeof DashboardBriefingRoute
+  '/dashboard/competitors': typeof DashboardCompetitorsRoute
+  '/dashboard/crisis': typeof DashboardCrisisRoute
+  '/dashboard/darkweb': typeof DashboardDarkwebRoute
+  '/dashboard/deepfake': typeof DashboardDeepfakeRoute
   '/dashboard/domains': typeof DashboardDomainsRoute
+  '/dashboard/influencers': typeof DashboardInfluencersRoute
   '/dashboard/legal': typeof DashboardLegalRoute
   '/dashboard/marketplace': typeof DashboardMarketplaceRoute
   '/dashboard/monitoring': typeof DashboardMonitoringRoute
+  '/dashboard/playbooks': typeof DashboardPlaybooksRoute
+  '/dashboard/predict': typeof DashboardPredictRoute
   '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/roi': typeof DashboardRoiRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
+  '/dashboard/threats': typeof DashboardThreatsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -172,13 +280,25 @@ export interface FileRouteTypes {
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
+    | '/dashboard/apps'
+    | '/dashboard/autopilot'
+    | '/dashboard/briefing'
+    | '/dashboard/competitors'
+    | '/dashboard/crisis'
+    | '/dashboard/darkweb'
+    | '/dashboard/deepfake'
     | '/dashboard/domains'
+    | '/dashboard/influencers'
     | '/dashboard/legal'
     | '/dashboard/marketplace'
     | '/dashboard/monitoring'
+    | '/dashboard/playbooks'
+    | '/dashboard/predict'
     | '/dashboard/reports'
+    | '/dashboard/roi'
     | '/dashboard/settings'
     | '/dashboard/social'
+    | '/dashboard/threats'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -189,13 +309,25 @@ export interface FileRouteTypes {
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
+    | '/dashboard/apps'
+    | '/dashboard/autopilot'
+    | '/dashboard/briefing'
+    | '/dashboard/competitors'
+    | '/dashboard/crisis'
+    | '/dashboard/darkweb'
+    | '/dashboard/deepfake'
     | '/dashboard/domains'
+    | '/dashboard/influencers'
     | '/dashboard/legal'
     | '/dashboard/marketplace'
     | '/dashboard/monitoring'
+    | '/dashboard/playbooks'
+    | '/dashboard/predict'
     | '/dashboard/reports'
+    | '/dashboard/roi'
     | '/dashboard/settings'
     | '/dashboard/social'
+    | '/dashboard/threats'
     | '/dashboard'
   id:
     | '__root__'
@@ -207,13 +339,25 @@ export interface FileRouteTypes {
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
+    | '/dashboard/apps'
+    | '/dashboard/autopilot'
+    | '/dashboard/briefing'
+    | '/dashboard/competitors'
+    | '/dashboard/crisis'
+    | '/dashboard/darkweb'
+    | '/dashboard/deepfake'
     | '/dashboard/domains'
+    | '/dashboard/influencers'
     | '/dashboard/legal'
     | '/dashboard/marketplace'
     | '/dashboard/monitoring'
+    | '/dashboard/playbooks'
+    | '/dashboard/predict'
     | '/dashboard/reports'
+    | '/dashboard/roi'
     | '/dashboard/settings'
     | '/dashboard/social'
+    | '/dashboard/threats'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -269,6 +413,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/threats': {
+      id: '/dashboard/threats'
+      path: '/threats'
+      fullPath: '/dashboard/threats'
+      preLoaderRoute: typeof DashboardThreatsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/social': {
       id: '/dashboard/social'
       path: '/social'
@@ -283,11 +434,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/roi': {
+      id: '/dashboard/roi'
+      path: '/roi'
+      fullPath: '/dashboard/roi'
+      preLoaderRoute: typeof DashboardRoiRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/reports': {
       id: '/dashboard/reports'
       path: '/reports'
       fullPath: '/dashboard/reports'
       preLoaderRoute: typeof DashboardReportsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/predict': {
+      id: '/dashboard/predict'
+      path: '/predict'
+      fullPath: '/dashboard/predict'
+      preLoaderRoute: typeof DashboardPredictRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/playbooks': {
+      id: '/dashboard/playbooks'
+      path: '/playbooks'
+      fullPath: '/dashboard/playbooks'
+      preLoaderRoute: typeof DashboardPlaybooksRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/monitoring': {
@@ -311,11 +483,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardLegalRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/influencers': {
+      id: '/dashboard/influencers'
+      path: '/influencers'
+      fullPath: '/dashboard/influencers'
+      preLoaderRoute: typeof DashboardInfluencersRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/domains': {
       id: '/dashboard/domains'
       path: '/domains'
       fullPath: '/dashboard/domains'
       preLoaderRoute: typeof DashboardDomainsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/deepfake': {
+      id: '/dashboard/deepfake'
+      path: '/deepfake'
+      fullPath: '/dashboard/deepfake'
+      preLoaderRoute: typeof DashboardDeepfakeRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/darkweb': {
+      id: '/dashboard/darkweb'
+      path: '/darkweb'
+      fullPath: '/dashboard/darkweb'
+      preLoaderRoute: typeof DashboardDarkwebRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/crisis': {
+      id: '/dashboard/crisis'
+      path: '/crisis'
+      fullPath: '/dashboard/crisis'
+      preLoaderRoute: typeof DashboardCrisisRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/competitors': {
+      id: '/dashboard/competitors'
+      path: '/competitors'
+      fullPath: '/dashboard/competitors'
+      preLoaderRoute: typeof DashboardCompetitorsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/briefing': {
+      id: '/dashboard/briefing'
+      path: '/briefing'
+      fullPath: '/dashboard/briefing'
+      preLoaderRoute: typeof DashboardBriefingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/autopilot': {
+      id: '/dashboard/autopilot'
+      path: '/autopilot'
+      fullPath: '/dashboard/autopilot'
+      preLoaderRoute: typeof DashboardAutopilotRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/apps': {
+      id: '/dashboard/apps'
+      path: '/apps'
+      fullPath: '/dashboard/apps'
+      preLoaderRoute: typeof DashboardAppsRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/alerts': {
@@ -346,13 +574,25 @@ interface DashboardRouteChildren {
   DashboardAdsRoute: typeof DashboardAdsRoute
   DashboardAiRoute: typeof DashboardAiRoute
   DashboardAlertsRoute: typeof DashboardAlertsRoute
+  DashboardAppsRoute: typeof DashboardAppsRoute
+  DashboardAutopilotRoute: typeof DashboardAutopilotRoute
+  DashboardBriefingRoute: typeof DashboardBriefingRoute
+  DashboardCompetitorsRoute: typeof DashboardCompetitorsRoute
+  DashboardCrisisRoute: typeof DashboardCrisisRoute
+  DashboardDarkwebRoute: typeof DashboardDarkwebRoute
+  DashboardDeepfakeRoute: typeof DashboardDeepfakeRoute
   DashboardDomainsRoute: typeof DashboardDomainsRoute
+  DashboardInfluencersRoute: typeof DashboardInfluencersRoute
   DashboardLegalRoute: typeof DashboardLegalRoute
   DashboardMarketplaceRoute: typeof DashboardMarketplaceRoute
   DashboardMonitoringRoute: typeof DashboardMonitoringRoute
+  DashboardPlaybooksRoute: typeof DashboardPlaybooksRoute
+  DashboardPredictRoute: typeof DashboardPredictRoute
   DashboardReportsRoute: typeof DashboardReportsRoute
+  DashboardRoiRoute: typeof DashboardRoiRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardSocialRoute: typeof DashboardSocialRoute
+  DashboardThreatsRoute: typeof DashboardThreatsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
@@ -360,13 +600,25 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardAdsRoute: DashboardAdsRoute,
   DashboardAiRoute: DashboardAiRoute,
   DashboardAlertsRoute: DashboardAlertsRoute,
+  DashboardAppsRoute: DashboardAppsRoute,
+  DashboardAutopilotRoute: DashboardAutopilotRoute,
+  DashboardBriefingRoute: DashboardBriefingRoute,
+  DashboardCompetitorsRoute: DashboardCompetitorsRoute,
+  DashboardCrisisRoute: DashboardCrisisRoute,
+  DashboardDarkwebRoute: DashboardDarkwebRoute,
+  DashboardDeepfakeRoute: DashboardDeepfakeRoute,
   DashboardDomainsRoute: DashboardDomainsRoute,
+  DashboardInfluencersRoute: DashboardInfluencersRoute,
   DashboardLegalRoute: DashboardLegalRoute,
   DashboardMarketplaceRoute: DashboardMarketplaceRoute,
   DashboardMonitoringRoute: DashboardMonitoringRoute,
+  DashboardPlaybooksRoute: DashboardPlaybooksRoute,
+  DashboardPredictRoute: DashboardPredictRoute,
   DashboardReportsRoute: DashboardReportsRoute,
+  DashboardRoiRoute: DashboardRoiRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardSocialRoute: DashboardSocialRoute,
+  DashboardThreatsRoute: DashboardThreatsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
