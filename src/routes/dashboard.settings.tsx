@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { SettingsWizard, type WizardPreset } from "@/components/dashboard/settings-wizard";
 import {
   Bell,
   Bot,
@@ -16,6 +17,7 @@ import {
   Database,
   FileClock,
   Fingerprint,
+  Gauge,
   Globe2,
   KeyRound,
   Languages,
@@ -23,12 +25,16 @@ import {
   Palette,
   Plug,
   Radio,
+  Rocket,
   ScrollText,
   Server,
+  Shield,
   ShieldCheck,
   Sparkles,
+  Star,
   Users2,
   Webhook,
+  Zap,
 } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard/settings")({
