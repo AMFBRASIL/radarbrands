@@ -58,7 +58,7 @@ export function SettingsWizard({
     }
   }, [open, presets]);
 
-  const steps: WizardStep[] = [
+  const defaultSteps: WizardStep[] = [
     {
       key: "preset",
       title: "Escolha um preset",
