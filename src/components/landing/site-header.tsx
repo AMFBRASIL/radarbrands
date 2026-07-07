@@ -61,6 +61,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
+            <ThemeToggle />
             <Button variant="ghost" size="sm" asChild>
               <a href="#scan">Teste gratuito</a>
             </Button>
