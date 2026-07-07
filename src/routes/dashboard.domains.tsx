@@ -53,39 +53,43 @@ function DomainsPage() {
       </div>
 
       <div className="overflow-hidden rounded-2xl glass ring-gradient">
-        <div className="grid grid-cols-[1.5fr_100px_1fr_100px_140px] gap-4 border-b border-border/60 px-5 py-3 text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
-          <span>Domínio</span>
-          <span>Risco</span>
-          <span>Observação</span>
-          <span>Registrado</span>
-          <span className="text-right">Ação</span>
-        </div>
-        {rows.map((r) => (
-          <div
-            key={r.d}
-            className="grid grid-cols-[1.5fr_100px_1fr_100px_140px] items-center gap-4 border-b border-border/60 px-5 py-4 text-sm last:border-0"
-          >
-            <span className="font-mono">{r.d}</span>
-            <span
-              className={`inline-flex w-fit rounded-full px-2 py-0.5 text-xs ${
-                r.risk === "Alto"
-                  ? "bg-destructive/15 text-destructive"
-                  : r.risk === "Médio"
-                  ? "bg-[color:var(--warning)]/15 text-[color:var(--warning)]"
-                  : "bg-[color:var(--success)]/15 text-[color:var(--success)]"
-              }`}
-            >
-              {r.risk}
-            </span>
-            <span className="text-muted-foreground">{r.note}</span>
-            <span className="text-muted-foreground">{r.days}d atrás</span>
-            <div className="text-right">
-              <Button size="sm" variant="outline">
-                Take-down
-              </Button>
+        <div className="overflow-x-auto">
+          <div className="min-w-[720px]">
+            <div className="grid grid-cols-[1.5fr_100px_1fr_100px_140px] gap-4 border-b border-border/60 px-5 py-3 text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+              <span>Domínio</span>
+              <span>Risco</span>
+              <span>Observação</span>
+              <span>Registrado</span>
+              <span className="text-right">Ação</span>
             </div>
+            {rows.map((r) => (
+              <div
+                key={r.d}
+                className="grid grid-cols-[1.5fr_100px_1fr_100px_140px] items-center gap-4 border-b border-border/60 px-5 py-4 text-sm last:border-0"
+              >
+                <span className="font-mono">{r.d}</span>
+                <span
+                  className={`inline-flex w-fit rounded-full px-2 py-0.5 text-xs ${
+                    r.risk === "Alto"
+                      ? "bg-destructive/15 text-destructive"
+                      : r.risk === "Médio"
+                      ? "bg-[color:var(--warning)]/15 text-[color:var(--warning)]"
+                      : "bg-[color:var(--success)]/15 text-[color:var(--success)]"
+                  }`}
+                >
+                  {r.risk}
+                </span>
+                <span className="text-muted-foreground">{r.note}</span>
+                <span className="text-muted-foreground">{r.days}d atrás</span>
+                <div className="text-right">
+                  <Button size="sm" variant="outline">
+                    Take-down
+                  </Button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
