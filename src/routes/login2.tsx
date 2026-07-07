@@ -1,8 +1,10 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import {
   Shield, Mail, Lock, Eye, EyeOff, Fingerprint, ArrowRight,
   Radar, Activity, CheckCircle2, AlertTriangle, Sparkles, Command,
+  Loader2,
 } from "lucide-react";
 
 export const Route = createFileRoute("/login2")({
