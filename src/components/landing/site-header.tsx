@@ -26,7 +26,7 @@ export function SiteHeader() {
             <div className="flex flex-col leading-tight">
               <span className="font-display text-sm font-bold tracking-tight">Radar | brand</span>
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
-                AI
+                Sua marca no Radar
               </span>
             </div>
           </Link>
