@@ -87,8 +87,113 @@ const cards: {
   { id: "channels", title: "Canais de captura", desc: "Ative/desative Google, Bing, TikTok, Meta, X, LinkedIn, apps.", icon: Radio, gradient: "from-purple-500/25 to-indigo-500/10" },
 ];
 
+const presetsBySection: Record<Section, WizardPreset[]> = {
+  brand: [
+    { id: "corp", title: "Corporativo", desc: "Marca enterprise com CNPJ, razão social e domínio único.", icon: Building2, tag: "Padrão" },
+    { id: "multi", title: "Multi-marca", desc: "Gerencie várias marcas e subsidiárias em uma só conta.", icon: Star },
+    { id: "agency", title: "Agência", desc: "White-label para gestão de clientes.", icon: Sparkles, tag: "Agência" },
+  ],
+  team: [
+    { id: "small", title: "Time enxuto", desc: "Até 5 usuários com papéis padrão.", icon: Users2 },
+    { id: "sso", title: "SSO Enterprise", desc: "SAML/SCIM com Okta ou Azure AD.", icon: Shield, tag: "SSO" },
+    { id: "legal", title: "Jurídico dedicado", desc: "Segregação por área com aprovações.", icon: ScrollText },
+  ],
+  email: [
+    { id: "managed", title: "SMTP gerenciado", desc: "Servidor Radar com DKIM/SPF prontos.", icon: Mail, tag: "Recomendado" },
+    { id: "custom", title: "SMTP próprio", desc: "Use seu servidor corporativo (Postfix, SES, SendGrid).", icon: Server },
+    { id: "hybrid", title: "Híbrido", desc: "Alertas via Radar + relatórios via seu SMTP.", icon: Zap },
+  ],
+  ai: [
+    { id: "balanced", title: "Balanceado", desc: "Sensibilidade 72, autopilot ativo acima de 88%.", icon: Bot, tag: "Padrão" },
+    { id: "aggressive", title: "Agressivo", desc: "Máxima detecção, mais falsos positivos.", icon: Rocket },
+    { id: "conservative", title: "Conservador", desc: "Só alertas de altíssima confiança.", icon: Shield },
+  ],
+  system: [
+    { id: "hp", title: "Alta performance", desc: "Crawler a cada 5 min, paralelismo alto.", icon: Gauge, tag: "PRO" },
+    { id: "std", title: "Padrão", desc: "Crawler a cada 15 min, custo otimizado.", icon: Server },
+    { id: "eco", title: "Econômico", desc: "Crawler a cada 60 min para monitoramento leve.", icon: Zap },
+  ],
+  integrations: [
+    { id: "chatops", title: "ChatOps", desc: "Slack + Teams para comunicação em tempo real.", icon: Plug, tag: "Popular" },
+    { id: "ticketing", title: "Ticketing", desc: "Jira + Notion para gestão de casos.", icon: ScrollText },
+    { id: "full", title: "Full stack", desc: "Todos os conectores habilitados.", icon: Sparkles },
+  ],
+  webhooks: [
+    { id: "single", title: "Endpoint único", desc: "Um webhook recebendo todos os eventos.", icon: Webhook, tag: "Simples" },
+    { id: "routed", title: "Roteado", desc: "Webhooks separados por tipo de evento.", icon: Cable },
+  ],
+  api: [
+    { id: "read", title: "Somente leitura", desc: "PAT com escopo read:alerts.", icon: KeyRound, tag: "Seguro" },
+    { id: "rw", title: "Leitura & escrita", desc: "read + write:takedowns para automação.", icon: Zap },
+    { id: "admin", title: "Admin", desc: "Escopo total incluindo billing.", icon: Shield },
+  ],
+  notifications: [
+    { id: "critical", title: "Somente críticos", desc: "Apenas alertas nível 4+.", icon: Bell },
+    { id: "all", title: "Todos os canais", desc: "E-mail, SMS, WhatsApp e chamada.", icon: Sparkles, tag: "Máximo" },
+    { id: "digest", title: "Digest diário", desc: "Um único resumo por dia.", icon: Mail },
+  ],
+  security: [
+    { id: "std", title: "Padrão", desc: "MFA obrigatório + sessão 30min.", icon: ShieldCheck, tag: "Recomendado" },
+    { id: "hard", title: "Endurecido", desc: "Device trust + bloqueio geográfico.", icon: Shield },
+    { id: "biometric", title: "Biométrico", desc: "WebAuthn + FIDO2 obrigatórios.", icon: Fingerprint },
+  ],
+  billing: [
+    { id: "annual", title: "Anual", desc: "10% de desconto, faturamento único.", icon: CreditCard, tag: "Economize" },
+    { id: "monthly", title: "Mensal", desc: "Flexibilidade máxima.", icon: CreditCard },
+  ],
+  audit: [
+    { id: "legal", title: "Retenção legal 7 anos", desc: "Compatível LGPD e Marco Civil.", icon: FileClock, tag: "Legal" },
+    { id: "siem", title: "SIEM ativo", desc: "Envio para Splunk/Datadog.", icon: Server },
+    { id: "chain", title: "Cadeia blockchain", desc: "Assinatura imutável de dossiês.", icon: Shield },
+  ],
+  data: [
+    { id: "daily", title: "Backup diário", desc: "Criptografado, retenção 30 dias.", icon: Database, tag: "Padrão" },
+    { id: "realtime", title: "Réplica em tempo real", desc: "PITR + failover automático.", icon: Zap },
+  ],
+  appearance: [
+    { id: "dark", title: "Escuro", desc: "Padrão da plataforma.", icon: Palette, tag: "Padrão" },
+    { id: "light", title: "Claro", desc: "Ideal para escritórios claros.", icon: Palette },
+    { id: "wl", title: "White-label", desc: "Sua marca, sua paleta.", icon: Sparkles },
+  ],
+  domains: [
+    { id: "single", title: "Marca única", desc: "Uma raiz + variações.", icon: Globe2, tag: "Simples" },
+    { id: "portfolio", title: "Portfólio", desc: "Múltiplas marcas em uma conta.", icon: Star },
+  ],
+  localization: [
+    { id: "br", title: "Brasil", desc: "pt-BR, BRL, América/São Paulo.", icon: Languages, tag: "Padrão" },
+    { id: "latam", title: "LATAM", desc: "pt-BR + es-419, multi-moeda.", icon: Globe2 },
+    { id: "global", title: "Global", desc: "Interface em EN + relatórios locais.", icon: Sparkles },
+  ],
+  channels: [
+    { id: "all", title: "Todos os canais", desc: "Cobertura total incluindo Dark Web.", icon: Radio, tag: "Máximo" },
+    { id: "social", title: "Só redes sociais", desc: "Instagram, TikTok, Facebook, X, LinkedIn.", icon: Sparkles },
+    { id: "search", title: "Só buscadores", desc: "Google, Bing e marketplaces.", icon: Zap },
+  ],
+};
+
+const reviewBySection: Record<Section, { label: string; value: string }[]> = {
+  brand: [{ label: "Marca", value: "CADBRASIL" }, { label: "Domínio", value: "cadbrasil.com.br" }],
+  team: [{ label: "Usuários", value: "11 ativos" }, { label: "SSO", value: "Google Workspace" }],
+  email: [{ label: "SMTP", value: "smtp.radarbrand.com.br" }, { label: "DKIM", value: "Verificado" }],
+  ai: [{ label: "Sensibilidade", value: "72" }, { label: "Auto-ação", value: "≥ 88%" }],
+  system: [{ label: "Crawler", value: "a cada 5 min" }, { label: "Retenção", value: "24 meses" }],
+  integrations: [{ label: "Conectores ativos", value: "4 de 8" }],
+  webhooks: [{ label: "Endpoint", value: "api.cadbrasil.com.br/hooks/radar" }, { label: "Assinatura", value: "HMAC SHA-256" }],
+  api: [{ label: "Rate limit", value: "50 req/s" }, { label: "Escopo", value: "read + write:takedowns" }],
+  notifications: [{ label: "Canais ativos", value: "4 de 6" }],
+  security: [{ label: "MFA", value: "Obrigatório" }, { label: "Sessão", value: "30 min" }],
+  billing: [{ label: "Plano", value: "Enterprise" }, { label: "Próxima fatura", value: "12/01/2027" }],
+  audit: [{ label: "Retenção", value: "7 anos" }, { label: "SIEM", value: "Ativo" }],
+  data: [{ label: "Backup", value: "Diário criptografado" }, { label: "DPO", value: "dpo@cadbrasil.com.br" }],
+  appearance: [{ label: "Tema", value: "Escuro" }, { label: "Cor primária", value: "#22d3ee" }],
+  domains: [{ label: "Termos", value: "4 termos monitorados" }, { label: "TLDs", value: ".com.br, .com, .app" }],
+  localization: [{ label: "Idioma", value: "pt-BR" }, { label: "Fuso", value: "America/Sao_Paulo" }],
+  channels: [{ label: "Canais ativos", value: "13 de 14" }],
+};
+
 function SettingsPage() {
   const [active, setActive] = useState<Section | null>(null);
+  const meta = active ? cards.find((c) => c.id === active) : null;
 
   return (
     <SimplePage
@@ -96,59 +201,50 @@ function SettingsPage() {
       title="Central de configurações"
       description="Toda a operação do Radar | brand em um só lugar — escolha uma área para configurar."
     >
-      {active === null ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {cards.map((c) => (
-            <button
-              key={c.id}
-              onClick={() => setActive(c.id)}
-              className="group relative flex flex-col items-start gap-3 overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 text-left transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-[var(--shadow-elevated)]"
-            >
-              <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${c.gradient} opacity-60`} />
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[image:var(--gradient-primary)] text-primary-foreground shadow-[var(--shadow-glow)]">
-                <c.icon className="h-5 w-5" />
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {cards.map((c) => (
+          <button
+            key={c.id}
+            onClick={() => setActive(c.id)}
+            className="group relative flex flex-col items-start gap-3 overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 text-left transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-[var(--shadow-elevated)]"
+          >
+            <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${c.gradient} opacity-60`} />
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[image:var(--gradient-primary)] text-primary-foreground shadow-[var(--shadow-glow)]">
+              <c.icon className="h-5 w-5" />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <h3 className="font-display text-base font-semibold">{c.title}</h3>
+                {c.tag && (
+                  <span className="rounded bg-primary/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-primary">
+                    {c.tag}
+                  </span>
+                )}
               </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="font-display text-base font-semibold">{c.title}</h3>
-                  {c.tag && (
-                    <span className="rounded bg-primary/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-primary">
-                      {c.tag}
-                    </span>
-                  )}
-                </div>
-                <p className="mt-1 text-xs text-muted-foreground">{c.desc}</p>
-              </div>
-              <div className="flex items-center gap-1 text-xs text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                Configurar <ChevronRight className="h-3.5 w-3.5" />
-              </div>
-            </button>
-          ))}
-        </div>
-      ) : (
-        <SectionEditor id={active} onBack={() => setActive(null)} />
+              <p className="mt-1 text-xs text-muted-foreground">{c.desc}</p>
+            </div>
+            <div className="flex items-center gap-1 text-xs text-primary opacity-0 transition-opacity group-hover:opacity-100">
+              Configurar <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {meta && active && (
+        <SettingsWizard
+          open={!!active}
+          onOpenChange={(o) => !o && setActive(null)}
+          title={meta.title}
+          eyebrow={meta.tag ?? "Configuração"}
+          description={meta.desc}
+          icon={meta.icon}
+          gradient={meta.gradient}
+          presets={presetsBySection[active]}
+          configStep={renderBody(active)}
+          reviewSummary={reviewBySection[active]}
+        />
       )}
     </SimplePage>
-  );
-}
-
-function SectionEditor({ id, onBack }: { id: Section; onBack: () => void }) {
-  const meta = cards.find((c) => c.id === id)!;
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-3">
-        <Button variant="outline" size="sm" onClick={onBack}>
-          ← Voltar
-        </Button>
-        <div>
-          <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
-            {meta.title}
-          </div>
-          <h2 className="font-display text-2xl font-bold">{meta.title}</h2>
-        </div>
-      </div>
-      <div className="glass-strong ring-gradient rounded-2xl p-6">{renderBody(id)}</div>
-    </div>
   );
 }
 
