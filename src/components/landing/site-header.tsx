@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 const nav: { label: string; href: string; to?: string }[] = [
   { label: "Plataforma", href: "#plataforma" },
   { label: "Como funciona", href: "/como-funciona", to: "/como-funciona" },
-  { label: "Proteção", href: "#protecao" },
-  { label: "IA", href: "#ia" },
+  { label: "Jurídico", href: "/juridico", to: "/juridico" },
   { label: "Preços", href: "#precos" },
+  { label: "Sobre", href: "/sobre-nos", to: "/sobre-nos" },
 ];
 
 export function SiteHeader() {

@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SobreNosRouteImport } from './routes/sobre-nos'
 import { Route as JuridicoRouteImport } from './routes/juridico'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
@@ -25,6 +26,11 @@ import { Route as DashboardAlertsRouteImport } from './routes/dashboard.alerts'
 import { Route as DashboardAiRouteImport } from './routes/dashboard.ai'
 import { Route as DashboardAdsRouteImport } from './routes/dashboard.ads'
 
+const SobreNosRoute = SobreNosRouteImport.update({
+  id: '/sobre-nos',
+  path: '/sobre-nos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JuridicoRoute = JuridicoRouteImport.update({
   id: '/juridico',
   path: '/juridico',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/juridico': typeof JuridicoRoute
+  '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/juridico': typeof JuridicoRoute
+  '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/juridico': typeof JuridicoRoute
+  '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/dashboard'
     | '/juridico'
+    | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
     | '/'
     | '/como-funciona'
     | '/juridico'
+    | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/dashboard'
     | '/juridico'
+    | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -210,10 +222,18 @@ export interface RootRouteChildren {
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   JuridicoRoute: typeof JuridicoRoute
+  SobreNosRoute: typeof SobreNosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sobre-nos': {
+      id: '/sobre-nos'
+      path: '/sobre-nos'
+      fullPath: '/sobre-nos'
+      preLoaderRoute: typeof SobreNosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/juridico': {
       id: '/juridico'
       path: '/juridico'
@@ -359,6 +379,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComoFuncionaRoute: ComoFuncionaRoute,
   DashboardRoute: DashboardRouteWithChildren,
   JuridicoRoute: JuridicoRoute,
+  SobreNosRoute: SobreNosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
