@@ -34,6 +34,7 @@ const toneMap: Record<string, string> = {
 function Login2Page() {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [count, setCount] = useState(2811);
   const [time, setTime] = useState("");
 
