@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Shield, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const nav: { label: string; href: string; to?: string }[] = [
   { label: "Plataforma", href: "#plataforma" },
