@@ -8,8 +8,8 @@ const nav: { label: string; href: string; to?: string }[] = [
   { label: "Como funciona", href: "/como-funciona", to: "/como-funciona" },
   { label: "Diferencial", href: "/diferencial", to: "/diferencial" },
   { label: "Jurídico", href: "/juridico", to: "/juridico" },
-  { label: "Preços", href: "#precos" },
   { label: "Sobre", href: "/sobre-nos", to: "/sobre-nos" },
+  { label: "Contato", href: "/#contato" },
 ];
 
 export function SiteHeader() {
