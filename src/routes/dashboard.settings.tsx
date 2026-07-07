@@ -195,6 +195,7 @@ const reviewBySection: Record<Section, { label: string; value: string }[]> = {
 function SettingsPage() {
   const [active, setActive] = useState<Section | null>(null);
   const meta = active ? cards.find((c) => c.id === active) : null;
+  const emailSteps = useEmailWizardSteps();
 
   return (
     <SimplePage
