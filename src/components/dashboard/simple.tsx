@@ -1,5 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
-
 export function SimplePage({
   eyebrow,
   title,
@@ -37,6 +35,3 @@ export function Panel({
     </div>
   );
 }
-
-// dummy route so Vite doesn't complain if this file is discovered
-export const Route = createFileRoute("/dashboard/_shared" as never)({} as never);
