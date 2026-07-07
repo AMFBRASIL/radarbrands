@@ -3,6 +3,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import { Bell, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -30,6 +31,7 @@ function DashboardLayout() {
               />
             </div>
             <div className="ml-auto flex items-center gap-3">
+              <ThemeToggle />
               <button className="relative rounded-lg p-2 hover:bg-muted">
                 <Bell className="h-4 w-4" />
                 <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive" />

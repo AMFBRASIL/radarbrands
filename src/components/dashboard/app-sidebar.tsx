@@ -135,36 +135,57 @@ export function AppSidebar() {
           </div>
         </Link>
       </SidebarHeader>
-      <SidebarContent>
-        {groups.map((g) => (
-          <SidebarGroup key={g.label}>
-            <SidebarGroupLabel>{g.label}</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {g.items.map((it) => (
-                  <SidebarMenuItem key={it.title}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={isActive(it.url, it.exact)}
-                      tooltip={it.title}
-                    >
-                      <Link to={it.url} className="flex items-center gap-2">
-                        <it.icon className="h-4 w-4" />
-                        <span className="flex-1 truncate">{it.title}</span>
-                        {it.badge && (
-                          <span className="ml-auto rounded bg-primary/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-primary group-data-[collapsible=icon]:hidden">
-                            {it.badge}
-                          </span>
-                        )}
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        ))}
-      </SidebarContent>
+      <div ref={scrollRef} className="relative flex min-h-0 flex-1 flex-col">
+        <SidebarContent className="scrollbar-none">
+          {groups.map((g) => (
+            <SidebarGroup key={g.label}>
+              <SidebarGroupLabel>{g.label}</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {g.items.map((it) => (
+                    <SidebarMenuItem key={it.title}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive(it.url, it.exact)}
+                        tooltip={it.title}
+                      >
+                        <Link to={it.url} className="flex items-center gap-2">
+                          <it.icon className="h-4 w-4" />
+                          <span className="flex-1 truncate">{it.title}</span>
+                          {it.badge && (
+                            <span className="ml-auto rounded bg-primary/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-primary group-data-[collapsible=icon]:hidden">
+                              {it.badge}
+                            </span>
+                          )}
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          ))}
+          <div className="h-8" />
+        </SidebarContent>
+        {/* Fade + indicador de mais itens abaixo */}
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-sidebar to-transparent transition-opacity duration-300 ${
+            hasMore ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        <button
+          type="button"
+          onClick={scrollDown}
+          aria-label="Ver mais itens do menu"
+          className={`absolute bottom-2 left-1/2 -translate-x-1/2 flex h-7 w-7 items-center justify-center rounded-full border border-sidebar-border bg-sidebar text-primary shadow-md transition-all duration-300 hover:bg-sidebar-accent group-data-[collapsible=icon]:hidden ${
+            hasMore ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-2"
+          }`}
+        >
+          <ChevronDown className="h-4 w-4 animate-bounce" />
+        </button>
+      </div>
     </Sidebar>
   );
 }
+
