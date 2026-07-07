@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreNosRouteImport } from './routes/sobre-nos'
 import { Route as JuridicoRouteImport } from './routes/juridico'
+import { Route as DiferencialRouteImport } from './routes/diferencial'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as IndexRouteImport } from './routes/index'
@@ -46,6 +47,11 @@ const SobreNosRoute = SobreNosRouteImport.update({
 const JuridicoRoute = JuridicoRouteImport.update({
   id: '/juridico',
   path: '/juridico',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiferencialRoute = DiferencialRouteImport.update({
+  id: '/diferencial',
+  path: '/diferencial',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -183,6 +189,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRouteWithChildren
+  '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
@@ -212,6 +219,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/como-funciona': typeof ComoFuncionaRoute
+  '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
@@ -243,6 +251,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRouteWithChildren
+  '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
@@ -275,6 +284,7 @@ export interface FileRouteTypes {
     | '/'
     | '/como-funciona'
     | '/dashboard'
+    | '/diferencial'
     | '/juridico'
     | '/sobre-nos'
     | '/dashboard/ads'
@@ -304,6 +314,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/como-funciona'
+    | '/diferencial'
     | '/juridico'
     | '/sobre-nos'
     | '/dashboard/ads'
@@ -334,6 +345,7 @@ export interface FileRouteTypes {
     | '/'
     | '/como-funciona'
     | '/dashboard'
+    | '/diferencial'
     | '/juridico'
     | '/sobre-nos'
     | '/dashboard/ads'
@@ -365,6 +377,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   DashboardRoute: typeof DashboardRouteWithChildren
+  DiferencialRoute: typeof DiferencialRoute
   JuridicoRoute: typeof JuridicoRoute
   SobreNosRoute: typeof SobreNosRoute
 }
@@ -383,6 +396,13 @@ declare module '@tanstack/react-router' {
       path: '/juridico'
       fullPath: '/juridico'
       preLoaderRoute: typeof JuridicoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diferencial': {
+      id: '/diferencial'
+      path: '/diferencial'
+      fullPath: '/diferencial'
+      preLoaderRoute: typeof DiferencialRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -630,6 +650,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   DashboardRoute: DashboardRouteWithChildren,
+  DiferencialRoute: DiferencialRoute,
   JuridicoRoute: JuridicoRoute,
   SobreNosRoute: SobreNosRoute,
 }
