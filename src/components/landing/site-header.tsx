@@ -94,11 +94,12 @@ export function SiteHeader() {
               </a>
             ))}
             <Link
-              to="/dashboard"
+              to="/login"
               className="rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-muted"
             >
               Login
             </Link>
+
             <Button className="mt-2 bg-[image:var(--gradient-primary)] text-primary-foreground" asChild>
               <a href="#scan">Monitorar marca agora</a>
             </Button>
