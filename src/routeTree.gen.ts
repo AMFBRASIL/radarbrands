@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreNosRouteImport } from './routes/sobre-nos'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PropostaRouteImport } from './routes/proposta'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as JuridicoRouteImport } from './routes/juridico'
 import { Route as DiferencialRouteImport } from './routes/diferencial'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -45,9 +47,19 @@ const SobreNosRoute = SobreNosRouteImport.update({
   path: '/sobre-nos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PropostaRoute = PropostaRouteImport.update({
   id: '/proposta',
   path: '/proposta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JuridicoRoute = JuridicoRouteImport.update({
@@ -197,7 +209,9 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteWithChildren
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
+  '/login': typeof LoginRoute
   '/proposta': typeof PropostaRoute
+  '/register': typeof RegisterRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -228,7 +242,9 @@ export interface FileRoutesByTo {
   '/como-funciona': typeof ComoFuncionaRoute
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
+  '/login': typeof LoginRoute
   '/proposta': typeof PropostaRoute
+  '/register': typeof RegisterRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -261,7 +277,9 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRouteWithChildren
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
+  '/login': typeof LoginRoute
   '/proposta': typeof PropostaRoute
+  '/register': typeof RegisterRoute
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -295,7 +313,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/diferencial'
     | '/juridico'
+    | '/login'
     | '/proposta'
+    | '/register'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -326,7 +346,9 @@ export interface FileRouteTypes {
     | '/como-funciona'
     | '/diferencial'
     | '/juridico'
+    | '/login'
     | '/proposta'
+    | '/register'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -358,7 +380,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/diferencial'
     | '/juridico'
+    | '/login'
     | '/proposta'
+    | '/register'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -391,7 +415,9 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRouteWithChildren
   DiferencialRoute: typeof DiferencialRoute
   JuridicoRoute: typeof JuridicoRoute
+  LoginRoute: typeof LoginRoute
   PropostaRoute: typeof PropostaRoute
+  RegisterRoute: typeof RegisterRoute
   SobreNosRoute: typeof SobreNosRoute
 }
 
@@ -404,11 +430,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreNosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/proposta': {
       id: '/proposta'
       path: '/proposta'
       fullPath: '/proposta'
       preLoaderRoute: typeof PropostaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/juridico': {
@@ -672,7 +712,9 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRouteWithChildren,
   DiferencialRoute: DiferencialRoute,
   JuridicoRoute: JuridicoRoute,
+  LoginRoute: LoginRoute,
   PropostaRoute: PropostaRoute,
+  RegisterRoute: RegisterRoute,
   SobreNosRoute: SobreNosRoute,
 }
 export const routeTree = rootRouteImport
