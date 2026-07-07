@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreNosRouteImport } from './routes/sobre-nos'
+import { Route as Register2RouteImport } from './routes/register2'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PropostaRouteImport } from './routes/proposta'
 import { Route as Login2RouteImport } from './routes/login2'
@@ -46,6 +47,11 @@ import { Route as DashboardAdsRouteImport } from './routes/dashboard.ads'
 const SobreNosRoute = SobreNosRouteImport.update({
   id: '/sobre-nos',
   path: '/sobre-nos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Register2Route = Register2RouteImport.update({
+  id: '/register2',
+  path: '/register2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -219,6 +225,7 @@ export interface FileRoutesByFullPath {
   '/login2': typeof Login2Route
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
+  '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -253,6 +260,7 @@ export interface FileRoutesByTo {
   '/login2': typeof Login2Route
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
+  '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -289,6 +297,7 @@ export interface FileRoutesById {
   '/login2': typeof Login2Route
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
+  '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
@@ -326,6 +335,7 @@ export interface FileRouteTypes {
     | '/login2'
     | '/proposta'
     | '/register'
+    | '/register2'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -360,6 +370,7 @@ export interface FileRouteTypes {
     | '/login2'
     | '/proposta'
     | '/register'
+    | '/register2'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -395,6 +406,7 @@ export interface FileRouteTypes {
     | '/login2'
     | '/proposta'
     | '/register'
+    | '/register2'
     | '/sobre-nos'
     | '/dashboard/ads'
     | '/dashboard/ai'
@@ -431,6 +443,7 @@ export interface RootRouteChildren {
   Login2Route: typeof Login2Route
   PropostaRoute: typeof PropostaRoute
   RegisterRoute: typeof RegisterRoute
+  Register2Route: typeof Register2Route
   SobreNosRoute: typeof SobreNosRoute
 }
 
@@ -441,6 +454,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre-nos'
       fullPath: '/sobre-nos'
       preLoaderRoute: typeof SobreNosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register2': {
+      id: '/register2'
+      path: '/register2'
+      fullPath: '/register2'
+      preLoaderRoute: typeof Register2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -736,6 +756,7 @@ const rootRouteChildren: RootRouteChildren = {
   Login2Route: Login2Route,
   PropostaRoute: PropostaRoute,
   RegisterRoute: RegisterRoute,
+  Register2Route: Register2Route,
   SobreNosRoute: SobreNosRoute,
 }
 export const routeTree = rootRouteImport
