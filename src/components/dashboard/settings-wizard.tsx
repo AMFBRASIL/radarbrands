@@ -151,6 +151,7 @@ export function SettingsWizard({
     },
   ];
 
+  const steps: WizardStep[] = customSteps ?? defaultSteps;
   const step = steps[stepIndex];
   const progress = ((stepIndex + 1) / steps.length) * 100;
   const isLast = stepIndex === steps.length - 1;
