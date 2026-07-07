@@ -1,9 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import {
   Shield, Mail, Lock, Eye, EyeOff, Fingerprint, ArrowRight,
-  Radar, Activity, CheckCircle2, AlertTriangle, Sparkles, Command,
+  Radar, Sparkles, Command,
   Loader2,
 } from "lucide-react";
 
@@ -11,43 +11,17 @@ export const Route = createFileRoute("/login2")({
   head: () => ({
     meta: [
       { title: "Entrar · Radar | brand" },
-      { name: "description", content: "Portal do cliente Radar | brand — monitoramento INPI em tempo real." },
+      { name: "description", content: "Portal do cliente Radar | brand." },
     ],
   }),
   component: Login2Page,
 });
 
-const feed = [
-  { t: "há 12s", icon: AlertTriangle, tone: "amber", text: "Anúncio suspeito · brand.com.br", tag: "ADS" },
-  { t: "há 47s", icon: CheckCircle2, tone: "emerald", text: "Similar arquivado · classe 35", tag: "INPI" },
-  { t: "há 1m", icon: Radar, tone: "cyan", text: "Varredura completa · 2.812 registros", tag: "SCAN" },
-  { t: "há 2m", icon: Shield, tone: "cyan", text: "Notificação extrajudicial enviada", tag: "LEGAL" },
-  { t: "há 3m", icon: CheckCircle2, tone: "emerald", text: "Marca AURORA · concedida", tag: "INPI" },
-];
-
-const toneMap: Record<string, string> = {
-  amber: "text-amber-400 bg-amber-400/10",
-  emerald: "text-emerald-400 bg-emerald-400/10",
-  cyan: "text-cyan-400 bg-cyan-400/10",
-};
-
 function Login2Page() {
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [count, setCount] = useState(2811);
-  const [time, setTime] = useState("");
 
-  useEffect(() => {
-    const t = setInterval(() => setCount((c) => c + (Math.random() > 0.7 ? 1 : 0)), 1800);
-    const tick = () => {
-      const d = new Date();
-      setTime(d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" }));
-    };
-    tick();
-    const clock = setInterval(tick, 1000);
-    return () => { clearInterval(t); clearInterval(clock); };
-  }, []);
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[#050b14] text-white">
