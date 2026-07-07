@@ -1,4 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import {
   AlertTriangle,
   BarChart3,
@@ -92,6 +94,31 @@ export function AppSidebar() {
   const pathname = useRouterState({ select: (r) => r.location.pathname });
   const isActive = (url: string, exact?: boolean) =>
     exact ? pathname === url : pathname === url || pathname.startsWith(url + "/");
+
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [hasMore, setHasMore] = useState(false);
+
+  useEffect(() => {
+    const el = scrollRef.current?.querySelector<HTMLDivElement>('[data-sidebar="content"]');
+    if (!el) return;
+    const check = () => {
+      const more = el.scrollHeight - el.clientHeight - el.scrollTop > 8;
+      setHasMore(more);
+    };
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", check);
+      ro.disconnect();
+    };
+  }, []);
+
+  const scrollDown = () => {
+    const el = scrollRef.current?.querySelector<HTMLDivElement>('[data-sidebar="content"]');
+    el?.scrollBy({ top: 200, behavior: "smooth" });
+  };
 
   return (
     <Sidebar collapsible="icon">
