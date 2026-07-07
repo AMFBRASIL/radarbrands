@@ -63,7 +63,7 @@ function DashboardLayout() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
                   <DropdownMenuItem asChild>
-                    <Link to="/dashboard/settings" className="flex cursor-pointer items-center gap-2">
+                    <Link to="/dashboard/profile" className="flex cursor-pointer items-center gap-2">
                       <Settings className="h-4 w-4" />
                       Editar dados
                     </Link>
