@@ -280,3 +280,64 @@
   background-size: 200% 100%;
   animation: shimmer 2s linear infinite;
 }
+
+/* Light theme override */
+.light {
+  --background: oklch(0.99 0.005 240);
+  --foreground: oklch(0.18 0.03 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.03 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.03 250);
+  --primary: oklch(0.55 0.18 190);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --secondary: oklch(0.94 0.01 240);
+  --secondary-foreground: oklch(0.18 0.03 250);
+  --muted: oklch(0.95 0.01 240);
+  --muted-foreground: oklch(0.45 0.02 250);
+  --accent: oklch(0.55 0.19 260);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.58 0.24 22);
+  --destructive-foreground: oklch(0.99 0 0);
+  --success: oklch(0.62 0.17 155);
+  --success-foreground: oklch(0.99 0 0);
+  --warning: oklch(0.72 0.16 75);
+  --warning-foreground: oklch(0.18 0.03 250);
+  --border: oklch(0.88 0.01 240 / 90%);
+  --input: oklch(0.92 0.01 240);
+  --ring: oklch(0.55 0.18 190 / 60%);
+  --sidebar: oklch(0.98 0.005 240);
+  --sidebar-foreground: oklch(0.22 0.03 250);
+  --sidebar-primary: oklch(0.55 0.18 190);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.94 0.01 240);
+  --sidebar-accent-foreground: oklch(0.18 0.03 250);
+  --sidebar-border: oklch(0.88 0.01 240 / 90%);
+  --sidebar-ring: oklch(0.55 0.18 190 / 60%);
+  --gradient-hero:
+    radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.55 0.19 260 / 0.14), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 30%, oklch(0.55 0.18 190 / 0.12), transparent 55%),
+    linear-gradient(180deg, oklch(0.99 0.005 240), oklch(0.97 0.01 240));
+  --gradient-card: linear-gradient(145deg, oklch(1 0 0 / 0.9), oklch(0.97 0.01 240 / 0.9));
+  --shadow-glow: 0 0 40px -8px oklch(0.55 0.18 190 / 0.3);
+  --shadow-elevated: 0 24px 60px -20px oklch(0.4 0.05 250 / 0.2);
+  --shadow-soft: 0 8px 30px -12px oklch(0.4 0.05 250 / 0.15);
+}
+.light body {
+  background-image:
+    radial-gradient(1000px 600px at 10% -10%, oklch(0.55 0.19 260 / 0.08), transparent 60%),
+    radial-gradient(800px 500px at 100% 10%, oklch(0.55 0.18 190 / 0.06), transparent 60%);
+}
+.light .glass { background: oklch(1 0 0 / 0.7); border-color: oklch(0.18 0.03 250 / 0.06); }
+.light .glass-strong { background: oklch(1 0 0 / 0.85); border-color: oklch(0.18 0.03 250 / 0.08); }
+.light .grid-bg {
+  background-image:
+    linear-gradient(oklch(0.18 0.03 250 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.18 0.03 250 / 0.06) 1px, transparent 1px);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; width: 0; height: 0; }
+}
