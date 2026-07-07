@@ -27,9 +27,10 @@ type Props = {
   description: string;
   icon: ComponentType<{ className?: string }>;
   gradient: string;
-  presets: WizardPreset[];
-  configStep: ReactNode;
-  reviewSummary: { label: string; value: string }[];
+  presets?: WizardPreset[];
+  configStep?: ReactNode;
+  reviewSummary?: { label: string; value: string }[];
+  customSteps?: WizardStep[];
 };
 
 export function SettingsWizard({
@@ -40,9 +41,10 @@ export function SettingsWizard({
   description,
   icon: Icon,
   gradient,
-  presets,
+  presets = [],
   configStep,
-  reviewSummary,
+  reviewSummary = [],
+  customSteps,
 }: Props) {
   const [stepIndex, setStepIndex] = useState(0);
   const [preset, setPreset] = useState<string>(presets[0]?.id ?? "");
@@ -56,7 +58,7 @@ export function SettingsWizard({
     }
   }, [open, presets]);
 
-  const steps: WizardStep[] = [
+  const defaultSteps: WizardStep[] = [
     {
       key: "preset",
       title: "Escolha um preset",
@@ -149,6 +151,7 @@ export function SettingsWizard({
     },
   ];
 
+  const steps: WizardStep[] = customSteps ?? defaultSteps;
   const step = steps[stepIndex];
   const progress = ((stepIndex + 1) / steps.length) * 100;
   const isLast = stepIndex === steps.length - 1;

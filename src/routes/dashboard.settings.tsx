@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { SettingsWizard, type WizardPreset } from "@/components/dashboard/settings-wizard";
+import { useEmailWizardSteps } from "@/components/dashboard/email-wizard-steps";
 import {
   Bell,
   Bot,
@@ -194,6 +195,7 @@ const reviewBySection: Record<Section, { label: string; value: string }[]> = {
 function SettingsPage() {
   const [active, setActive] = useState<Section | null>(null);
   const meta = active ? cards.find((c) => c.id === active) : null;
+  const emailSteps = useEmailWizardSteps();
 
   return (
     <SimplePage
@@ -242,6 +244,7 @@ function SettingsPage() {
           presets={presetsBySection[active]}
           configStep={renderBody(active)}
           reviewSummary={reviewBySection[active]}
+          customSteps={active === "email" ? emailSteps : undefined}
         />
       )}
     </SimplePage>
