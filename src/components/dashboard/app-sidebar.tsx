@@ -3,15 +3,26 @@ import {
   AlertTriangle,
   BarChart3,
   Bot,
+  Brain,
+  Crown,
+  Eye,
+  FileAudio,
   Gavel,
   Globe,
   Home,
   Megaphone,
+  Network,
+  Radar,
   Settings,
   Shield,
   ShieldCheck,
   ShoppingCart,
   Smartphone,
+  Sparkles,
+  Users,
+  Wallet,
+  Workflow,
+  Zap,
 } from "lucide-react";
 import {
   Sidebar,
@@ -25,18 +36,56 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-const items = [
+type Item = { title: string; url: string; icon: React.ComponentType<{ className?: string }>; exact?: boolean; badge?: string };
+
+const overview: Item[] = [
   { title: "Dashboard", url: "/dashboard", icon: Home, exact: true },
-  { title: "Monitoramento", url: "/dashboard/monitoring", icon: ShieldCheck },
   { title: "Alertas", url: "/dashboard/alerts", icon: AlertTriangle },
+  { title: "Monitoramento", url: "/dashboard/monitoring", icon: ShieldCheck },
+];
+
+const protection: Item[] = [
   { title: "Domínios", url: "/dashboard/domains", icon: Globe },
   { title: "Redes Sociais", url: "/dashboard/social", icon: Smartphone },
   { title: "Google Ads", url: "/dashboard/ads", icon: Megaphone },
   { title: "Marketplaces", url: "/dashboard/marketplace", icon: ShoppingCart },
-  { title: "Jurídico", url: "/dashboard/legal", icon: Gavel },
-  { title: "IA Assistant", url: "/dashboard/ai", icon: Bot },
+  { title: "App Stores", url: "/dashboard/apps", icon: Smartphone, badge: "NEW" },
+  { title: "Dark Web", url: "/dashboard/darkweb", icon: Eye, badge: "NEW" },
+];
+
+const intelligence: Item[] = [
+  { title: "Threat Graph", url: "/dashboard/threats", icon: Network, badge: "PRO" },
+  { title: "Predictive Risk", url: "/dashboard/predict", icon: Radar, badge: "PRO" },
+  { title: "Deepfake Detector", url: "/dashboard/deepfake", icon: FileAudio, badge: "PRO" },
+  { title: "Crisis Radar", url: "/dashboard/crisis", icon: Zap, badge: "PRO" },
+  { title: "Competitor Intel", url: "/dashboard/competitors", icon: Brain, badge: "PRO" },
+  { title: "Influencer Watch", url: "/dashboard/influencers", icon: Users },
+];
+
+const automation: Item[] = [
+  { title: "AI Autopilot", url: "/dashboard/autopilot", icon: Sparkles, badge: "BETA" },
+  { title: "Brand AI Assistant", url: "/dashboard/ai", icon: Bot },
+  { title: "Playbooks", url: "/dashboard/playbooks", icon: Workflow, badge: "NEW" },
+];
+
+const business: Item[] = [
+  { title: "ROI Calculator", url: "/dashboard/roi", icon: Wallet, badge: "NEW" },
+  { title: "Executive Briefing", url: "/dashboard/briefing", icon: Crown, badge: "NEW" },
   { title: "Relatórios", url: "/dashboard/reports", icon: BarChart3 },
+  { title: "Jurídico", url: "/dashboard/legal", icon: Gavel },
+];
+
+const account: Item[] = [
   { title: "Configurações", url: "/dashboard/settings", icon: Settings },
+];
+
+const groups: { label: string; items: Item[] }[] = [
+  { label: "Visão Geral", items: overview },
+  { label: "Proteção", items: protection },
+  { label: "Inteligência IA", items: intelligence },
+  { label: "Automação", items: automation },
+  { label: "Negócio", items: business },
+  { label: "Conta", items: account },
 ];
 
 export function AppSidebar() {
@@ -60,23 +109,34 @@ export function AppSidebar() {
         </Link>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Proteção</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((it) => (
-                <SidebarMenuItem key={it.title}>
-                  <SidebarMenuButton asChild isActive={isActive(it.url, it.exact)} tooltip={it.title}>
-                    <Link to={it.url} className="flex items-center gap-2">
-                      <it.icon className="h-4 w-4" />
-                      <span>{it.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {groups.map((g) => (
+          <SidebarGroup key={g.label}>
+            <SidebarGroupLabel>{g.label}</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {g.items.map((it) => (
+                  <SidebarMenuItem key={it.title}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={isActive(it.url, it.exact)}
+                      tooltip={it.title}
+                    >
+                      <Link to={it.url} className="flex items-center gap-2">
+                        <it.icon className="h-4 w-4" />
+                        <span className="flex-1 truncate">{it.title}</span>
+                        {it.badge && (
+                          <span className="ml-auto rounded bg-primary/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-primary group-data-[collapsible=icon]:hidden">
+                            {it.badge}
+                          </span>
+                        )}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ))}
       </SidebarContent>
     </Sidebar>
   );
