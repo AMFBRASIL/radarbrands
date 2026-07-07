@@ -130,7 +130,7 @@ export function AppSidebar() {
           <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
             <span className="font-display text-sm font-bold">Radar | brand</span>
             <span className="font-mono text-[9px] uppercase tracking-widest text-primary">
-              AI Console
+              Sua marca no Radar
             </span>
           </div>
         </Link>
