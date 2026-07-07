@@ -282,17 +282,6 @@ function Register2Page() {
   );
 }
 
-function Stat({ label, value, sub, tone = "cyan" }: { label: string; value: string; sub: string; tone?: "cyan" | "amber" }) {
-  return (
-    <div className="rounded-xl border border-white/10 bg-white/[0.02] p-3">
-      <div className="font-mono text-[9px] uppercase tracking-widest text-white/40">{label}</div>
-      <div className={`mt-1 font-display text-2xl font-bold tabular-nums ${tone === "amber" ? "text-amber-300" : "text-white"}`}>
-        {value}
-      </div>
-      <div className={`mt-0.5 font-mono text-[10px] ${tone === "amber" ? "text-amber-400/80" : "text-cyan-400/80"}`}>{sub}</div>
-    </div>
-  );
-}
 
 function Corner({ className = "", pos, small = false }: { className?: string; pos: "tl" | "tr" | "bl" | "br"; small?: boolean }) {
   const s = small ? "h-3 w-3" : "h-4 w-4";
