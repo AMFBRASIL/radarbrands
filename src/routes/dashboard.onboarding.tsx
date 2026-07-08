@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import {
   Shield, Sparkles, Check, Lock, Plus, X, Rocket,
   Brain, Eye, Globe, Search, ShoppingBag, Users,
   Radar, Bot, Workflow, TrendingUp, FileAudio, AlertTriangle,
+  Pencil, CreditCard,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +12,9 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter,
+} from "@/components/ui/dialog";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/dashboard/onboarding")({
@@ -88,11 +92,13 @@ function newBrand(): Brand {
 }
 
 function OnboardingPage() {
+  const navigate = useNavigate();
   const [brands, setBrands] = useState<Brand[]>([newBrand()]);
   const [enabled, setEnabled] = useState<Record<string, boolean>>(
     Object.fromEntries(MODULES.map((m) => [m.id, m.required ? true : ["domains", "ads", "social"].includes(m.id)])),
   );
   const [saved, setSaved] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
 
   const brandCount = Math.max(1, brands.filter((b) => b.name.trim()).length);
   const perBrand = useMemo(
@@ -104,6 +110,7 @@ function OnboardingPage() {
     () => MODULES.filter((m) => enabled[m.id]).length,
     [enabled],
   );
+  const activeModules = useMemo(() => MODULES.filter((m) => enabled[m.id]), [enabled]);
 
   function toggle(id: string) {
     const mod = MODULES.find((m) => m.id === id);
@@ -123,15 +130,31 @@ function OnboardingPage() {
 
   const canFinish = brands.every((b) => b.name.trim()) && brands.some((b) => b.name.trim());
 
-  function finish() {
+  function openReview() {
     if (!canFinish) {
       toast.error("Preencha o nome de cada marca para continuar.");
       return;
     }
+    setReviewOpen(true);
+  }
+
+  function confirmAndPay() {
     setSaved(true);
-    toast.success("Onboarding concluído!", {
-      description: `${brandCount} marca(s) e ${activeCount} módulos configurados.`,
-    });
+    try {
+      sessionStorage.setItem(
+        "rb.onboarding",
+        JSON.stringify({
+          brands: brands.map((b) => ({ name: b.name, segment: b.segment })),
+          modules: activeModules.map((m) => ({ id: m.id, name: m.name, price: m.price })),
+          perBrand,
+          brandCount,
+          total,
+        }),
+      );
+    } catch {}
+    toast.success("Onboarding confirmado!", { description: "Redirecionando para o pagamento..." });
+    setReviewOpen(false);
+    setTimeout(() => navigate({ to: "/dashboard/pagamento" }), 500);
   }
 
   return (
@@ -351,13 +374,13 @@ function OnboardingPage() {
             <Button
               className="mt-6 w-full"
               size="lg"
-              onClick={finish}
+              onClick={openReview}
               disabled={!canFinish || saved}
             >
               {saved ? (
                 <><Check className="mr-2 h-4 w-4" /> Configuração salva</>
               ) : (
-                <>Concluir onboarding</>
+                <>Revisar e concluir</>
               )}
             </Button>
 
@@ -367,6 +390,71 @@ function OnboardingPage() {
           </div>
         </aside>
       </div>
+
+      {/* Review Dialog */}
+      <Dialog open={reviewOpen} onOpenChange={setReviewOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-primary" /> Revisão do onboarding
+            </DialogTitle>
+            <DialogDescription>
+              Confirme os dados antes de seguir para o pagamento da primeira mensalidade.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="max-h-[60vh] space-y-5 overflow-y-auto pr-1">
+            <section>
+              <div className="mb-2 flex items-center justify-between">
+                <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-primary">
+                  Marcas ({brandCount})
+                </h4>
+              </div>
+              <div className="space-y-2">
+                {brands.map((b, i) => (
+                  <div key={b.id} className="rounded-lg border border-border/60 bg-card/40 p-3 text-sm">
+                    <div className="font-medium">{i + 1}. {b.name || `Marca ${i + 1}`}</div>
+                    {b.segment && <div className="text-xs text-muted-foreground">{b.segment}</div>}
+                    {b.terms && <div className="mt-1 font-mono text-[11px] text-muted-foreground">Termos: {b.terms}</div>}
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <h4 className="mb-2 font-display text-sm font-semibold uppercase tracking-wider text-primary">
+                Módulos ({activeCount})
+              </h4>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {activeModules.map((m) => (
+                  <div key={m.id} className="flex items-center justify-between rounded-lg border border-border/60 bg-card/40 px-3 py-2 text-sm">
+                    <span className="truncate">{m.name}</span>
+                    <span className="font-mono text-xs text-muted-foreground">R$ {m.price.toLocaleString("pt-BR")}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="rounded-xl border border-primary/30 bg-primary/5 p-4">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">R$ {perBrand.toLocaleString("pt-BR")} × {brandCount} marca{brandCount > 1 ? "s" : ""}</span>
+                <span className="font-display text-2xl font-bold">
+                  R$ {total.toLocaleString("pt-BR")}<span className="text-sm font-normal text-muted-foreground">/mês</span>
+                </span>
+              </div>
+            </section>
+          </div>
+
+          <DialogFooter className="gap-2 sm:gap-2">
+            <Button variant="outline" onClick={() => setReviewOpen(false)}>
+              <Pencil className="mr-2 h-4 w-4" /> Editar
+            </Button>
+            <Button onClick={confirmAndPay}>
+              <CreditCard className="mr-2 h-4 w-4" /> Confirmar e pagar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
