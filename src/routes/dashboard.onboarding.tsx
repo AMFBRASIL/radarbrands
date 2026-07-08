@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Shield, Sparkles, Check, Lock, Plus, X, Rocket,
   Brain, Eye, Globe, Search, ShoppingBag, Users,
