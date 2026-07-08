@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const nav: { label: string; href: string; to?: string }[] = [
   { label: "Plataforma", href: "#plataforma" },
+  { label: "Diagnóstico", href: "/diagnostico", to: "/diagnostico" },
   { label: "Como funciona", href: "/como-funciona", to: "/como-funciona" },
   { label: "Diferencial", href: "/diferencial", to: "/diferencial" },
   { label: "Jurídico", href: "/juridico", to: "/juridico" },
