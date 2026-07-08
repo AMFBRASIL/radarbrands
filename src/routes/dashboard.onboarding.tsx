@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Shield, Sparkles, Check, Lock, Plus, X, Rocket,
   Brain, Eye, Globe, Search, ShoppingBag, Users,
   Radar, Bot, Workflow, TrendingUp, FileAudio, AlertTriangle,
-  Pencil, CreditCard,
+  Pencil, CreditCard, ChevronDown, Mouse,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -99,6 +99,27 @@ function OnboardingPage() {
   );
   const [saved, setSaved] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
+  const [scrollEl, setScrollEl] = useState<HTMLDivElement | null>(null);
+  const [showScrollHint, setShowScrollHint] = useState(false);
+
+  useEffect(() => {
+    const el = scrollEl;
+    if (!el) return;
+    const check = () => {
+      const hasScroll = el.scrollHeight > el.clientHeight + 2;
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 4;
+      setShowScrollHint(hasScroll && !atBottom);
+    };
+    const id = setTimeout(check, 80);
+    el.addEventListener("scroll", check, { passive: true });
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => {
+      clearTimeout(id);
+      el.removeEventListener("scroll", check);
+      ro.disconnect();
+    };
+  }, [scrollEl]);
 
   const brandCount = Math.max(1, brands.filter((b) => b.name.trim()).length);
   const perBrand = useMemo(
@@ -403,46 +424,65 @@ function OnboardingPage() {
             </DialogDescription>
           </DialogHeader>
 
-          <div className="max-h-[60vh] space-y-5 overflow-y-auto pr-1">
-            <section>
-              <div className="mb-2 flex items-center justify-between">
-                <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-primary">
-                  Marcas ({brandCount})
+          <div className="relative">
+            <style>{`
+              .rb-scroll-hide::-webkit-scrollbar { display: none !important; }
+            `}</style>
+            <div
+              ref={setScrollEl}
+              className="rb-scroll-hide max-h-[60vh] space-y-5 overflow-y-auto pr-1"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              <section>
+                <div className="mb-2 flex items-center justify-between">
+                  <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-primary">
+                    Marcas ({brandCount})
+                  </h4>
+                </div>
+                <div className="space-y-2">
+                  {brands.map((b, i) => (
+                    <div key={b.id} className="rounded-lg border border-border/60 bg-card/40 p-3 text-sm">
+                      <div className="font-medium">{i + 1}. {b.name || `Marca ${i + 1}`}</div>
+                      {b.segment && <div className="text-xs text-muted-foreground">{b.segment}</div>}
+                      {b.terms && <div className="mt-1 font-mono text-[11px] text-muted-foreground">Termos: {b.terms}</div>}
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <h4 className="mb-2 font-display text-sm font-semibold uppercase tracking-wider text-primary">
+                  Módulos ({activeCount})
                 </h4>
-              </div>
-              <div className="space-y-2">
-                {brands.map((b, i) => (
-                  <div key={b.id} className="rounded-lg border border-border/60 bg-card/40 p-3 text-sm">
-                    <div className="font-medium">{i + 1}. {b.name || `Marca ${i + 1}`}</div>
-                    {b.segment && <div className="text-xs text-muted-foreground">{b.segment}</div>}
-                    {b.terms && <div className="mt-1 font-mono text-[11px] text-muted-foreground">Termos: {b.terms}</div>}
-                  </div>
-                ))}
-              </div>
-            </section>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {activeModules.map((m) => (
+                    <div key={m.id} className="flex items-center justify-between rounded-lg border border-border/60 bg-card/40 px-3 py-2 text-sm">
+                      <span className="truncate">{m.name}</span>
+                      <span className="font-mono text-xs text-muted-foreground">R$ {m.price.toLocaleString("pt-BR")}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
 
-            <section>
-              <h4 className="mb-2 font-display text-sm font-semibold uppercase tracking-wider text-primary">
-                Módulos ({activeCount})
-              </h4>
-              <div className="grid gap-2 sm:grid-cols-2">
-                {activeModules.map((m) => (
-                  <div key={m.id} className="flex items-center justify-between rounded-lg border border-border/60 bg-card/40 px-3 py-2 text-sm">
-                    <span className="truncate">{m.name}</span>
-                    <span className="font-mono text-xs text-muted-foreground">R$ {m.price.toLocaleString("pt-BR")}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
+              <section className="rounded-xl border border-primary/30 bg-primary/5 p-4">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">R$ {perBrand.toLocaleString("pt-BR")} × {brandCount} marca{brandCount > 1 ? "s" : ""}</span>
+                  <span className="font-display text-2xl font-bold">
+                    R$ {total.toLocaleString("pt-BR")}<span className="text-sm font-normal text-muted-foreground">/mês</span>
+                  </span>
+                </div>
+              </section>
+            </div>
 
-            <section className="rounded-xl border border-primary/30 bg-primary/5 p-4">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">R$ {perBrand.toLocaleString("pt-BR")} × {brandCount} marca{brandCount > 1 ? "s" : ""}</span>
-                <span className="font-display text-2xl font-bold">
-                  R$ {total.toLocaleString("pt-BR")}<span className="text-sm font-normal text-muted-foreground">/mês</span>
-                </span>
+            {showScrollHint && (
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-center justify-end pb-2 pt-10">
+                <div className="flex flex-col items-center gap-0.5 rounded-full bg-card px-3 py-2 text-[10px] font-medium text-primary shadow-lg ring-1 ring-primary/30 backdrop-blur-sm">
+                  <Mouse className="h-3.5 w-3.5" />
+                  <span>Desça para ver mais</span>
+                  <ChevronDown className="h-3.5 w-3.5 animate-bounce" />
+                </div>
               </div>
-            </section>
+            )}
           </div>
 
           <DialogFooter className="gap-2 sm:gap-2">
