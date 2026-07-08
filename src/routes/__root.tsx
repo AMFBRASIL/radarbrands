@@ -117,6 +117,19 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="pt-BR">
       <head>
         <HeadContent />
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtmlWithChildren: inline theme init required before hydration to avoid FOUC
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                var key = "radar-theme";
+                var saved = localStorage.getItem(key);
+                var theme = saved === "light" || saved === "dark" ? saved : "dark";
+                document.documentElement.classList.add(theme);
+              })();
+            `,
+          }}
+        />
       </head>
       <body>
         {children}
