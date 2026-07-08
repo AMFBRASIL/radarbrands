@@ -92,11 +92,13 @@ function newBrand(): Brand {
 }
 
 function OnboardingPage() {
+  const navigate = useNavigate();
   const [brands, setBrands] = useState<Brand[]>([newBrand()]);
   const [enabled, setEnabled] = useState<Record<string, boolean>>(
     Object.fromEntries(MODULES.map((m) => [m.id, m.required ? true : ["domains", "ads", "social"].includes(m.id)])),
   );
   const [saved, setSaved] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
 
   const brandCount = Math.max(1, brands.filter((b) => b.name.trim()).length);
   const perBrand = useMemo(
@@ -108,6 +110,7 @@ function OnboardingPage() {
     () => MODULES.filter((m) => enabled[m.id]).length,
     [enabled],
   );
+  const activeModules = useMemo(() => MODULES.filter((m) => enabled[m.id]), [enabled]);
 
   function toggle(id: string) {
     const mod = MODULES.find((m) => m.id === id);
@@ -127,15 +130,31 @@ function OnboardingPage() {
 
   const canFinish = brands.every((b) => b.name.trim()) && brands.some((b) => b.name.trim());
 
-  function finish() {
+  function openReview() {
     if (!canFinish) {
       toast.error("Preencha o nome de cada marca para continuar.");
       return;
     }
+    setReviewOpen(true);
+  }
+
+  function confirmAndPay() {
     setSaved(true);
-    toast.success("Onboarding concluído!", {
-      description: `${brandCount} marca(s) e ${activeCount} módulos configurados.`,
-    });
+    try {
+      sessionStorage.setItem(
+        "rb.onboarding",
+        JSON.stringify({
+          brands: brands.map((b) => ({ name: b.name, segment: b.segment })),
+          modules: activeModules.map((m) => ({ id: m.id, name: m.name, price: m.price })),
+          perBrand,
+          brandCount,
+          total,
+        }),
+      );
+    } catch {}
+    toast.success("Onboarding confirmado!", { description: "Redirecionando para o pagamento..." });
+    setReviewOpen(false);
+    setTimeout(() => navigate({ to: "/dashboard/pagamento" }), 500);
   }
 
   return (
