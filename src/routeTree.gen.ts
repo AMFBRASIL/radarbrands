@@ -30,6 +30,7 @@ import { Route as DashboardReportsRouteImport } from './routes/dashboard.reports
 import { Route as DashboardProfileRouteImport } from './routes/dashboard.profile'
 import { Route as DashboardPredictRouteImport } from './routes/dashboard.predict'
 import { Route as DashboardPlaybooksRouteImport } from './routes/dashboard.playbooks'
+import { Route as DashboardOnboardingRouteImport } from './routes/dashboard.onboarding'
 import { Route as DashboardMonitoringRouteImport } from './routes/dashboard.monitoring'
 import { Route as DashboardMarketplaceRouteImport } from './routes/dashboard.marketplace'
 import { Route as DashboardLegalRouteImport } from './routes/dashboard.legal'
@@ -151,6 +152,11 @@ const DashboardPlaybooksRoute = DashboardPlaybooksRouteImport.update({
   path: '/playbooks',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardOnboardingRoute = DashboardOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardMonitoringRoute = DashboardMonitoringRouteImport.update({
   id: '/monitoring',
   path: '/monitoring',
@@ -255,6 +261,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/legal': typeof DashboardLegalRoute
   '/dashboard/marketplace': typeof DashboardMarketplaceRoute
   '/dashboard/monitoring': typeof DashboardMonitoringRoute
+  '/dashboard/onboarding': typeof DashboardOnboardingRoute
   '/dashboard/playbooks': typeof DashboardPlaybooksRoute
   '/dashboard/predict': typeof DashboardPredictRoute
   '/dashboard/profile': typeof DashboardProfileRoute
@@ -292,6 +299,7 @@ export interface FileRoutesByTo {
   '/dashboard/legal': typeof DashboardLegalRoute
   '/dashboard/marketplace': typeof DashboardMarketplaceRoute
   '/dashboard/monitoring': typeof DashboardMonitoringRoute
+  '/dashboard/onboarding': typeof DashboardOnboardingRoute
   '/dashboard/playbooks': typeof DashboardPlaybooksRoute
   '/dashboard/predict': typeof DashboardPredictRoute
   '/dashboard/profile': typeof DashboardProfileRoute
@@ -331,6 +339,7 @@ export interface FileRoutesById {
   '/dashboard/legal': typeof DashboardLegalRoute
   '/dashboard/marketplace': typeof DashboardMarketplaceRoute
   '/dashboard/monitoring': typeof DashboardMonitoringRoute
+  '/dashboard/onboarding': typeof DashboardOnboardingRoute
   '/dashboard/playbooks': typeof DashboardPlaybooksRoute
   '/dashboard/predict': typeof DashboardPredictRoute
   '/dashboard/profile': typeof DashboardProfileRoute
@@ -371,6 +380,7 @@ export interface FileRouteTypes {
     | '/dashboard/legal'
     | '/dashboard/marketplace'
     | '/dashboard/monitoring'
+    | '/dashboard/onboarding'
     | '/dashboard/playbooks'
     | '/dashboard/predict'
     | '/dashboard/profile'
@@ -408,6 +418,7 @@ export interface FileRouteTypes {
     | '/dashboard/legal'
     | '/dashboard/marketplace'
     | '/dashboard/monitoring'
+    | '/dashboard/onboarding'
     | '/dashboard/playbooks'
     | '/dashboard/predict'
     | '/dashboard/profile'
@@ -446,6 +457,7 @@ export interface FileRouteTypes {
     | '/dashboard/legal'
     | '/dashboard/marketplace'
     | '/dashboard/monitoring'
+    | '/dashboard/onboarding'
     | '/dashboard/playbooks'
     | '/dashboard/predict'
     | '/dashboard/profile'
@@ -621,6 +633,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardPlaybooksRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/onboarding': {
+      id: '/dashboard/onboarding'
+      path: '/onboarding'
+      fullPath: '/dashboard/onboarding'
+      preLoaderRoute: typeof DashboardOnboardingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/monitoring': {
       id: '/dashboard/monitoring'
       path: '/monitoring'
@@ -745,6 +764,7 @@ interface DashboardRouteChildren {
   DashboardLegalRoute: typeof DashboardLegalRoute
   DashboardMarketplaceRoute: typeof DashboardMarketplaceRoute
   DashboardMonitoringRoute: typeof DashboardMonitoringRoute
+  DashboardOnboardingRoute: typeof DashboardOnboardingRoute
   DashboardPlaybooksRoute: typeof DashboardPlaybooksRoute
   DashboardPredictRoute: typeof DashboardPredictRoute
   DashboardProfileRoute: typeof DashboardProfileRoute
@@ -772,6 +792,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardLegalRoute: DashboardLegalRoute,
   DashboardMarketplaceRoute: DashboardMarketplaceRoute,
   DashboardMonitoringRoute: DashboardMonitoringRoute,
+  DashboardOnboardingRoute: DashboardOnboardingRoute,
   DashboardPlaybooksRoute: DashboardPlaybooksRoute,
   DashboardPredictRoute: DashboardPredictRoute,
   DashboardProfileRoute: DashboardProfileRoute,

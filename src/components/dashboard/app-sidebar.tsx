@@ -12,6 +12,7 @@ import {
   Gavel,
   Globe,
   Home,
+  Rocket,
   Megaphone,
   Network,
   Radar,
@@ -78,6 +79,7 @@ const business: Item[] = [
 ];
 
 const account: Item[] = [
+  { title: "Onboarding", url: "/dashboard/onboarding", icon: Rocket, badge: "SETUP" },
   { title: "Configurações", url: "/dashboard/settings", icon: Settings },
 ];
 
