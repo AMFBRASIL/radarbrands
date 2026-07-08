@@ -16,7 +16,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard · Radar | brand" },
+      { title: "Dashboard · Radar | brands" },
       { name: "robots", content: "noindex" },
     ],
   }),

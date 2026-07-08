@@ -23,17 +23,17 @@ import { SiteFooter, CtaBand } from "@/components/landing/pricing-footer";
 export const Route = createFileRoute("/diferencial")({
   head: () => ({
     meta: [
-      { title: "Diferencial · Radar | brand vs. concorrentes" },
+      { title: "Diferencial · Radar | brands vs. concorrentes" },
       {
         name: "description",
         content:
-          "Comparativo entre Radar | brand e as demais plataformas de proteção de marca: Threat Graph, IA preditiva, deepfake, dark web, playbooks e ROI em tempo real.",
+          "Comparativo entre Radar | brands e as demais plataformas de proteção de marca: Threat Graph, IA preditiva, deepfake, dark web, playbooks e ROI em tempo real.",
       },
-      { property: "og:title", content: "Radar | brand vs. concorrentes" },
+      { property: "og:title", content: "Radar | brands vs. concorrentes" },
       {
         property: "og:description",
         content:
-          "Veja por que a Radar | brand vai muito além do brand bidding — 12 diferenciais que ninguém mais entrega.",
+          "Veja por que a Radar | brands vai muito além do brand bidding — 12 diferenciais que ninguém mais entrega.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -101,7 +101,7 @@ const differentials = [
   {
     icon: Trophy,
     title: "White-label para agências",
-    desc: "Sua agência revende o Radar | brand com marca própria. Nenhum concorrente oferece esse modelo B2B2B.",
+    desc: "Sua agência revende o Radar | brands com marca própria. Nenhum concorrente oferece esse modelo B2B2B.",
   },
 ];
 
@@ -166,15 +166,15 @@ function DiferencialPage() {
             <div className="mx-auto max-w-3xl text-center">
               <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
                 <Trophy className="h-3.5 w-3.5 text-primary" />
-                Comparativo · Radar | brand vs. concorrentes
+                Comparativo · Radar | brands vs. concorrentes
               </div>
               <h1 className="font-display text-4xl font-bold tracking-tight md:text-6xl">
-                Por que a Radar | brand vai muito{" "}
+                Por que a Radar | brands vai muito{" "}
                 <span className="text-gradient">além do brand bidding</span>.
               </h1>
               <p className="mt-6 text-lg text-muted-foreground">
                 As demais plataformas do mercado protegem 1 ou 2 canais.
-                A Radar | brand entrega 12 diferenciais que ninguém mais opera —
+                A Radar | brands entrega 12 diferenciais que ninguém mais opera —
                 de Threat Graph a Deepfake, de IA preditiva a Executive
                 Briefing por IA.
               </p>
@@ -236,7 +236,7 @@ function DiferencialPage() {
                 Comparativo cabeça a cabeça
               </p>
               <h2 className="mt-3 font-display text-3xl font-bold md:text-5xl">
-                Radar | brand vs. o resto do mercado
+                Radar | brands vs. o resto do mercado
               </h2>
             </div>
 
@@ -249,7 +249,7 @@ function DiferencialPage() {
                   <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-[image:var(--gradient-primary)] glow-primary">
                     <Sparkles className="h-4 w-4 text-primary-foreground" />
                   </div>
-                  <div className="mt-1 font-display text-sm font-bold">Radar | brand</div>
+                  <div className="mt-1 font-display text-sm font-bold">Radar | brands</div>
                 </div>
                 <div className="text-center">
                   <div className="mx-auto h-9 w-9 rounded-lg bg-muted" />

@@ -11,7 +11,7 @@ const nodes = [
   { id: "n1", label: "brandshiiield.com", type: "domain", severity: "high", x: 15, y: 20 },
   { id: "n2", label: "@brand_oficial_br", type: "social", severity: "high", x: 85, y: 25 },
   { id: "n3", label: "CNPJ 32.***.***/0001-11", type: "entity", severity: "critical", x: 20, y: 80 },
-  { id: "n4", label: "app 'Radar | brand Pro'", type: "app", severity: "medium", x: 80, y: 78 },
+  { id: "n4", label: "app 'Radar | brands Pro'", type: "app", severity: "medium", x: 80, y: 78 },
   { id: "n5", label: "brand-shield.xyz", type: "domain", severity: "medium", x: 10, y: 55 },
   { id: "n6", label: "@radarbrand.oficial", type: "social", severity: "high", x: 90, y: 55 },
 ];

@@ -24,17 +24,17 @@ import { SiteFooter, CtaBand } from "@/components/landing/pricing-footer";
 export const Route = createFileRoute("/como-funciona")({
   head: () => ({
     meta: [
-      { title: "Como funciona · Radar | brand — Proteção de marca com IA" },
+      { title: "Como funciona · Radar | brands — Proteção de marca com IA" },
       {
         name: "description",
         content:
-          "Do monitoramento 24/7 à mediação humana: entenda o ciclo Radar | brand que combina inteligência artificial e especialistas para blindar sua marca em domínios, redes sociais, Ads e marketplaces.",
+          "Do monitoramento 24/7 à mediação humana: entenda o ciclo Radar | brands que combina inteligência artificial e especialistas para blindar sua marca em domínios, redes sociais, Ads e marketplaces.",
       },
-      { property: "og:title", content: "Como funciona · Radar | brand" },
+      { property: "og:title", content: "Como funciona · Radar | brands" },
       {
         property: "og:description",
         content:
-          "Monitoria, Inteligência, Mediação e Sucesso — o método Radar | brand para proteger sua marca em tempo real.",
+          "Monitoria, Inteligência, Mediação e Sucesso — o método Radar | brands para proteger sua marca em tempo real.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -155,7 +155,7 @@ function HowItWorksPage() {
             <div className="mx-auto max-w-3xl text-center">
               <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-dot" />
-                Tecnologia Radar | brand
+                Tecnologia Radar | brands
               </div>
               <h1 className="font-display text-4xl font-bold tracking-tight md:text-6xl">
                 Uma extensão da sua equipe na{" "}
@@ -210,7 +210,7 @@ function HowItWorksPage() {
                 Ciclo de proteção
               </p>
               <h2 className="mt-3 font-display text-3xl font-bold md:text-5xl">
-                Como o ciclo Radar | brand roda todos os dias
+                Como o ciclo Radar | brands roda todos os dias
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
                 Cinco etapas conectadas — da coleta de sinais à extinção da
@@ -261,7 +261,7 @@ function HowItWorksPage() {
           <div className="relative mx-auto max-w-7xl px-4">
             <div className="mb-14 text-center">
               <p className="font-mono text-xs uppercase tracking-[0.25em] text-primary">
-                O método Radar | brand
+                O método Radar | brands
               </p>
               <h2 className="mt-3 font-display text-3xl font-bold md:text-5xl">
                 Monitoria. Inteligência.{" "}
