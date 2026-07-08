@@ -201,7 +201,7 @@ function SettingsPage() {
     <SimplePage
       eyebrow="Configurações"
       title="Central de configurações"
-      description="Toda a operação do Radar | brand em um só lugar — escolha uma área para configurar."
+      description="Toda a operação do Radar | brands em um só lugar — escolha uma área para configurar."
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((c) => (
@@ -308,7 +308,7 @@ function renderBody(id: Section) {
           <Field label="Porta"><Input defaultValue="587" /></Field>
           <Field label="Usuário"><Input defaultValue="alerts@cadbrasil.com.br" /></Field>
           <Field label="Senha / Token"><Input type="password" defaultValue="********" /></Field>
-          <Field label="Remetente padrão"><Input defaultValue="Radar | brand <alerts@cadbrasil.com.br>" /></Field>
+          <Field label="Remetente padrão"><Input defaultValue="Radar | brands <alerts@cadbrasil.com.br>" /></Field>
           <Field label="Reply-To"><Input defaultValue="juridico@cadbrasil.com.br" /></Field>
           <div className="md:col-span-2 space-y-3">
             <Row title="DKIM verificado" desc="Assinatura digital de saída" defaultChecked />

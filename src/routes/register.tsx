@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/register")({
   head: () => ({
     meta: [
-      { title: "Criar conta · Radar | brand" },
-      { name: "description", content: "Crie sua conta no Radar | brand e proteja sua marca com monitoramento 24/7." },
-      { property: "og:title", content: "Criar conta · Radar | brand" },
-      { property: "og:description", content: "Cadastro no portal Radar | brand." },
+      { title: "Criar conta · Radar | brands" },
+      { name: "description", content: "Crie sua conta no Radar | brands e proteja sua marca com monitoramento 24/7." },
+      { property: "og:title", content: "Criar conta · Radar | brands" },
+      { property: "og:description", content: "Cadastro no portal Radar | brands." },
     ],
   }),
   component: RegisterPage,

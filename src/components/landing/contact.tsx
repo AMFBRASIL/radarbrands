@@ -68,7 +68,7 @@ export function Contact() {
               subtitle="Resposta em minutos • Seg–Sex 8h às 22h"
               action="Abrir conversa"
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                "Olá! Quero conhecer a Radar | brand.",
+                "Olá! Quero conhecer a Radar | brands.",
               )}`}
               accent
             />
@@ -77,7 +77,7 @@ export function Contact() {
               title="E-mail comercial"
               subtitle={EMAIL}
               action="Enviar e-mail"
-              href={`mailto:${EMAIL}?subject=Quero%20conhecer%20a%20Radar | brand%20AI`}
+              href={`mailto:${EMAIL}?subject=Quero%20conhecer%20a%20Radar | brands%20AI`}
             />
             <ChannelCard
               icon={<Phone className="h-5 w-5" />}
@@ -279,7 +279,7 @@ export function WhatsAppFab() {
   return (
     <a
       href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-        "Olá! Vim pelo site da Radar | brand.",
+        "Olá! Vim pelo site da Radar | brands.",
       )}`}
       target="_blank"
       rel="noopener noreferrer"

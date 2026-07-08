@@ -8,7 +8,7 @@ export const Route = createFileRoute("/dashboard/apps")({
 });
 
 const fakes = [
-  { name: "Radar | brand Pro", store: "Google Play", dev: "Dev_BR_Studio", installs: "10k+", rating: 2.1, severity: "critical" },
+  { name: "Radar | brands Pro", store: "Google Play", dev: "Dev_BR_Studio", installs: "10k+", rating: 2.1, severity: "critical" },
   { name: "Radar Brand Manager", store: "App Store", dev: "Anon LLC", installs: "5k+", rating: 3.4, severity: "high" },
   { name: "BrandShieId AI (I maiúsculo)", store: "APK pirata", dev: "apk-livre.net", installs: "?", rating: 0, severity: "critical" },
   { name: "Radar Brand Lite", store: "Google Play", dev: "Fake Devs", installs: "1k+", rating: 1.8, severity: "medium" },

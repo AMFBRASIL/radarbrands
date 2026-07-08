@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Entrar · Radar | brand" },
-      { name: "description", content: "Acesse o painel do Radar | brand e acompanhe seus processos INPI em tempo real." },
-      { property: "og:title", content: "Entrar · Radar | brand" },
-      { property: "og:description", content: "Portal do cliente Radar | brand." },
+      { title: "Entrar · Radar | brands" },
+      { name: "description", content: "Acesse o painel do Radar | brands e acompanhe seus processos INPI em tempo real." },
+      { property: "og:title", content: "Entrar · Radar | brands" },
+      { property: "og:description", content: "Portal do cliente Radar | brands." },
     ],
   }),
   component: LoginPage,

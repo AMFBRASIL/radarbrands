@@ -10,8 +10,8 @@ import {
 export const Route = createFileRoute("/register2")({
   head: () => ({
     meta: [
-      { title: "Criar conta · Radar | brand" },
-      { name: "description", content: "Cadastre-se no Radar | brand." },
+      { title: "Criar conta · Radar | brands" },
+      { name: "description", content: "Cadastre-se no Radar | brands." },
     ],
   }),
   component: Register2Page,
@@ -47,7 +47,7 @@ function Register2Page() {
             <Shield className="h-5 w-5 text-[#050b14]" strokeWidth={2.75} />
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="font-display text-sm font-bold tracking-tight">Radar | brand</span>
+            <span className="font-display text-sm font-bold tracking-tight">Radar | brands</span>
             <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-400">Sua marca no Radar</span>
           </div>
         </Link>

@@ -50,7 +50,7 @@ export function WhyNow() {
               Peso do brand search no tráfego pago
             </div>
             <div className="mt-1 text-sm text-muted-foreground">
-              índice médio · clientes Radar | brand
+              índice médio · clientes Radar | brands
             </div>
             <div className="mt-8 space-y-5">
               {bars.map((b) => (
@@ -197,7 +197,7 @@ export function LegalBase() {
               <span className="text-gradient"> crime de concorrência desleal.</span>
             </h2>
             <p className="mt-5 text-muted-foreground md:text-lg">
-              A maioria das mediações fecha em acordo. Para os que insistem, a Radar | brand
+              A maioria das mediações fecha em acordo. Para os que insistem, a Radar | brands
               já chega na mesa com o dossiê pronto: prints datados, logs de leilão, evidência
               de reincidência. A jurisprudência brasileira{" "}
               <span className="font-mono text-primary">(LPI · art. 195)</span> reconhece a
@@ -269,7 +269,7 @@ export function MediationRevenue() {
             <span className="text-gradient"> receita que volta pro seu funil.</span>
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
-            Marcas que blindam o leilão do próprio nome com a Radar | brand pagam menos por
+            Marcas que blindam o leilão do próprio nome com a Radar | brands pagam menos por
             clique de marca, recuperam tráfego perdido e{" "}
             <strong className="text-foreground">
               melhoram o ROAS sem mexer em uma linha do orçamento de mídia
@@ -330,7 +330,7 @@ export function ToolVsSpecialist() {
           </div>
           <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
             Ferramenta vê o problema.
-            <span className="text-gradient"> Radar | brand resolve.</span>
+            <span className="text-gradient"> Radar | brands resolve.</span>
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
             A diferença não é monitorar — é o que acontece depois. Brand bidding sai via
@@ -360,7 +360,7 @@ export function ToolVsSpecialist() {
             <div className="absolute inset-0 grid-bg opacity-40" aria-hidden />
             <div className="relative">
               <div className="font-mono text-[10px] uppercase tracking-widest text-primary">
-                // Radar | brand
+                // Radar | brands
               </div>
               <h3 className="mt-3 font-display text-xl font-semibold">
                 Detecta, classifica e resolve do começo ao fim.
@@ -413,7 +413,7 @@ export function BrandFAQ() {
       a: "Flexível, sem setup fee e sem fidelidade longa. O investimento é calibrado pelo porte da sua operação.",
     },
     {
-      q: "Radar | brand substitui uma ferramenta de monitoramento?",
+      q: "Radar | brands substitui uma ferramenta de monitoramento?",
       a: "Sim. Você deixa de pagar uma ferramenta que só alerta e passa a ter uma operação completa: monitoramento + mediação + escalada jurídica no mesmo lugar.",
     },
   ];

@@ -220,7 +220,7 @@ export function useEmailWizardSteps(): WizardStep[] {
       {
         key: "mode",
         title: "Método de envio",
-        subtitle: "Como o Radar | brand vai enviar os e-mails",
+        subtitle: "Como o Radar | brands vai enviar os e-mails",
         content: (
           <div className="grid gap-4 sm:grid-cols-2">
             <BigCard

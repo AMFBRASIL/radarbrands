@@ -10,8 +10,8 @@ import {
 export const Route = createFileRoute("/login2")({
   head: () => ({
     meta: [
-      { title: "Entrar · Radar | brand" },
-      { name: "description", content: "Portal do cliente Radar | brand." },
+      { title: "Entrar · Radar | brands" },
+      { name: "description", content: "Portal do cliente Radar | brands." },
     ],
   }),
   component: Login2Page,
@@ -46,7 +46,7 @@ function Login2Page() {
             <Shield className="h-5 w-5 text-[#050b14]" strokeWidth={2.75} />
           </div>
           <div className="flex flex-col leading-tight">
-            <span className="font-display text-sm font-bold tracking-tight">Radar | brand</span>
+            <span className="font-display text-sm font-bold tracking-tight">Radar | brands</span>
             <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-400">Sua marca no Radar</span>
           </div>
         </Link>
