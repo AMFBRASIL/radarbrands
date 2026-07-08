@@ -53,24 +53,19 @@ export function SiteHeader() {
                 </a>
               ),
             )}
-            <Link
-              to="/login"
-              className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              Login
-            </Link>
 
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
             <ThemeToggle />
             <Button variant="ghost" size="sm" asChild>
-              <a href="#scan">Teste gratuito</a>
+              <Link to="/login">Login</Link>
             </Button>
             <Button size="sm" asChild className="bg-[image:var(--gradient-primary)] text-primary-foreground hover:opacity-90">
               <Link to="/proposta">Gerar proposta</Link>
             </Button>
           </div>
+
 
 
           <button
