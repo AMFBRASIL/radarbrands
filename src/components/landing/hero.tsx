@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -25,6 +27,7 @@ const checks = [
 ];
 
 export function Hero() {
+  const navigate = useNavigate();
   const [brand, setBrand] = useState("");
   const [scanning, setScanning] = useState(false);
   const [done, setDone] = useState<number[]>([]);
@@ -38,11 +41,19 @@ export function Hero() {
       i += 1;
       if (i >= checks.length) {
         clearInterval(id);
-        setTimeout(() => setScanning(false), 800);
+        setTimeout(() => {
+          setScanning(false);
+          toast.success("Análise concluída!", {
+            description: "Redirecionando para o seu Diagnóstico...",
+          });
+          setTimeout(() => {
+            void navigate({ to: "/diagnostico" });
+          }, 1200);
+        }, 800);
       }
     }, 280);
     return () => clearInterval(id);
-  }, [scanning]);
+  }, [scanning, navigate]);
 
   return (
     <section
