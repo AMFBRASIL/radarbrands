@@ -12,6 +12,7 @@ import {
   Gavel,
   Globe,
   Home,
+  Rocket,
   Megaphone,
   Network,
   Radar,
