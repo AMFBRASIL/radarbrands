@@ -542,6 +542,23 @@ function OnboardingPage() {
                 </div>
               </section>
 
+              {team.length > 0 && (
+                <section>
+                  <h4 className="mb-2 font-display text-sm font-semibold uppercase tracking-wider text-primary">
+                    Equipe convidada ({team.length})
+                  </h4>
+                  <div className="space-y-1.5">
+                    {team.map((m) => (
+                      <div key={m.id} className="flex items-center justify-between rounded-lg border border-border/60 bg-card/40 px-3 py-2 text-sm">
+                        <span className="truncate">{m.email}</span>
+                        <Badge variant="secondary" className="capitalize">{m.role}</Badge>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+
               <section>
                 <h4 className="mb-2 font-display text-sm font-semibold uppercase tracking-wider text-primary">
                   Módulos ({activeCount})
