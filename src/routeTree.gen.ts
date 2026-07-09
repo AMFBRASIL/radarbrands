@@ -13,6 +13,7 @@ import { Route as SobreNosRouteImport } from './routes/sobre-nos'
 import { Route as Register2RouteImport } from './routes/register2'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PropostaRouteImport } from './routes/proposta'
+import { Route as PlaygroundRouteImport } from './routes/playground'
 import { Route as Login2RouteImport } from './routes/login2'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JuridicoRouteImport } from './routes/juridico'
@@ -68,6 +69,11 @@ const RegisterRoute = RegisterRouteImport.update({
 const PropostaRoute = PropostaRouteImport.update({
   id: '/proposta',
   path: '/proposta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaygroundRoute = PlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Login2Route = Login2RouteImport.update({
@@ -260,6 +266,7 @@ export interface FileRoutesByFullPath {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/login2': typeof Login2Route
+  '/playground': typeof PlaygroundRoute
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
   '/register2': typeof Register2Route
@@ -301,6 +308,7 @@ export interface FileRoutesByTo {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/login2': typeof Login2Route
+  '/playground': typeof PlaygroundRoute
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
   '/register2': typeof Register2Route
@@ -344,6 +352,7 @@ export interface FileRoutesById {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/login2': typeof Login2Route
+  '/playground': typeof PlaygroundRoute
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
   '/register2': typeof Register2Route
@@ -388,6 +397,7 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/login2'
+    | '/playground'
     | '/proposta'
     | '/register'
     | '/register2'
@@ -429,6 +439,7 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/login2'
+    | '/playground'
     | '/proposta'
     | '/register'
     | '/register2'
@@ -471,6 +482,7 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/login2'
+    | '/playground'
     | '/proposta'
     | '/register'
     | '/register2'
@@ -514,6 +526,7 @@ export interface RootRouteChildren {
   JuridicoRoute: typeof JuridicoRoute
   LoginRoute: typeof LoginRoute
   Login2Route: typeof Login2Route
+  PlaygroundRoute: typeof PlaygroundRoute
   PropostaRoute: typeof PropostaRoute
   RegisterRoute: typeof RegisterRoute
   Register2Route: typeof Register2Route
@@ -548,6 +561,13 @@ declare module '@tanstack/react-router' {
       path: '/proposta'
       fullPath: '/proposta'
       preLoaderRoute: typeof PropostaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playground': {
+      id: '/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof PlaygroundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login2': {
@@ -880,6 +900,7 @@ const rootRouteChildren: RootRouteChildren = {
   JuridicoRoute: JuridicoRoute,
   LoginRoute: LoginRoute,
   Login2Route: Login2Route,
+  PlaygroundRoute: PlaygroundRoute,
   PropostaRoute: PropostaRoute,
   RegisterRoute: RegisterRoute,
   Register2Route: Register2Route,
