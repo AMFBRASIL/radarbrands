@@ -61,6 +61,7 @@ const protection: Item[] = [
 ];
 
 const intelligence: Item[] = [
+  { title: "War Room", url: "/dashboard/warroom", icon: ShieldAlert, badge: "LIVE" },
   { title: "Threat Graph", url: "/dashboard/threats", icon: Network, badge: "PRO" },
   { title: "Predictive Risk", url: "/dashboard/predict", icon: Radar, badge: "PRO" },
   { title: "Deepfake Detector", url: "/dashboard/deepfake", icon: FileAudio, badge: "PRO" },
