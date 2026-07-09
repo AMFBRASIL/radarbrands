@@ -12,6 +12,7 @@ import {
 } from "@/components/landing/modules";
 import { Investment } from "@/components/landing/investment";
 import { LossSimulator } from "@/components/landing/loss-simulator";
+import { ExclusiveFeatures } from "@/components/landing/exclusive-features";
 import {
   WhyNow,
   SilentAttack,
@@ -43,6 +44,7 @@ function LandingPage() {
         <AdsGuardian />
         <MarketplaceMonitor />
         <TrademarkCenter />
+        <ExclusiveFeatures />
         <LegalBase />
         <MediationRevenue />
         <ToolVsSpecialist />

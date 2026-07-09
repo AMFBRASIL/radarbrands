@@ -1,8 +1,7 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
-import { Bell, LogOut, Search, Settings } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { LogOut, Search, Settings } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   DropdownMenu,
@@ -12,6 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+import { CommandPalette, useCommandPalette } from "@/components/dashboard/command-palette";
+import { NotificationsBell } from "@/components/dashboard/notifications-bell";
+import { AiChatFab } from "@/components/dashboard/ai-chat-fab";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -25,6 +27,7 @@ export const Route = createFileRoute("/dashboard")({
 
 function DashboardLayout() {
   const navigate = useNavigate();
+  const { open, setOpen } = useCommandPalette();
 
   const handleLogout = () => {
     toast.info("Você saiu da sessão", { description: "Redirecionando para o login..." });
@@ -38,19 +41,19 @@ function DashboardLayout() {
         <div className="flex min-w-0 flex-1 flex-col">
           <header className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-border/60 bg-background/70 px-4 backdrop-blur">
             <SidebarTrigger />
-            <div className="relative hidden max-w-md flex-1 md:block">
-              <Search className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                placeholder="Buscar marca, domínio, alerta…"
-                className="h-9 border-border/60 bg-muted/30 pl-8"
-              />
-            </div>
+            <button
+              onClick={() => setOpen(true)}
+              className="relative hidden max-w-md flex-1 items-center gap-2 rounded-md border border-border/60 bg-muted/30 px-3 py-1.5 text-left text-sm text-muted-foreground transition hover:bg-muted md:flex"
+            >
+              <Search className="h-4 w-4" />
+              <span className="flex-1">Buscar marca, domínio, alerta…</span>
+              <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-0.5 rounded border border-border/60 bg-background px-1.5 font-mono text-[10px] text-muted-foreground">
+                ⌘K
+              </kbd>
+            </button>
             <div className="ml-auto flex items-center gap-3">
               <ThemeToggle />
-              <button className="relative rounded-lg p-2 hover:bg-muted">
-                <Bell className="h-4 w-4" />
-                <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive" />
-              </button>
+              <NotificationsBell />
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center gap-2 rounded-lg border border-border/60 bg-card px-2 py-1 transition hover:bg-muted">
@@ -82,6 +85,8 @@ function DashboardLayout() {
           </main>
         </div>
       </div>
+      <CommandPalette open={open} onOpenChange={setOpen} />
+      <AiChatFab />
     </SidebarProvider>
   );
 }
