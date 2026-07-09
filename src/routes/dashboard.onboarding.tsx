@@ -303,9 +303,74 @@ function OnboardingPage() {
             </div>
           </section>
 
+          {/* Equipe */}
+          <section className="glass-strong rounded-2xl p-6">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h2 className="font-display text-xl font-semibold">2. Sua equipe</h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Convide colegas para colaborar no dia 1. Você pode ajustar permissões depois.
+                </p>
+              </div>
+              <Badge variant="outline" className="border-primary/40 text-primary">Opcional</Badge>
+            </div>
+
+            <div className="mt-5 grid gap-2 sm:grid-cols-[1fr_180px_auto]">
+              <div className="relative">
+                <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  value={teamEmail}
+                  onChange={(e) => setTeamEmail(e.target.value.slice(0, 120))}
+                  onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTeamMember())}
+                  placeholder="colega@empresa.com"
+                  className="pl-9"
+                  type="email"
+                />
+              </div>
+              <select
+                value={teamRole}
+                onChange={(e) => setTeamRole(e.target.value as TeamMember["role"])}
+                className="h-9 rounded-md border border-input bg-transparent px-3 text-sm"
+              >
+                {ROLES.map((r) => (
+                  <option key={r.id} value={r.id}>{r.label}</option>
+                ))}
+              </select>
+              <Button type="button" onClick={addTeamMember}>
+                <UserPlus className="mr-1 h-4 w-4" /> Convidar
+              </Button>
+            </div>
+
+            <div className="mt-2 grid gap-1 text-[11px] text-muted-foreground sm:grid-cols-3">
+              {ROLES.map((r) => (
+                <div key={r.id}><strong className="text-foreground">{r.label}:</strong> {r.desc}</div>
+              ))}
+            </div>
+
+            {team.length > 0 && (
+              <ul className="mt-5 space-y-2">
+                {team.map((m) => (
+                  <li key={m.id} className="flex items-center gap-3 rounded-xl border border-border/60 bg-card/40 p-3">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/15 font-mono text-[11px] font-semibold text-primary">
+                      {m.email.slice(0, 2).toUpperCase()}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-sm font-medium">{m.email}</div>
+                      <div className="text-xs text-muted-foreground">Convite pendente</div>
+                    </div>
+                    <Badge variant="secondary" className="capitalize">{m.role}</Badge>
+                    <Button variant="ghost" size="icon" onClick={() => removeTeamMember(m.id)} aria-label="Remover">
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
           {/* Módulos */}
           <section className="glass-strong rounded-2xl p-6">
-            <h2 className="font-display text-xl font-semibold">2. Módulos contratados</h2>
+            <h2 className="font-display text-xl font-semibold">3. Módulos contratados</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Ative apenas o que faz sentido. O valor mensal é multiplicado pelo número de marcas.
             </p>
