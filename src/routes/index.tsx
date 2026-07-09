@@ -44,6 +44,7 @@ function LandingPage() {
         <AdsGuardian />
         <MarketplaceMonitor />
         <TrademarkCenter />
+        <ExclusiveFeatures />
         <LegalBase />
         <MediationRevenue />
         <ToolVsSpecialist />
