@@ -22,6 +22,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardWarroomRouteImport } from './routes/dashboard.warroom'
 import { Route as DashboardThreatsRouteImport } from './routes/dashboard.threats'
 import { Route as DashboardSocialRouteImport } from './routes/dashboard.social'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
@@ -111,6 +112,11 @@ const IndexRoute = IndexRouteImport.update({
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardWarroomRoute = DashboardWarroomRouteImport.update({
+  id: '/warroom',
+  path: '/warroom',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardThreatsRoute = DashboardThreatsRouteImport.update({
@@ -277,6 +283,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/warroom': typeof DashboardWarroomRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -316,6 +323,7 @@ export interface FileRoutesByTo {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/warroom': typeof DashboardWarroomRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -357,6 +365,7 @@ export interface FileRoutesById {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/warroom': typeof DashboardWarroomRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -399,6 +408,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/social'
     | '/dashboard/threats'
+    | '/dashboard/warroom'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -438,6 +448,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/social'
     | '/dashboard/threats'
+    | '/dashboard/warroom'
     | '/dashboard'
   id:
     | '__root__'
@@ -478,6 +489,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/social'
     | '/dashboard/threats'
+    | '/dashboard/warroom'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -587,6 +599,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/warroom': {
+      id: '/dashboard/warroom'
+      path: '/warroom'
+      fullPath: '/dashboard/warroom'
+      preLoaderRoute: typeof DashboardWarroomRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/threats': {
@@ -793,6 +812,7 @@ interface DashboardRouteChildren {
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardSocialRoute: typeof DashboardSocialRoute
   DashboardThreatsRoute: typeof DashboardThreatsRoute
+  DashboardWarroomRoute: typeof DashboardWarroomRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
@@ -822,6 +842,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardSocialRoute: DashboardSocialRoute,
   DashboardThreatsRoute: DashboardThreatsRoute,
+  DashboardWarroomRoute: DashboardWarroomRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
