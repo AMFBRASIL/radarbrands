@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StatusRouteImport } from './routes/status'
 import { Route as SobreNosRouteImport } from './routes/sobre-nos'
 import { Route as Register2RouteImport } from './routes/register2'
 import { Route as RegisterRouteImport } from './routes/register'
@@ -51,6 +52,11 @@ import { Route as DashboardAlertsRouteImport } from './routes/dashboard.alerts'
 import { Route as DashboardAiRouteImport } from './routes/dashboard.ai'
 import { Route as DashboardAdsRouteImport } from './routes/dashboard.ads'
 
+const StatusRoute = StatusRouteImport.update({
+  id: '/status',
+  path: '/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SobreNosRoute = SobreNosRouteImport.update({
   id: '/sobre-nos',
   path: '/sobre-nos',
@@ -271,6 +277,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
+  '/status': typeof StatusRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -313,6 +320,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
+  '/status': typeof StatusRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -357,6 +365,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
+  '/status': typeof StatusRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -402,6 +411,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/register2'
     | '/sobre-nos'
+    | '/status'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -444,6 +454,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/register2'
     | '/sobre-nos'
+    | '/status'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -487,6 +498,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/register2'
     | '/sobre-nos'
+    | '/status'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -531,10 +543,18 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   Register2Route: typeof Register2Route
   SobreNosRoute: typeof SobreNosRoute
+  StatusRoute: typeof StatusRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/status': {
+      id: '/status'
+      path: '/status'
+      fullPath: '/status'
+      preLoaderRoute: typeof StatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sobre-nos': {
       id: '/sobre-nos'
       path: '/sobre-nos'
@@ -905,6 +925,7 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   Register2Route: Register2Route,
   SobreNosRoute: SobreNosRoute,
+  StatusRoute: StatusRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
