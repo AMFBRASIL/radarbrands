@@ -91,9 +91,19 @@ function newBrand(): Brand {
   };
 }
 
+type TeamMember = { id: string; email: string; role: "admin" | "editor" | "viewer" };
+const ROLES: { id: TeamMember["role"]; label: string; desc: string }[] = [
+  { id: "admin", label: "Admin", desc: "Acesso total, billing e equipe" },
+  { id: "editor", label: "Editor", desc: "Gerencia alertas e takedowns" },
+  { id: "viewer", label: "Viewer", desc: "Apenas leitura de dashboards" },
+];
+
 function OnboardingPage() {
   const navigate = useNavigate();
   const [brands, setBrands] = useState<Brand[]>([newBrand()]);
+  const [team, setTeam] = useState<TeamMember[]>([]);
+  const [teamEmail, setTeamEmail] = useState("");
+  const [teamRole, setTeamRole] = useState<TeamMember["role"]>("editor");
   const [enabled, setEnabled] = useState<Record<string, boolean>>(
     Object.fromEntries(MODULES.map((m) => [m.id, m.required ? true : ["domains", "ads", "social"].includes(m.id)])),
   );
