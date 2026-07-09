@@ -194,6 +194,7 @@ function OnboardingPage() {
         JSON.stringify({
           brands: brands.map((b) => ({ name: b.name, segment: b.segment })),
           modules: activeModules.map((m) => ({ id: m.id, name: m.name, price: m.price })),
+          team,
           perBrand,
           brandCount,
           total,
