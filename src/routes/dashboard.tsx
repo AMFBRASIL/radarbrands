@@ -1,8 +1,7 @@
 import { createFileRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
-import { Bell, LogOut, Search, Settings } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { LogOut, Search, Settings } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   DropdownMenu,
@@ -12,6 +11,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+import { CommandPalette, useCommandPalette } from "@/components/dashboard/command-palette";
+import { NotificationsBell } from "@/components/dashboard/notifications-bell";
+import { AiChatFab } from "@/components/dashboard/ai-chat-fab";
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
