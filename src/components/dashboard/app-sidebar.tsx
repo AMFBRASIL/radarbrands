@@ -87,6 +87,7 @@ const business: Item[] = [
 
 const account: Item[] = [
   { title: "Onboarding", url: "/dashboard/onboarding", icon: Rocket, badge: "SETUP" },
+  { title: "Modo TV", url: "/dashboard/tv", icon: Tv, badge: "NEW" },
   { title: "Playground", url: "/playground", icon: FlaskConical },
   { title: "Status pública", url: "/status", icon: Signal },
   { title: "Configurações", url: "/dashboard/settings", icon: Settings },
