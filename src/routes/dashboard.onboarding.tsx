@@ -159,6 +159,23 @@ function OnboardingPage() {
     setBrands((bs) => (bs.length === 1 ? bs : bs.filter((b) => b.id !== id)));
   }
 
+  function addTeamMember() {
+    const email = teamEmail.trim().toLowerCase();
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Informe um e-mail válido.");
+      return;
+    }
+    if (team.some((m) => m.email === email)) {
+      toast.error("Este e-mail já foi adicionado.");
+      return;
+    }
+    setTeam((t) => [...t, { id: crypto.randomUUID(), email, role: teamRole }]);
+    setTeamEmail("");
+  }
+  function removeTeamMember(id: string) {
+    setTeam((t) => t.filter((m) => m.id !== id));
+  }
+
   const canFinish = brands.every((b) => b.name.trim()) && brands.some((b) => b.name.trim());
 
   function openReview() {
