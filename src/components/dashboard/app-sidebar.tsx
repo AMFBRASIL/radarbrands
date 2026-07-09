@@ -77,6 +77,7 @@ const automation: Item[] = [
 ];
 
 const business: Item[] = [
+  { title: "Semana Radar", url: "/dashboard/wrapped", icon: Gift, badge: "NEW" },
   { title: "ROI Calculator", url: "/dashboard/roi", icon: Wallet, badge: "NEW" },
   { title: "Executive Briefing", url: "/dashboard/briefing", icon: Crown, badge: "NEW" },
   { title: "Relatórios", url: "/dashboard/reports", icon: BarChart3 },
@@ -85,6 +86,8 @@ const business: Item[] = [
 
 const account: Item[] = [
   { title: "Onboarding", url: "/dashboard/onboarding", icon: Rocket, badge: "SETUP" },
+  { title: "Playground", url: "/playground", icon: FlaskConical },
+  { title: "Status pública", url: "/status", icon: Signal },
   { title: "Configurações", url: "/dashboard/settings", icon: Settings },
 ];
 
