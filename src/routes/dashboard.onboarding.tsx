@@ -4,7 +4,7 @@ import {
   Shield, Sparkles, Check, Lock, Plus, X, Rocket,
   Brain, Eye, Globe, Search, ShoppingBag, Users,
   Radar, Bot, Workflow, TrendingUp, FileAudio, AlertTriangle,
-  Pencil, CreditCard, ChevronDown, Mouse,
+  Pencil, CreditCard, ChevronDown, Mouse, Mail, UserPlus, Trash2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
