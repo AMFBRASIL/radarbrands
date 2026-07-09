@@ -26,6 +26,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardWrappedRouteImport } from './routes/dashboard.wrapped'
 import { Route as DashboardWarroomRouteImport } from './routes/dashboard.warroom'
+import { Route as DashboardTvRouteImport } from './routes/dashboard.tv'
 import { Route as DashboardThreatsRouteImport } from './routes/dashboard.threats'
 import { Route as DashboardSocialRouteImport } from './routes/dashboard.social'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
@@ -135,6 +136,11 @@ const DashboardWrappedRoute = DashboardWrappedRouteImport.update({
 const DashboardWarroomRoute = DashboardWarroomRouteImport.update({
   id: '/warroom',
   path: '/warroom',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardTvRoute = DashboardTvRouteImport.update({
+  id: '/tv',
+  path: '/tv',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardThreatsRoute = DashboardThreatsRouteImport.update({
@@ -303,6 +309,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/tv': typeof DashboardTvRoute
   '/dashboard/warroom': typeof DashboardWarroomRoute
   '/dashboard/wrapped': typeof DashboardWrappedRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -346,6 +353,7 @@ export interface FileRoutesByTo {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/tv': typeof DashboardTvRoute
   '/dashboard/warroom': typeof DashboardWarroomRoute
   '/dashboard/wrapped': typeof DashboardWrappedRoute
   '/dashboard': typeof DashboardIndexRoute
@@ -391,6 +399,7 @@ export interface FileRoutesById {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/tv': typeof DashboardTvRoute
   '/dashboard/warroom': typeof DashboardWarroomRoute
   '/dashboard/wrapped': typeof DashboardWrappedRoute
   '/dashboard/': typeof DashboardIndexRoute
@@ -437,6 +446,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/social'
     | '/dashboard/threats'
+    | '/dashboard/tv'
     | '/dashboard/warroom'
     | '/dashboard/wrapped'
     | '/dashboard/'
@@ -480,6 +490,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/social'
     | '/dashboard/threats'
+    | '/dashboard/tv'
     | '/dashboard/warroom'
     | '/dashboard/wrapped'
     | '/dashboard'
@@ -524,6 +535,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/social'
     | '/dashboard/threats'
+    | '/dashboard/tv'
     | '/dashboard/warroom'
     | '/dashboard/wrapped'
     | '/dashboard/'
@@ -665,6 +677,13 @@ declare module '@tanstack/react-router' {
       path: '/warroom'
       fullPath: '/dashboard/warroom'
       preLoaderRoute: typeof DashboardWarroomRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/tv': {
+      id: '/dashboard/tv'
+      path: '/tv'
+      fullPath: '/dashboard/tv'
+      preLoaderRoute: typeof DashboardTvRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/threats': {
@@ -871,6 +890,7 @@ interface DashboardRouteChildren {
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardSocialRoute: typeof DashboardSocialRoute
   DashboardThreatsRoute: typeof DashboardThreatsRoute
+  DashboardTvRoute: typeof DashboardTvRoute
   DashboardWarroomRoute: typeof DashboardWarroomRoute
   DashboardWrappedRoute: typeof DashboardWrappedRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
@@ -902,6 +922,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardSocialRoute: DashboardSocialRoute,
   DashboardThreatsRoute: DashboardThreatsRoute,
+  DashboardTvRoute: DashboardTvRoute,
   DashboardWarroomRoute: DashboardWarroomRoute,
   DashboardWrappedRoute: DashboardWrappedRoute,
   DashboardIndexRoute: DashboardIndexRoute,
