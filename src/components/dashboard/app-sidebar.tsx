@@ -9,7 +9,9 @@ import {
   Crown,
   Eye,
   FileAudio,
+  FlaskConical,
   Gavel,
+  Gift,
   Globe,
   Home,
   Rocket,
@@ -18,8 +20,10 @@ import {
   Radar,
   Settings,
   Shield,
+  ShieldAlert,
   ShieldCheck,
   ShoppingCart,
+  Signal,
   Smartphone,
   Sparkles,
   Users,
@@ -57,6 +61,7 @@ const protection: Item[] = [
 ];
 
 const intelligence: Item[] = [
+  { title: "War Room", url: "/dashboard/warroom", icon: ShieldAlert, badge: "LIVE" },
   { title: "Threat Graph", url: "/dashboard/threats", icon: Network, badge: "PRO" },
   { title: "Predictive Risk", url: "/dashboard/predict", icon: Radar, badge: "PRO" },
   { title: "Deepfake Detector", url: "/dashboard/deepfake", icon: FileAudio, badge: "PRO" },
@@ -72,6 +77,7 @@ const automation: Item[] = [
 ];
 
 const business: Item[] = [
+  { title: "Semana Radar", url: "/dashboard/wrapped", icon: Gift, badge: "NEW" },
   { title: "ROI Calculator", url: "/dashboard/roi", icon: Wallet, badge: "NEW" },
   { title: "Executive Briefing", url: "/dashboard/briefing", icon: Crown, badge: "NEW" },
   { title: "Relatórios", url: "/dashboard/reports", icon: BarChart3 },
@@ -80,6 +86,8 @@ const business: Item[] = [
 
 const account: Item[] = [
   { title: "Onboarding", url: "/dashboard/onboarding", icon: Rocket, badge: "SETUP" },
+  { title: "Playground", url: "/playground", icon: FlaskConical },
+  { title: "Status pública", url: "/status", icon: Signal },
   { title: "Configurações", url: "/dashboard/settings", icon: Settings },
 ];
 

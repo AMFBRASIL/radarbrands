@@ -11,6 +11,7 @@ import {
   TrademarkCenter,
 } from "@/components/landing/modules";
 import { Investment } from "@/components/landing/investment";
+import { LossSimulator } from "@/components/landing/loss-simulator";
 import {
   WhyNow,
   SilentAttack,
@@ -33,6 +34,7 @@ function LandingPage() {
       <main>
         <Hero />
         <WhyNow />
+        <LossSimulator />
         <SilentAttack />
         <BrandMonitor />
         <BrandAI />

@@ -4,7 +4,7 @@ import {
   Shield, Sparkles, Check, Lock, Plus, X, Rocket,
   Brain, Eye, Globe, Search, ShoppingBag, Users,
   Radar, Bot, Workflow, TrendingUp, FileAudio, AlertTriangle,
-  Pencil, CreditCard, ChevronDown, Mouse,
+  Pencil, CreditCard, ChevronDown, Mouse, Mail, UserPlus, Trash2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -91,9 +91,19 @@ function newBrand(): Brand {
   };
 }
 
+type TeamMember = { id: string; email: string; role: "admin" | "editor" | "viewer" };
+const ROLES: { id: TeamMember["role"]; label: string; desc: string }[] = [
+  { id: "admin", label: "Admin", desc: "Acesso total, billing e equipe" },
+  { id: "editor", label: "Editor", desc: "Gerencia alertas e takedowns" },
+  { id: "viewer", label: "Viewer", desc: "Apenas leitura de dashboards" },
+];
+
 function OnboardingPage() {
   const navigate = useNavigate();
   const [brands, setBrands] = useState<Brand[]>([newBrand()]);
+  const [team, setTeam] = useState<TeamMember[]>([]);
+  const [teamEmail, setTeamEmail] = useState("");
+  const [teamRole, setTeamRole] = useState<TeamMember["role"]>("editor");
   const [enabled, setEnabled] = useState<Record<string, boolean>>(
     Object.fromEntries(MODULES.map((m) => [m.id, m.required ? true : ["domains", "ads", "social"].includes(m.id)])),
   );
@@ -149,6 +159,23 @@ function OnboardingPage() {
     setBrands((bs) => (bs.length === 1 ? bs : bs.filter((b) => b.id !== id)));
   }
 
+  function addTeamMember() {
+    const email = teamEmail.trim().toLowerCase();
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      toast.error("Informe um e-mail válido.");
+      return;
+    }
+    if (team.some((m) => m.email === email)) {
+      toast.error("Este e-mail já foi adicionado.");
+      return;
+    }
+    setTeam((t) => [...t, { id: crypto.randomUUID(), email, role: teamRole }]);
+    setTeamEmail("");
+  }
+  function removeTeamMember(id: string) {
+    setTeam((t) => t.filter((m) => m.id !== id));
+  }
+
   const canFinish = brands.every((b) => b.name.trim()) && brands.some((b) => b.name.trim());
 
   function openReview() {
@@ -167,6 +194,7 @@ function OnboardingPage() {
         JSON.stringify({
           brands: brands.map((b) => ({ name: b.name, segment: b.segment })),
           modules: activeModules.map((m) => ({ id: m.id, name: m.name, price: m.price })),
+          team,
           perBrand,
           brandCount,
           total,
@@ -276,9 +304,74 @@ function OnboardingPage() {
             </div>
           </section>
 
+          {/* Equipe */}
+          <section className="glass-strong rounded-2xl p-6">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h2 className="font-display text-xl font-semibold">2. Sua equipe</h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Convide colegas para colaborar no dia 1. Você pode ajustar permissões depois.
+                </p>
+              </div>
+              <Badge variant="outline" className="border-primary/40 text-primary">Opcional</Badge>
+            </div>
+
+            <div className="mt-5 grid gap-2 sm:grid-cols-[1fr_180px_auto]">
+              <div className="relative">
+                <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  value={teamEmail}
+                  onChange={(e) => setTeamEmail(e.target.value.slice(0, 120))}
+                  onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTeamMember())}
+                  placeholder="colega@empresa.com"
+                  className="pl-9"
+                  type="email"
+                />
+              </div>
+              <select
+                value={teamRole}
+                onChange={(e) => setTeamRole(e.target.value as TeamMember["role"])}
+                className="h-9 rounded-md border border-input bg-transparent px-3 text-sm"
+              >
+                {ROLES.map((r) => (
+                  <option key={r.id} value={r.id}>{r.label}</option>
+                ))}
+              </select>
+              <Button type="button" onClick={addTeamMember}>
+                <UserPlus className="mr-1 h-4 w-4" /> Convidar
+              </Button>
+            </div>
+
+            <div className="mt-2 grid gap-1 text-[11px] text-muted-foreground sm:grid-cols-3">
+              {ROLES.map((r) => (
+                <div key={r.id}><strong className="text-foreground">{r.label}:</strong> {r.desc}</div>
+              ))}
+            </div>
+
+            {team.length > 0 && (
+              <ul className="mt-5 space-y-2">
+                {team.map((m) => (
+                  <li key={m.id} className="flex items-center gap-3 rounded-xl border border-border/60 bg-card/40 p-3">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/15 font-mono text-[11px] font-semibold text-primary">
+                      {m.email.slice(0, 2).toUpperCase()}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="truncate text-sm font-medium">{m.email}</div>
+                      <div className="text-xs text-muted-foreground">Convite pendente</div>
+                    </div>
+                    <Badge variant="secondary" className="capitalize">{m.role}</Badge>
+                    <Button variant="ghost" size="icon" onClick={() => removeTeamMember(m.id)} aria-label="Remover">
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+
           {/* Módulos */}
           <section className="glass-strong rounded-2xl p-6">
-            <h2 className="font-display text-xl font-semibold">2. Módulos contratados</h2>
+            <h2 className="font-display text-xl font-semibold">3. Módulos contratados</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Ative apenas o que faz sentido. O valor mensal é multiplicado pelo número de marcas.
             </p>
@@ -449,6 +542,23 @@ function OnboardingPage() {
                   ))}
                 </div>
               </section>
+
+              {team.length > 0 && (
+                <section>
+                  <h4 className="mb-2 font-display text-sm font-semibold uppercase tracking-wider text-primary">
+                    Equipe convidada ({team.length})
+                  </h4>
+                  <div className="space-y-1.5">
+                    {team.map((m) => (
+                      <div key={m.id} className="flex items-center justify-between rounded-lg border border-border/60 bg-card/40 px-3 py-2 text-sm">
+                        <span className="truncate">{m.email}</span>
+                        <Badge variant="secondary" className="capitalize">{m.role}</Badge>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
 
               <section>
                 <h4 className="mb-2 font-display text-sm font-semibold uppercase tracking-wider text-primary">

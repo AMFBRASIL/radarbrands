@@ -9,10 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StatusRouteImport } from './routes/status'
 import { Route as SobreNosRouteImport } from './routes/sobre-nos'
 import { Route as Register2RouteImport } from './routes/register2'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PropostaRouteImport } from './routes/proposta'
+import { Route as PlaygroundRouteImport } from './routes/playground'
 import { Route as Login2RouteImport } from './routes/login2'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JuridicoRouteImport } from './routes/juridico'
@@ -22,6 +24,8 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardWrappedRouteImport } from './routes/dashboard.wrapped'
+import { Route as DashboardWarroomRouteImport } from './routes/dashboard.warroom'
 import { Route as DashboardThreatsRouteImport } from './routes/dashboard.threats'
 import { Route as DashboardSocialRouteImport } from './routes/dashboard.social'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard.settings'
@@ -48,6 +52,11 @@ import { Route as DashboardAlertsRouteImport } from './routes/dashboard.alerts'
 import { Route as DashboardAiRouteImport } from './routes/dashboard.ai'
 import { Route as DashboardAdsRouteImport } from './routes/dashboard.ads'
 
+const StatusRoute = StatusRouteImport.update({
+  id: '/status',
+  path: '/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SobreNosRoute = SobreNosRouteImport.update({
   id: '/sobre-nos',
   path: '/sobre-nos',
@@ -66,6 +75,11 @@ const RegisterRoute = RegisterRouteImport.update({
 const PropostaRoute = PropostaRouteImport.update({
   id: '/proposta',
   path: '/proposta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaygroundRoute = PlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Login2Route = Login2RouteImport.update({
@@ -111,6 +125,16 @@ const IndexRoute = IndexRouteImport.update({
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardWrappedRoute = DashboardWrappedRouteImport.update({
+  id: '/wrapped',
+  path: '/wrapped',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardWarroomRoute = DashboardWarroomRouteImport.update({
+  id: '/warroom',
+  path: '/warroom',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardThreatsRoute = DashboardThreatsRouteImport.update({
@@ -248,10 +272,12 @@ export interface FileRoutesByFullPath {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/login2': typeof Login2Route
+  '/playground': typeof PlaygroundRoute
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
   '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
+  '/status': typeof StatusRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -277,6 +303,8 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/warroom': typeof DashboardWarroomRoute
+  '/dashboard/wrapped': typeof DashboardWrappedRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -287,10 +315,12 @@ export interface FileRoutesByTo {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/login2': typeof Login2Route
+  '/playground': typeof PlaygroundRoute
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
   '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
+  '/status': typeof StatusRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -316,6 +346,8 @@ export interface FileRoutesByTo {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/warroom': typeof DashboardWarroomRoute
+  '/dashboard/wrapped': typeof DashboardWrappedRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -328,10 +360,12 @@ export interface FileRoutesById {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/login2': typeof Login2Route
+  '/playground': typeof PlaygroundRoute
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
   '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
+  '/status': typeof StatusRoute
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -357,6 +391,8 @@ export interface FileRoutesById {
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/social': typeof DashboardSocialRoute
   '/dashboard/threats': typeof DashboardThreatsRoute
+  '/dashboard/warroom': typeof DashboardWarroomRoute
+  '/dashboard/wrapped': typeof DashboardWrappedRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -370,10 +406,12 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/login2'
+    | '/playground'
     | '/proposta'
     | '/register'
     | '/register2'
     | '/sobre-nos'
+    | '/status'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -399,6 +437,8 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/social'
     | '/dashboard/threats'
+    | '/dashboard/warroom'
+    | '/dashboard/wrapped'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -409,10 +449,12 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/login2'
+    | '/playground'
     | '/proposta'
     | '/register'
     | '/register2'
     | '/sobre-nos'
+    | '/status'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -438,6 +480,8 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/social'
     | '/dashboard/threats'
+    | '/dashboard/warroom'
+    | '/dashboard/wrapped'
     | '/dashboard'
   id:
     | '__root__'
@@ -449,10 +493,12 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/login2'
+    | '/playground'
     | '/proposta'
     | '/register'
     | '/register2'
     | '/sobre-nos'
+    | '/status'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -478,6 +524,8 @@ export interface FileRouteTypes {
     | '/dashboard/settings'
     | '/dashboard/social'
     | '/dashboard/threats'
+    | '/dashboard/warroom'
+    | '/dashboard/wrapped'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -490,14 +538,23 @@ export interface RootRouteChildren {
   JuridicoRoute: typeof JuridicoRoute
   LoginRoute: typeof LoginRoute
   Login2Route: typeof Login2Route
+  PlaygroundRoute: typeof PlaygroundRoute
   PropostaRoute: typeof PropostaRoute
   RegisterRoute: typeof RegisterRoute
   Register2Route: typeof Register2Route
   SobreNosRoute: typeof SobreNosRoute
+  StatusRoute: typeof StatusRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/status': {
+      id: '/status'
+      path: '/status'
+      fullPath: '/status'
+      preLoaderRoute: typeof StatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sobre-nos': {
       id: '/sobre-nos'
       path: '/sobre-nos'
@@ -524,6 +581,13 @@ declare module '@tanstack/react-router' {
       path: '/proposta'
       fullPath: '/proposta'
       preLoaderRoute: typeof PropostaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playground': {
+      id: '/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof PlaygroundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login2': {
@@ -587,6 +651,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/wrapped': {
+      id: '/dashboard/wrapped'
+      path: '/wrapped'
+      fullPath: '/dashboard/wrapped'
+      preLoaderRoute: typeof DashboardWrappedRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/warroom': {
+      id: '/dashboard/warroom'
+      path: '/warroom'
+      fullPath: '/dashboard/warroom'
+      preLoaderRoute: typeof DashboardWarroomRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/threats': {
@@ -793,6 +871,8 @@ interface DashboardRouteChildren {
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardSocialRoute: typeof DashboardSocialRoute
   DashboardThreatsRoute: typeof DashboardThreatsRoute
+  DashboardWarroomRoute: typeof DashboardWarroomRoute
+  DashboardWrappedRoute: typeof DashboardWrappedRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
@@ -822,6 +902,8 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardSocialRoute: DashboardSocialRoute,
   DashboardThreatsRoute: DashboardThreatsRoute,
+  DashboardWarroomRoute: DashboardWarroomRoute,
+  DashboardWrappedRoute: DashboardWrappedRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
@@ -838,21 +920,13 @@ const rootRouteChildren: RootRouteChildren = {
   JuridicoRoute: JuridicoRoute,
   LoginRoute: LoginRoute,
   Login2Route: Login2Route,
+  PlaygroundRoute: PlaygroundRoute,
   PropostaRoute: PropostaRoute,
   RegisterRoute: RegisterRoute,
   Register2Route: Register2Route,
   SobreNosRoute: SobreNosRoute,
+  StatusRoute: StatusRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
