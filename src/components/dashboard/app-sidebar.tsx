@@ -26,6 +26,7 @@ import {
   Signal,
   Smartphone,
   Sparkles,
+  Tv,
   Users,
   Wallet,
   Workflow,
