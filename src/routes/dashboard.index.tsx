@@ -154,3 +154,120 @@ function DashboardHome() {
     </div>
   );
 }
+
+const HEALTH_SCORE = 87;
+const healthTrend = [72, 74, 71, 76, 78, 80, 79, 82, 84, 83, 85, 87];
+const healthBreakdown = [
+  { label: "Domínios", value: 94, color: "oklch(0.82 0.17 180)" },
+  { label: "Ads", value: 78, color: "oklch(0.72 0.24 22)" },
+  { label: "Redes sociais", value: 91, color: "oklch(0.82 0.17 320)" },
+  { label: "Dark web", value: 82, color: "oklch(0.6 0.22 260)" },
+  { label: "Sentimento", value: 89, color: "oklch(0.85 0.18 150)" },
+];
+
+function BrandHealthScore() {
+  const score = HEALTH_SCORE;
+  const ring = 2 * Math.PI * 46;
+  const offset = ring - (score / 100) * ring;
+  const tone =
+    score >= 85 ? "text-emerald-500" : score >= 70 ? "text-amber-500" : "text-destructive";
+  const label =
+    score >= 85 ? "Saudável" : score >= 70 ? "Atenção" : "Crítico";
+
+  const trendMax = Math.max(...healthTrend);
+  const trendMin = Math.min(...healthTrend);
+  const points = healthTrend
+    .map((v, i) => {
+      const x = (i / (healthTrend.length - 1)) * 100;
+      const y = 100 - ((v - trendMin) / (trendMax - trendMin || 1)) * 100;
+      return `${x},${y}`;
+    })
+    .join(" ");
+
+  return (
+    <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-[linear-gradient(140deg,color-mix(in_oklab,var(--primary)_14%,var(--card)),var(--card))] p-6 md:p-8">
+      <div className="grid gap-8 md:grid-cols-[auto_1fr_1fr] md:items-center">
+        {/* Ring */}
+        <div className="relative flex h-40 w-40 items-center justify-center">
+          <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
+            <circle cx="50" cy="50" r="46" stroke="oklch(0.28 0.03 250)" strokeWidth="6" fill="none" />
+            <circle
+              cx="50"
+              cy="50"
+              r="46"
+              stroke="url(#hs-grad)"
+              strokeWidth="6"
+              fill="none"
+              strokeLinecap="round"
+              strokeDasharray={ring}
+              strokeDashoffset={offset}
+              style={{ transition: "stroke-dashoffset 1s ease" }}
+            />
+            <defs>
+              <linearGradient id="hs-grad" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stopColor="oklch(0.82 0.17 180)" />
+                <stop offset="100%" stopColor="oklch(0.6 0.22 260)" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <div className={`font-display text-5xl font-bold ${tone}`}>{score}</div>
+            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Score /100</div>
+          </div>
+        </div>
+
+        {/* Text */}
+        <div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-primary">Brand Health Score</div>
+          <h2 className="mt-1 font-display text-2xl font-bold">
+            Sua marca está <span className={tone}>{label.toLowerCase()}</span>
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Score agregado de risco em domínios, ads, redes sociais, dark web e sentimento. Atualizado a cada 15 minutos.
+          </p>
+          <div className="mt-4 flex gap-2">
+            <span className="rounded-full bg-primary/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-primary">
+              +{score - healthTrend[0]} em 30d
+            </span>
+            <span className="rounded-full bg-muted px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              Meta 90+
+            </span>
+          </div>
+        </div>
+
+        {/* Sparkline */}
+        <div>
+          <div className="mb-2 flex items-center justify-between">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Últimos 30 dias</span>
+            <span className="font-mono text-[10px] text-emerald-500">▲ tendência positiva</span>
+          </div>
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="h-20 w-full">
+            <defs>
+              <linearGradient id="hs-line" x1="0" x2="1">
+                <stop offset="0%" stopColor="oklch(0.82 0.17 180)" />
+                <stop offset="100%" stopColor="oklch(0.6 0.22 260)" />
+              </linearGradient>
+            </defs>
+            <polyline points={points} fill="none" stroke="url(#hs-line)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+            <polyline points={`0,100 ${points} 100,100`} fill="url(#hs-line)" opacity="0.15" />
+          </svg>
+        </div>
+      </div>
+
+      {/* Breakdown bars */}
+      <div className="mt-6 grid gap-3 md:grid-cols-5">
+        {healthBreakdown.map((b) => (
+          <div key={b.label} className="rounded-xl border border-border/60 bg-card/40 p-3">
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-muted-foreground">{b.label}</span>
+              <span className="font-mono font-semibold">{b.value}</span>
+            </div>
+            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-border/60">
+              <div className="h-full transition-all" style={{ width: `${b.value}%`, background: b.color }} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
