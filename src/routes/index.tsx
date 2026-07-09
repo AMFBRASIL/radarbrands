@@ -34,6 +34,7 @@ function LandingPage() {
       <main>
         <Hero />
         <WhyNow />
+        <LossSimulator />
         <SilentAttack />
         <BrandMonitor />
         <BrandAI />
