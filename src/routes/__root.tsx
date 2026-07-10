@@ -85,15 +85,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Plataforma de inteligência artificial que monitora domínios, redes sociais, anúncios e marketplaces 24/7 para proteger sua marca contra fraudes e uso indevido.",
       },
       { name: "author", content: "Radar | brands" },
-      { property: "og:title", content: "Radar | brands — Proteção de marca com IA" },
+      { property: "og:title", content: "Radar | brands — Proteção e monitoramento de marca com IA" },
       {
         property: "og:description",
         content:
-          "Monitoramento 24/7 de domínios, redes sociais, Google Ads e marketplaces com IA para proteger sua marca.",
+          "Plataforma de inteligência artificial que monitora domínios, redes sociais, anúncios e marketplaces 24/7 para proteger sua marca contra fraudes e uso indevido.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@RadarBrand" },
+      { name: "twitter:title", content: "Radar | brands — Proteção e monitoramento de marca com IA" },
+      { name: "twitter:description", content: "Plataforma de inteligência artificial que monitora domínios, redes sociais, anúncios e marketplaces 24/7 para proteger sua marca contra fraudes e uso indevido." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fa23ff62-a649-42cd-a441-a101910592c3/id-preview-79c41458--e7acb3c5-1f55-445d-a749-76423fe9cee6.lovable.app-1783649357692.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fa23ff62-a649-42cd-a441-a101910592c3/id-preview-79c41458--e7acb3c5-1f55-445d-a749-76423fe9cee6.lovable.app-1783649357692.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
