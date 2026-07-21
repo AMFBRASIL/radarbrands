@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import {
   CommandDialog,
@@ -10,72 +10,32 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-import {
-  AlertTriangle,
-  BarChart3,
-  Bot,
-  Command as CommandIcon,
-  Eye,
-  FlaskConical,
-  Gift,
-  Globe,
-  Home,
-  Megaphone,
-  Radar,
-  Rocket,
-  Settings,
-  ShieldAlert,
-  ShieldCheck,
-  ShoppingCart,
-  Signal,
-  Smartphone,
-  Sparkles,
-  Tv,
-  Wallet,
-  Zap,
-} from "lucide-react";
-
-type Item = {
-  label: string;
-  to: string;
-  icon: React.ComponentType<{ className?: string }>;
-  group: string;
-  keywords?: string;
-};
-
-const items: Item[] = [
-  { label: "Dashboard", to: "/dashboard", icon: Home, group: "Ir para", keywords: "home início" },
-  { label: "Alertas", to: "/dashboard/alerts", icon: AlertTriangle, group: "Ir para" },
-  { label: "War Room", to: "/dashboard/warroom", icon: ShieldAlert, group: "Ir para", keywords: "crise sla" },
-  { label: "Monitoramento", to: "/dashboard/monitoring", icon: ShieldCheck, group: "Ir para" },
-  { label: "Domínios", to: "/dashboard/domains", icon: Globe, group: "Proteção" },
-  { label: "Redes sociais", to: "/dashboard/social", icon: Smartphone, group: "Proteção" },
-  { label: "Google Ads", to: "/dashboard/ads", icon: Megaphone, group: "Proteção" },
-  { label: "Marketplaces", to: "/dashboard/marketplace", icon: ShoppingCart, group: "Proteção" },
-  { label: "Dark Web", to: "/dashboard/darkweb", icon: Eye, group: "Proteção" },
-  { label: "Predictive Risk", to: "/dashboard/predict", icon: Radar, group: "Inteligência" },
-  { label: "Crisis Radar", to: "/dashboard/crisis", icon: Zap, group: "Inteligência" },
-  { label: "AI Autopilot", to: "/dashboard/autopilot", icon: Sparkles, group: "Automação" },
-  { label: "Brand AI Assistant", to: "/dashboard/ai", icon: Bot, group: "Automação" },
-  { label: "Semana Radar", to: "/dashboard/wrapped", icon: Gift, group: "Negócio", keywords: "wrapped resumo" },
-  { label: "ROI Calculator", to: "/dashboard/roi", icon: Wallet, group: "Negócio" },
-  { label: "Relatórios", to: "/dashboard/reports", icon: BarChart3, group: "Negócio" },
-  { label: "Modo TV", to: "/dashboard/tv", icon: Tv, group: "Ferramentas", keywords: "apresentação telão" },
-  { label: "Playground público", to: "/playground", icon: FlaskConical, group: "Ferramentas" },
-  { label: "Status pública", to: "/status", icon: Signal, group: "Ferramentas" },
-  { label: "Onboarding", to: "/dashboard/onboarding", icon: Rocket, group: "Conta" },
-  { label: "Configurações", to: "/dashboard/settings", icon: Settings, group: "Conta" },
-];
+import { Command as CommandIcon } from "lucide-react";
+import { commandPaletteItems } from "@/lib/dashboard-navigation";
+import { filterNavItems } from "@/lib/navigation-access";
 
 export function CommandPalette({
   open,
   onOpenChange,
+  permissions,
 }: {
   open: boolean;
   onOpenChange: (v: boolean) => void;
+  permissions: string[];
 }) {
   const navigate = useNavigate();
-  const groups = Array.from(new Set(items.map((i) => i.group)));
+  const items = useMemo(
+    () =>
+      filterNavItems(commandPaletteItems, permissions).map((item) => ({
+        label: item.title,
+        to: item.url,
+        icon: item.icon,
+        group: item.group ?? "Ir para",
+        keywords: item.keywords,
+      })),
+    [permissions],
+  );
+  const groups = Array.from(new Set(items.map((item) => item.group)));
 
   const go = (to: string) => {
     onOpenChange(false);
@@ -87,20 +47,20 @@ export function CommandPalette({
       <CommandInput placeholder="Buscar rotas, ações, marcas…" />
       <CommandList>
         <CommandEmpty>Nada encontrado.</CommandEmpty>
-        {groups.map((g, idx) => (
-          <div key={g}>
+        {groups.map((group, idx) => (
+          <div key={group}>
             {idx > 0 && <CommandSeparator />}
-            <CommandGroup heading={g}>
+            <CommandGroup heading={group}>
               {items
-                .filter((i) => i.group === g)
-                .map((i) => (
+                .filter((item) => item.group === group)
+                .map((item) => (
                   <CommandItem
-                    key={i.to}
-                    value={`${i.label} ${i.keywords ?? ""}`}
-                    onSelect={() => go(i.to)}
+                    key={item.to}
+                    value={`${item.label} ${item.keywords ?? ""}`}
+                    onSelect={() => go(item.to)}
                   >
-                    <i.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-                    {i.label}
+                    <item.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+                    {item.label}
                   </CommandItem>
                 ))}
             </CommandGroup>

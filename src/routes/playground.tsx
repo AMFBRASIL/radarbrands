@@ -84,7 +84,7 @@ function Playground() {
             <span className="font-display text-sm font-bold">Radar | brands</span>
           </Link>
           <Button asChild size="sm" variant="outline">
-            <Link to="/register2">Criar conta grátis</Link>
+            <Link to="/register">Criar conta grátis</Link>
           </Button>
         </div>
       </header>
@@ -185,7 +185,7 @@ function Playground() {
                       <div className="flex justify-between"><span className="text-muted-foreground">Cobertura com Radar ativo</span><span className="font-mono text-primary">96%</span></div>
                     </div>
                     <Button asChild className="mt-6 w-full" size="lg">
-                      <Link to="/register2">
+                      <Link to="/register">
                         Proteger {brand} agora <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>

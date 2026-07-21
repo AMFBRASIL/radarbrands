@@ -12,4 +12,16 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // VPS / aaPanel: Node server (MySQL, Prisma, Redis, BullMQ workers)
+  nitro: {
+    preset: "node-server",
+  },
+  vite: {
+    ssr: {
+      external: ["argon2"],
+    },
+    optimizeDeps: {
+      exclude: ["argon2"],
+    },
+  },
 });

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { SimplePage } from "@/components/dashboard/simple";
 import { Switch } from "@/components/ui/switch";
@@ -7,7 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { SettingsWizard, type WizardPreset } from "@/components/dashboard/settings-wizard";
-import { useEmailWizardSteps } from "@/components/dashboard/email-wizard-steps";
+import { TeamUsersModal } from "@/components/dashboard/settings/team-users-modal";
+import { useEmailWizardController } from "@/components/dashboard/email-wizard-steps";
 import {
   Bell,
   Bot,
@@ -25,6 +26,7 @@ import {
   Mail,
   Palette,
   Plug,
+  Radar,
   Radio,
   Rocket,
   ScrollText,
@@ -37,6 +39,8 @@ import {
   Webhook,
   Zap,
 } from "lucide-react";
+import { getUserPermissions, hasAnyPermission } from "@/lib/navigation-access";
+import { Route as DashboardRoute } from "@/routes/dashboard";
 
 export const Route = createFileRoute("/dashboard/settings")({
   component: SettingsPage,
@@ -193,9 +197,14 @@ const reviewBySection: Record<Section, { label: string; value: string }[]> = {
 };
 
 function SettingsPage() {
+  const navigate = useNavigate();
+  const { auth } = DashboardRoute.useRouteContext();
+  const permissions = getUserPermissions(auth);
+  const canManageEndpoints = hasAnyPermission(permissions, "endpoints.manage");
   const [active, setActive] = useState<Section | null>(null);
+  const [teamUsersOpen, setTeamUsersOpen] = useState(false);
   const meta = active ? cards.find((c) => c.id === active) : null;
-  const emailSteps = useEmailWizardSteps();
+  const emailWizard = useEmailWizardController(active === "email");
 
   return (
     <SimplePage
@@ -203,11 +212,48 @@ function SettingsPage() {
       title="Central de configurações"
       description="Toda a operação do Radar | brands em um só lugar — escolha uma área para configurar."
     >
+      {canManageEndpoints && (
+        <button
+          type="button"
+          onClick={() => navigate({ to: "/dashboard/endpoints" })}
+          className="group relative mb-4 flex w-full items-center gap-4 overflow-hidden rounded-2xl border border-primary/40 bg-card/70 p-5 text-left transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-[var(--shadow-elevated)]"
+        >
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/20 to-teal-500/10 opacity-80" />
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[image:var(--gradient-primary)] text-primary-foreground shadow-[var(--shadow-glow)]">
+            <Radar className="h-6 w-6" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="mb-1 flex flex-wrap items-center gap-2">
+              <span className="rounded bg-primary/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-primary">
+                Coração da plataforma
+              </span>
+              <span className="rounded bg-emerald-500/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-emerald-400">
+                Operando
+              </span>
+            </div>
+            <h3 className="font-display text-lg font-semibold">Endpoints de Busca</h3>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Ligue, desligue e calibre cada fonte de dados que o Radar vasculha — buscadores, redes sociais,
+              marketplaces, dark web, DNS, LLMs e mais.
+            </p>
+          </div>
+          <div className="flex items-center gap-1 text-xs text-primary">
+            Configurar <ChevronRight className="h-4 w-4" />
+          </div>
+        </button>
+      )}
+
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((c) => (
           <button
             key={c.id}
-            onClick={() => setActive(c.id)}
+            onClick={() => {
+              if (c.id === "team") {
+                setTeamUsersOpen(true);
+                return;
+              }
+              setActive(c.id);
+            }}
             className="group relative flex flex-col items-start gap-3 overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-5 text-left transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-[var(--shadow-elevated)]"
           >
             <div className={`absolute inset-0 -z-10 bg-gradient-to-br ${c.gradient} opacity-60`} />
@@ -232,7 +278,7 @@ function SettingsPage() {
         ))}
       </div>
 
-      {meta && active && (
+      {meta && active && active !== "team" && (
         <SettingsWizard
           open={!!active}
           onOpenChange={(o) => !o && setActive(null)}
@@ -244,9 +290,12 @@ function SettingsPage() {
           presets={presetsBySection[active]}
           configStep={renderBody(active)}
           reviewSummary={reviewBySection[active]}
-          customSteps={active === "email" ? emailSteps : undefined}
+          customSteps={active === "email" ? emailWizard.steps : undefined}
+          onApply={active === "email" ? emailWizard.applySettings : undefined}
         />
       )}
+
+      <TeamUsersModal open={teamUsersOpen} onOpenChange={setTeamUsersOpen} />
     </SimplePage>
   );
 }

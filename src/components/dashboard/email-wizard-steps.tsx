@@ -1,9 +1,15 @@
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { WizardStep } from "./settings-wizard";
+import {
+  fetchEmailSettings,
+  saveEmailSettingsRequest,
+  sendEmailTestRequest,
+  type EmailSettingsPayload,
+} from "@/lib/email-settings-api";
 import {
   Check,
   Cloud,
@@ -14,6 +20,7 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
+import { toast } from "sonner";
 
 type Mode = "api" | "smtp";
 
@@ -24,6 +31,8 @@ type Provider = {
   tag?: string;
   fields: { key: string; label: string; placeholder?: string; type?: "text" | "password" }[];
 };
+
+const SECRET_MASK = "••••••••••••";
 
 const API_PROVIDERS: Provider[] = [
   {
@@ -178,57 +187,149 @@ function BigCard({
   );
 }
 
-export function useEmailWizardSteps(): WizardStep[] {
+function resolveFromEmail(mode: Mode, values: Record<string, string>): string {
+  if (mode === "smtp") return values.user ?? "";
+  return values.from ?? "";
+}
+
+function buildPayload(
+  mode: Mode,
+  providerId: string,
+  values: Record<string, string>,
+): EmailSettingsPayload {
+  const fromEmail = resolveFromEmail(mode, values);
+  const payload: EmailSettingsPayload = {
+    transport: mode,
+    providerId,
+    fromEmail,
+    credentials: { ...values },
+  };
+
+  if (mode === "smtp" && providerId === "custom") {
+    payload.smtpHost = values.host ?? null;
+    payload.smtpPort = values.port ? Number(values.port) : null;
+    payload.smtpSecure = values.port === "465";
+  }
+
+  return payload;
+}
+
+export function useEmailWizardController(open: boolean) {
   const [mode, setMode] = useState<Mode>("api");
   const [providerId, setProviderId] = useState<string>("resend");
   const [values, setValues] = useState<Record<string, string>>({});
-  const [testEmail, setTestEmail] = useState("meu-email@empresa.com.br");
+  const [testEmail, setTestEmail] = useState("");
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState<null | "ok" | "err">(null);
   const [testLog, setTestLog] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const providers = mode === "api" ? API_PROVIDERS : SMTP_PROVIDERS;
   const provider = providers.find((p) => p.id === providerId) ?? providers[0];
 
-  const runTest = () => {
+  const loadSettings = useCallback(async () => {
+    setLoading(true);
+    try {
+      const settings = await fetchEmailSettings();
+      if (settings.configured && settings.transport && settings.providerId) {
+        setMode(settings.transport);
+        setProviderId(settings.providerId);
+        const creds = { ...settings.credentials };
+        if (settings.fromEmail && !creds.from && !creds.user) {
+          if (settings.transport === "smtp") creds.user = settings.fromEmail;
+          else creds.from = settings.fromEmail;
+        }
+        setValues(creds);
+      }
+      if (settings.lastTestStatus === "ok") {
+        setTestResult("ok");
+      }
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Falha ao carregar configurações de e-mail");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (open) {
+      void loadSettings();
+    }
+  }, [open, loadSettings]);
+
+  const applySettings = useCallback(async () => {
+    const fromEmail = resolveFromEmail(mode, values);
+    if (!fromEmail) {
+      toast.error("Informe o remetente antes de salvar");
+      return false;
+    }
+
+    try {
+      await saveEmailSettingsRequest(buildPayload(mode, providerId, values));
+      toast.success("Configurações de e-mail salvas");
+      return true;
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Falha ao salvar configurações");
+      return false;
+    }
+  }, [mode, providerId, values]);
+
+  const runTest = useCallback(async () => {
+    if (!testEmail) {
+      toast.error("Informe um e-mail para o teste");
+      return;
+    }
+
+    const fromEmail = resolveFromEmail(mode, values);
+    if (!fromEmail) {
+      toast.error("Informe o remetente antes de testar");
+      return;
+    }
+
     setTesting(true);
     setTestResult(null);
-    setTestLog([]);
-    const log = [
-      `→ Conectando via ${mode.toUpperCase()} · ${provider.name}...`,
-      `✓ Handshake TLS estabelecido`,
-      `✓ Autenticação aceita`,
-      `→ Enviando mensagem de teste para ${testEmail}`,
-      `✓ Mensagem 250 OK · queued as ${Math.random().toString(36).slice(2, 12)}`,
-    ];
-    let i = 0;
-    const tick = () => {
-      if (i < log.length) {
-        setTestLog((l) => [...l, log[i]]);
-        i++;
-        setTimeout(tick, 380);
-      } else {
-        setTestResult("ok");
-        setTesting(false);
-      }
-    };
-    setTimeout(tick, 300);
-  };
+    setTestLog(["→ Iniciando teste de envio..."]);
 
-  return useMemo<WizardStep[]>(
+    try {
+      const result = await sendEmailTestRequest({
+        to: testEmail,
+        settings: buildPayload(mode, providerId, values),
+      });
+
+      setTestLog(result.log);
+      if (result.ok) {
+        setTestResult("ok");
+        toast.success("E-mail de teste enviado");
+      } else {
+        setTestResult("err");
+        toast.error(result.error ?? "Falha no envio de teste");
+      }
+    } catch (error) {
+      setTestLog((log) => [...log, `✗ ${error instanceof Error ? error.message : "Erro desconhecido"}`]);
+      setTestResult("err");
+      toast.error(error instanceof Error ? error.message : "Falha no envio de teste");
+    } finally {
+      setTesting(false);
+    }
+  }, [mode, providerId, testEmail, values]);
+
+  const steps = useMemo<WizardStep[]>(
     () => [
       {
         key: "mode",
         title: "Método de envio",
         subtitle: "Como o Radar | brands vai enviar os e-mails",
-        content: (
+        content: loading ? (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Loader2 className="h-4 w-4 animate-spin" /> Carregando configuração salva...
+          </div>
+        ) : (
           <div className="grid gap-4 sm:grid-cols-2">
             <BigCard
               selected={mode === "api"}
               onClick={() => {
                 setMode("api");
                 setProviderId("resend");
-                setValues({});
                 setTestResult(null);
               }}
               icon={Cloud}
@@ -241,7 +342,6 @@ export function useEmailWizardSteps(): WizardStep[] {
               onClick={() => {
                 setMode("smtp");
                 setProviderId("gmail");
-                setValues({});
                 setTestResult(null);
               }}
               icon={Server}
@@ -263,7 +363,6 @@ export function useEmailWizardSteps(): WizardStep[] {
                 selected={providerId === p.id}
                 onClick={() => {
                   setProviderId(p.id);
-                  setValues({});
                   setTestResult(null);
                 }}
                 icon={mode === "api" ? Zap : Mail}
@@ -302,6 +401,11 @@ export function useEmailWizardSteps(): WizardStep[] {
                     value={values[f.key] ?? ""}
                     onChange={(e) => setValues((v) => ({ ...v, [f.key]: e.target.value }))}
                   />
+                  {f.type === "password" && values[f.key] === SECRET_MASK && (
+                    <p className="text-[10px] text-muted-foreground">
+                      Valor salvo no cofre. Deixe como está ou digite um novo para substituir.
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
@@ -327,7 +431,7 @@ export function useEmailWizardSteps(): WizardStep[] {
                   placeholder="voce@empresa.com.br"
                 />
               </div>
-              <Button onClick={runTest} disabled={testing}>
+              <Button onClick={() => void runTest()} disabled={testing}>
                 {testing ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Enviando...
@@ -366,7 +470,14 @@ export function useEmailWizardSteps(): WizardStep[] {
         ),
       },
     ],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [mode, providerId, values, testEmail, testing, testResult, testLog],
+    [loading, mode, provider, providerId, providers, runTest, testEmail, testLog, testResult, testing, values],
   );
+
+  return { steps, applySettings, loadSettings };
+}
+
+/** @deprecated Use useEmailWizardController */
+export function useEmailWizardSteps(): WizardStep[] {
+  const { steps } = useEmailWizardController(false);
+  return steps;
 }

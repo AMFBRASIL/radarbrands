@@ -31,6 +31,7 @@ type Props = {
   configStep?: ReactNode;
   reviewSummary?: { label: string; value: string }[];
   customSteps?: WizardStep[];
+  onApply?: () => Promise<boolean | void>;
 };
 
 export function SettingsWizard({
@@ -45,16 +46,19 @@ export function SettingsWizard({
   configStep,
   reviewSummary = [],
   customSteps,
+  onApply,
 }: Props) {
   const [stepIndex, setStepIndex] = useState(0);
   const [preset, setPreset] = useState<string>(presets[0]?.id ?? "");
   const [saved, setSaved] = useState(false);
+  const [applying, setApplying] = useState(false);
 
   useEffect(() => {
     if (open) {
       setStepIndex(0);
       setPreset(presets[0]?.id ?? "");
       setSaved(false);
+      setApplying(false);
     }
   }, [open, presets]);
 
@@ -279,12 +283,20 @@ export function SettingsWizard({
                 {isLast ? (
                   <Button
                     onClick={() => {
-                      setSaved(true);
-                      setTimeout(() => onOpenChange(false), 900);
+                      void (async () => {
+                        if (onApply) {
+                          setApplying(true);
+                          const ok = await onApply();
+                          setApplying(false);
+                          if (ok === false) return;
+                        }
+                        setSaved(true);
+                        setTimeout(() => onOpenChange(false), 900);
+                      })();
                     }}
-                    disabled={saved}
+                    disabled={saved || applying}
                   >
-                    {saved ? "Salvo ✓" : "Aplicar configurações"}
+                    {applying ? "Salvando..." : saved ? "Salvo ✓" : "Aplicar configurações"}
                   </Button>
                 ) : (
                   <Button onClick={() => setStepIndex((i) => Math.min(steps.length - 1, i + 1))}>

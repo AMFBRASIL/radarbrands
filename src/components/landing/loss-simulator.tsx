@@ -141,7 +141,7 @@ export function LossSimulator() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="lg">
-                <Link to="/register2">
+                <Link to="/register">
                   Começar agora <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

@@ -22,6 +22,7 @@ import { Route as DiferencialRouteImport } from './routes/diferencial'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
+import { Route as AcceptInviteRouteImport } from './routes/accept-invite'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
 import { Route as DashboardWrappedRouteImport } from './routes/dashboard.wrapped'
@@ -41,6 +42,7 @@ import { Route as DashboardMonitoringRouteImport } from './routes/dashboard.moni
 import { Route as DashboardMarketplaceRouteImport } from './routes/dashboard.marketplace'
 import { Route as DashboardLegalRouteImport } from './routes/dashboard.legal'
 import { Route as DashboardInfluencersRouteImport } from './routes/dashboard.influencers'
+import { Route as DashboardEndpointsRouteImport } from './routes/dashboard.endpoints'
 import { Route as DashboardDomainsRouteImport } from './routes/dashboard.domains'
 import { Route as DashboardDeepfakeRouteImport } from './routes/dashboard.deepfake'
 import { Route as DashboardDarkwebRouteImport } from './routes/dashboard.darkweb'
@@ -52,6 +54,32 @@ import { Route as DashboardAppsRouteImport } from './routes/dashboard.apps'
 import { Route as DashboardAlertsRouteImport } from './routes/dashboard.alerts'
 import { Route as DashboardAiRouteImport } from './routes/dashboard.ai'
 import { Route as DashboardAdsRouteImport } from './routes/dashboard.ads'
+import { Route as ApiHealthRouteImport } from './routes/api.health'
+import { Route as ApiV1EndpointsRouteImport } from './routes/api/v1/endpoints'
+import { Route as ApiHealthReadyRouteImport } from './routes/api.health.ready'
+import { Route as ApiHealthLiveRouteImport } from './routes/api.health.live'
+import { Route as ApiV1TeamRolesRouteImport } from './routes/api/v1/team/roles'
+import { Route as ApiV1TeamMembersRouteImport } from './routes/api/v1/team/members'
+import { Route as ApiV1SettingsEmailRouteImport } from './routes/api/v1/settings/email'
+import { Route as ApiV1EndpointsRunsRouteImport } from './routes/api/v1/endpoints/runs'
+import { Route as ApiV1EndpointsPresetRouteImport } from './routes/api/v1/endpoints/preset'
+import { Route as ApiV1EndpointsMasterRouteImport } from './routes/api/v1/endpoints/master'
+import { Route as ApiV1EndpointsBulkRouteImport } from './routes/api/v1/endpoints/bulk'
+import { Route as ApiV1EndpointsCodeRouteImport } from './routes/api/v1/endpoints/$code'
+import { Route as ApiV1AuthSwitchOrganizationRouteImport } from './routes/api/v1/auth/switch-organization'
+import { Route as ApiV1AuthRegisterRouteImport } from './routes/api/v1/auth/register'
+import { Route as ApiV1AuthMeRouteImport } from './routes/api/v1/auth/me'
+import { Route as ApiV1AuthLogoutRouteImport } from './routes/api/v1/auth/logout'
+import { Route as ApiV1AuthLoginRouteImport } from './routes/api/v1/auth/login'
+import { Route as ApiV1AuthAcceptInviteRouteImport } from './routes/api/v1/auth/accept-invite'
+import { Route as ApiV1TeamRolesRoleCodeRouteImport } from './routes/api/v1/team/roles/$roleCode'
+import { Route as ApiV1TeamMembersInviteRouteImport } from './routes/api/v1/team/members/invite'
+import { Route as ApiV1TeamMembersMemberUuidRouteImport } from './routes/api/v1/team/members/$memberUuid'
+import { Route as ApiV1SettingsEmailTestRouteImport } from './routes/api/v1/settings/email/test'
+import { Route as ApiV1EndpointsCodeTestRouteImport } from './routes/api/v1/endpoints/$code/test'
+import { Route as ApiV1TeamRolesRoleCodePermissionsRouteImport } from './routes/api/v1/team/roles/$roleCode/permissions'
+import { Route as ApiV1TeamMembersMemberUuidSetPasswordRouteImport } from './routes/api/v1/team/members/$memberUuid/set-password'
+import { Route as ApiV1TeamMembersMemberUuidResendInviteRouteImport } from './routes/api/v1/team/members/$memberUuid/resend-invite'
 
 const StatusRoute = StatusRouteImport.update({
   id: '/status',
@@ -116,6 +144,11 @@ const DashboardRoute = DashboardRouteImport.update({
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   id: '/como-funciona',
   path: '/como-funciona',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcceptInviteRoute = AcceptInviteRouteImport.update({
+  id: '/accept-invite',
+  path: '/accept-invite',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -213,6 +246,11 @@ const DashboardInfluencersRoute = DashboardInfluencersRouteImport.update({
   path: '/influencers',
   getParentRoute: () => DashboardRoute,
 } as any)
+const DashboardEndpointsRoute = DashboardEndpointsRouteImport.update({
+  id: '/endpoints',
+  path: '/endpoints',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const DashboardDomainsRoute = DashboardDomainsRouteImport.update({
   id: '/domains',
   path: '/domains',
@@ -268,9 +306,145 @@ const DashboardAdsRoute = DashboardAdsRouteImport.update({
   path: '/ads',
   getParentRoute: () => DashboardRoute,
 } as any)
+const ApiHealthRoute = ApiHealthRouteImport.update({
+  id: '/api/health',
+  path: '/api/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1EndpointsRoute = ApiV1EndpointsRouteImport.update({
+  id: '/api/v1/endpoints',
+  path: '/api/v1/endpoints',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiHealthReadyRoute = ApiHealthReadyRouteImport.update({
+  id: '/ready',
+  path: '/ready',
+  getParentRoute: () => ApiHealthRoute,
+} as any)
+const ApiHealthLiveRoute = ApiHealthLiveRouteImport.update({
+  id: '/live',
+  path: '/live',
+  getParentRoute: () => ApiHealthRoute,
+} as any)
+const ApiV1TeamRolesRoute = ApiV1TeamRolesRouteImport.update({
+  id: '/api/v1/team/roles',
+  path: '/api/v1/team/roles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1TeamMembersRoute = ApiV1TeamMembersRouteImport.update({
+  id: '/api/v1/team/members',
+  path: '/api/v1/team/members',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1SettingsEmailRoute = ApiV1SettingsEmailRouteImport.update({
+  id: '/api/v1/settings/email',
+  path: '/api/v1/settings/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1EndpointsRunsRoute = ApiV1EndpointsRunsRouteImport.update({
+  id: '/runs',
+  path: '/runs',
+  getParentRoute: () => ApiV1EndpointsRoute,
+} as any)
+const ApiV1EndpointsPresetRoute = ApiV1EndpointsPresetRouteImport.update({
+  id: '/preset',
+  path: '/preset',
+  getParentRoute: () => ApiV1EndpointsRoute,
+} as any)
+const ApiV1EndpointsMasterRoute = ApiV1EndpointsMasterRouteImport.update({
+  id: '/master',
+  path: '/master',
+  getParentRoute: () => ApiV1EndpointsRoute,
+} as any)
+const ApiV1EndpointsBulkRoute = ApiV1EndpointsBulkRouteImport.update({
+  id: '/bulk',
+  path: '/bulk',
+  getParentRoute: () => ApiV1EndpointsRoute,
+} as any)
+const ApiV1EndpointsCodeRoute = ApiV1EndpointsCodeRouteImport.update({
+  id: '/$code',
+  path: '/$code',
+  getParentRoute: () => ApiV1EndpointsRoute,
+} as any)
+const ApiV1AuthSwitchOrganizationRoute =
+  ApiV1AuthSwitchOrganizationRouteImport.update({
+    id: '/api/v1/auth/switch-organization',
+    path: '/api/v1/auth/switch-organization',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiV1AuthRegisterRoute = ApiV1AuthRegisterRouteImport.update({
+  id: '/api/v1/auth/register',
+  path: '/api/v1/auth/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1AuthMeRoute = ApiV1AuthMeRouteImport.update({
+  id: '/api/v1/auth/me',
+  path: '/api/v1/auth/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1AuthLogoutRoute = ApiV1AuthLogoutRouteImport.update({
+  id: '/api/v1/auth/logout',
+  path: '/api/v1/auth/logout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1AuthLoginRoute = ApiV1AuthLoginRouteImport.update({
+  id: '/api/v1/auth/login',
+  path: '/api/v1/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1AuthAcceptInviteRoute = ApiV1AuthAcceptInviteRouteImport.update({
+  id: '/api/v1/auth/accept-invite',
+  path: '/api/v1/auth/accept-invite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1TeamRolesRoleCodeRoute = ApiV1TeamRolesRoleCodeRouteImport.update({
+  id: '/$roleCode',
+  path: '/$roleCode',
+  getParentRoute: () => ApiV1TeamRolesRoute,
+} as any)
+const ApiV1TeamMembersInviteRoute = ApiV1TeamMembersInviteRouteImport.update({
+  id: '/invite',
+  path: '/invite',
+  getParentRoute: () => ApiV1TeamMembersRoute,
+} as any)
+const ApiV1TeamMembersMemberUuidRoute =
+  ApiV1TeamMembersMemberUuidRouteImport.update({
+    id: '/$memberUuid',
+    path: '/$memberUuid',
+    getParentRoute: () => ApiV1TeamMembersRoute,
+  } as any)
+const ApiV1SettingsEmailTestRoute = ApiV1SettingsEmailTestRouteImport.update({
+  id: '/test',
+  path: '/test',
+  getParentRoute: () => ApiV1SettingsEmailRoute,
+} as any)
+const ApiV1EndpointsCodeTestRoute = ApiV1EndpointsCodeTestRouteImport.update({
+  id: '/test',
+  path: '/test',
+  getParentRoute: () => ApiV1EndpointsCodeRoute,
+} as any)
+const ApiV1TeamRolesRoleCodePermissionsRoute =
+  ApiV1TeamRolesRoleCodePermissionsRouteImport.update({
+    id: '/permissions',
+    path: '/permissions',
+    getParentRoute: () => ApiV1TeamRolesRoleCodeRoute,
+  } as any)
+const ApiV1TeamMembersMemberUuidSetPasswordRoute =
+  ApiV1TeamMembersMemberUuidSetPasswordRouteImport.update({
+    id: '/set-password',
+    path: '/set-password',
+    getParentRoute: () => ApiV1TeamMembersMemberUuidRoute,
+  } as any)
+const ApiV1TeamMembersMemberUuidResendInviteRoute =
+  ApiV1TeamMembersMemberUuidResendInviteRouteImport.update({
+    id: '/resend-invite',
+    path: '/resend-invite',
+    getParentRoute: () => ApiV1TeamMembersMemberUuidRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accept-invite': typeof AcceptInviteRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/diagnostico': typeof DiagnosticoRoute
@@ -284,6 +458,7 @@ export interface FileRoutesByFullPath {
   '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
   '/status': typeof StatusRoute
+  '/api/health': typeof ApiHealthRouteWithChildren
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -295,6 +470,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/darkweb': typeof DashboardDarkwebRoute
   '/dashboard/deepfake': typeof DashboardDeepfakeRoute
   '/dashboard/domains': typeof DashboardDomainsRoute
+  '/dashboard/endpoints': typeof DashboardEndpointsRoute
   '/dashboard/influencers': typeof DashboardInfluencersRoute
   '/dashboard/legal': typeof DashboardLegalRoute
   '/dashboard/marketplace': typeof DashboardMarketplaceRoute
@@ -313,9 +489,35 @@ export interface FileRoutesByFullPath {
   '/dashboard/warroom': typeof DashboardWarroomRoute
   '/dashboard/wrapped': typeof DashboardWrappedRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/api/health/live': typeof ApiHealthLiveRoute
+  '/api/health/ready': typeof ApiHealthReadyRoute
+  '/api/v1/endpoints': typeof ApiV1EndpointsRouteWithChildren
+  '/api/v1/auth/accept-invite': typeof ApiV1AuthAcceptInviteRoute
+  '/api/v1/auth/login': typeof ApiV1AuthLoginRoute
+  '/api/v1/auth/logout': typeof ApiV1AuthLogoutRoute
+  '/api/v1/auth/me': typeof ApiV1AuthMeRoute
+  '/api/v1/auth/register': typeof ApiV1AuthRegisterRoute
+  '/api/v1/auth/switch-organization': typeof ApiV1AuthSwitchOrganizationRoute
+  '/api/v1/endpoints/$code': typeof ApiV1EndpointsCodeRouteWithChildren
+  '/api/v1/endpoints/bulk': typeof ApiV1EndpointsBulkRoute
+  '/api/v1/endpoints/master': typeof ApiV1EndpointsMasterRoute
+  '/api/v1/endpoints/preset': typeof ApiV1EndpointsPresetRoute
+  '/api/v1/endpoints/runs': typeof ApiV1EndpointsRunsRoute
+  '/api/v1/settings/email': typeof ApiV1SettingsEmailRouteWithChildren
+  '/api/v1/team/members': typeof ApiV1TeamMembersRouteWithChildren
+  '/api/v1/team/roles': typeof ApiV1TeamRolesRouteWithChildren
+  '/api/v1/endpoints/$code/test': typeof ApiV1EndpointsCodeTestRoute
+  '/api/v1/settings/email/test': typeof ApiV1SettingsEmailTestRoute
+  '/api/v1/team/members/$memberUuid': typeof ApiV1TeamMembersMemberUuidRouteWithChildren
+  '/api/v1/team/members/invite': typeof ApiV1TeamMembersInviteRoute
+  '/api/v1/team/roles/$roleCode': typeof ApiV1TeamRolesRoleCodeRouteWithChildren
+  '/api/v1/team/members/$memberUuid/resend-invite': typeof ApiV1TeamMembersMemberUuidResendInviteRoute
+  '/api/v1/team/members/$memberUuid/set-password': typeof ApiV1TeamMembersMemberUuidSetPasswordRoute
+  '/api/v1/team/roles/$roleCode/permissions': typeof ApiV1TeamRolesRoleCodePermissionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accept-invite': typeof AcceptInviteRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/diferencial': typeof DiferencialRoute
@@ -328,6 +530,7 @@ export interface FileRoutesByTo {
   '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
   '/status': typeof StatusRoute
+  '/api/health': typeof ApiHealthRouteWithChildren
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -339,6 +542,7 @@ export interface FileRoutesByTo {
   '/dashboard/darkweb': typeof DashboardDarkwebRoute
   '/dashboard/deepfake': typeof DashboardDeepfakeRoute
   '/dashboard/domains': typeof DashboardDomainsRoute
+  '/dashboard/endpoints': typeof DashboardEndpointsRoute
   '/dashboard/influencers': typeof DashboardInfluencersRoute
   '/dashboard/legal': typeof DashboardLegalRoute
   '/dashboard/marketplace': typeof DashboardMarketplaceRoute
@@ -357,10 +561,36 @@ export interface FileRoutesByTo {
   '/dashboard/warroom': typeof DashboardWarroomRoute
   '/dashboard/wrapped': typeof DashboardWrappedRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/api/health/live': typeof ApiHealthLiveRoute
+  '/api/health/ready': typeof ApiHealthReadyRoute
+  '/api/v1/endpoints': typeof ApiV1EndpointsRouteWithChildren
+  '/api/v1/auth/accept-invite': typeof ApiV1AuthAcceptInviteRoute
+  '/api/v1/auth/login': typeof ApiV1AuthLoginRoute
+  '/api/v1/auth/logout': typeof ApiV1AuthLogoutRoute
+  '/api/v1/auth/me': typeof ApiV1AuthMeRoute
+  '/api/v1/auth/register': typeof ApiV1AuthRegisterRoute
+  '/api/v1/auth/switch-organization': typeof ApiV1AuthSwitchOrganizationRoute
+  '/api/v1/endpoints/$code': typeof ApiV1EndpointsCodeRouteWithChildren
+  '/api/v1/endpoints/bulk': typeof ApiV1EndpointsBulkRoute
+  '/api/v1/endpoints/master': typeof ApiV1EndpointsMasterRoute
+  '/api/v1/endpoints/preset': typeof ApiV1EndpointsPresetRoute
+  '/api/v1/endpoints/runs': typeof ApiV1EndpointsRunsRoute
+  '/api/v1/settings/email': typeof ApiV1SettingsEmailRouteWithChildren
+  '/api/v1/team/members': typeof ApiV1TeamMembersRouteWithChildren
+  '/api/v1/team/roles': typeof ApiV1TeamRolesRouteWithChildren
+  '/api/v1/endpoints/$code/test': typeof ApiV1EndpointsCodeTestRoute
+  '/api/v1/settings/email/test': typeof ApiV1SettingsEmailTestRoute
+  '/api/v1/team/members/$memberUuid': typeof ApiV1TeamMembersMemberUuidRouteWithChildren
+  '/api/v1/team/members/invite': typeof ApiV1TeamMembersInviteRoute
+  '/api/v1/team/roles/$roleCode': typeof ApiV1TeamRolesRoleCodeRouteWithChildren
+  '/api/v1/team/members/$memberUuid/resend-invite': typeof ApiV1TeamMembersMemberUuidResendInviteRoute
+  '/api/v1/team/members/$memberUuid/set-password': typeof ApiV1TeamMembersMemberUuidSetPasswordRoute
+  '/api/v1/team/roles/$roleCode/permissions': typeof ApiV1TeamRolesRoleCodePermissionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/accept-invite': typeof AcceptInviteRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/diagnostico': typeof DiagnosticoRoute
@@ -374,6 +604,7 @@ export interface FileRoutesById {
   '/register2': typeof Register2Route
   '/sobre-nos': typeof SobreNosRoute
   '/status': typeof StatusRoute
+  '/api/health': typeof ApiHealthRouteWithChildren
   '/dashboard/ads': typeof DashboardAdsRoute
   '/dashboard/ai': typeof DashboardAiRoute
   '/dashboard/alerts': typeof DashboardAlertsRoute
@@ -385,6 +616,7 @@ export interface FileRoutesById {
   '/dashboard/darkweb': typeof DashboardDarkwebRoute
   '/dashboard/deepfake': typeof DashboardDeepfakeRoute
   '/dashboard/domains': typeof DashboardDomainsRoute
+  '/dashboard/endpoints': typeof DashboardEndpointsRoute
   '/dashboard/influencers': typeof DashboardInfluencersRoute
   '/dashboard/legal': typeof DashboardLegalRoute
   '/dashboard/marketplace': typeof DashboardMarketplaceRoute
@@ -403,11 +635,37 @@ export interface FileRoutesById {
   '/dashboard/warroom': typeof DashboardWarroomRoute
   '/dashboard/wrapped': typeof DashboardWrappedRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/api/health/live': typeof ApiHealthLiveRoute
+  '/api/health/ready': typeof ApiHealthReadyRoute
+  '/api/v1/endpoints': typeof ApiV1EndpointsRouteWithChildren
+  '/api/v1/auth/accept-invite': typeof ApiV1AuthAcceptInviteRoute
+  '/api/v1/auth/login': typeof ApiV1AuthLoginRoute
+  '/api/v1/auth/logout': typeof ApiV1AuthLogoutRoute
+  '/api/v1/auth/me': typeof ApiV1AuthMeRoute
+  '/api/v1/auth/register': typeof ApiV1AuthRegisterRoute
+  '/api/v1/auth/switch-organization': typeof ApiV1AuthSwitchOrganizationRoute
+  '/api/v1/endpoints/$code': typeof ApiV1EndpointsCodeRouteWithChildren
+  '/api/v1/endpoints/bulk': typeof ApiV1EndpointsBulkRoute
+  '/api/v1/endpoints/master': typeof ApiV1EndpointsMasterRoute
+  '/api/v1/endpoints/preset': typeof ApiV1EndpointsPresetRoute
+  '/api/v1/endpoints/runs': typeof ApiV1EndpointsRunsRoute
+  '/api/v1/settings/email': typeof ApiV1SettingsEmailRouteWithChildren
+  '/api/v1/team/members': typeof ApiV1TeamMembersRouteWithChildren
+  '/api/v1/team/roles': typeof ApiV1TeamRolesRouteWithChildren
+  '/api/v1/endpoints/$code/test': typeof ApiV1EndpointsCodeTestRoute
+  '/api/v1/settings/email/test': typeof ApiV1SettingsEmailTestRoute
+  '/api/v1/team/members/$memberUuid': typeof ApiV1TeamMembersMemberUuidRouteWithChildren
+  '/api/v1/team/members/invite': typeof ApiV1TeamMembersInviteRoute
+  '/api/v1/team/roles/$roleCode': typeof ApiV1TeamRolesRoleCodeRouteWithChildren
+  '/api/v1/team/members/$memberUuid/resend-invite': typeof ApiV1TeamMembersMemberUuidResendInviteRoute
+  '/api/v1/team/members/$memberUuid/set-password': typeof ApiV1TeamMembersMemberUuidSetPasswordRoute
+  '/api/v1/team/roles/$roleCode/permissions': typeof ApiV1TeamRolesRoleCodePermissionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/accept-invite'
     | '/como-funciona'
     | '/dashboard'
     | '/diagnostico'
@@ -421,6 +679,7 @@ export interface FileRouteTypes {
     | '/register2'
     | '/sobre-nos'
     | '/status'
+    | '/api/health'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -432,6 +691,7 @@ export interface FileRouteTypes {
     | '/dashboard/darkweb'
     | '/dashboard/deepfake'
     | '/dashboard/domains'
+    | '/dashboard/endpoints'
     | '/dashboard/influencers'
     | '/dashboard/legal'
     | '/dashboard/marketplace'
@@ -450,9 +710,35 @@ export interface FileRouteTypes {
     | '/dashboard/warroom'
     | '/dashboard/wrapped'
     | '/dashboard/'
+    | '/api/health/live'
+    | '/api/health/ready'
+    | '/api/v1/endpoints'
+    | '/api/v1/auth/accept-invite'
+    | '/api/v1/auth/login'
+    | '/api/v1/auth/logout'
+    | '/api/v1/auth/me'
+    | '/api/v1/auth/register'
+    | '/api/v1/auth/switch-organization'
+    | '/api/v1/endpoints/$code'
+    | '/api/v1/endpoints/bulk'
+    | '/api/v1/endpoints/master'
+    | '/api/v1/endpoints/preset'
+    | '/api/v1/endpoints/runs'
+    | '/api/v1/settings/email'
+    | '/api/v1/team/members'
+    | '/api/v1/team/roles'
+    | '/api/v1/endpoints/$code/test'
+    | '/api/v1/settings/email/test'
+    | '/api/v1/team/members/$memberUuid'
+    | '/api/v1/team/members/invite'
+    | '/api/v1/team/roles/$roleCode'
+    | '/api/v1/team/members/$memberUuid/resend-invite'
+    | '/api/v1/team/members/$memberUuid/set-password'
+    | '/api/v1/team/roles/$roleCode/permissions'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/accept-invite'
     | '/como-funciona'
     | '/diagnostico'
     | '/diferencial'
@@ -465,6 +751,7 @@ export interface FileRouteTypes {
     | '/register2'
     | '/sobre-nos'
     | '/status'
+    | '/api/health'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -476,6 +763,7 @@ export interface FileRouteTypes {
     | '/dashboard/darkweb'
     | '/dashboard/deepfake'
     | '/dashboard/domains'
+    | '/dashboard/endpoints'
     | '/dashboard/influencers'
     | '/dashboard/legal'
     | '/dashboard/marketplace'
@@ -494,9 +782,35 @@ export interface FileRouteTypes {
     | '/dashboard/warroom'
     | '/dashboard/wrapped'
     | '/dashboard'
+    | '/api/health/live'
+    | '/api/health/ready'
+    | '/api/v1/endpoints'
+    | '/api/v1/auth/accept-invite'
+    | '/api/v1/auth/login'
+    | '/api/v1/auth/logout'
+    | '/api/v1/auth/me'
+    | '/api/v1/auth/register'
+    | '/api/v1/auth/switch-organization'
+    | '/api/v1/endpoints/$code'
+    | '/api/v1/endpoints/bulk'
+    | '/api/v1/endpoints/master'
+    | '/api/v1/endpoints/preset'
+    | '/api/v1/endpoints/runs'
+    | '/api/v1/settings/email'
+    | '/api/v1/team/members'
+    | '/api/v1/team/roles'
+    | '/api/v1/endpoints/$code/test'
+    | '/api/v1/settings/email/test'
+    | '/api/v1/team/members/$memberUuid'
+    | '/api/v1/team/members/invite'
+    | '/api/v1/team/roles/$roleCode'
+    | '/api/v1/team/members/$memberUuid/resend-invite'
+    | '/api/v1/team/members/$memberUuid/set-password'
+    | '/api/v1/team/roles/$roleCode/permissions'
   id:
     | '__root__'
     | '/'
+    | '/accept-invite'
     | '/como-funciona'
     | '/dashboard'
     | '/diagnostico'
@@ -510,6 +824,7 @@ export interface FileRouteTypes {
     | '/register2'
     | '/sobre-nos'
     | '/status'
+    | '/api/health'
     | '/dashboard/ads'
     | '/dashboard/ai'
     | '/dashboard/alerts'
@@ -521,6 +836,7 @@ export interface FileRouteTypes {
     | '/dashboard/darkweb'
     | '/dashboard/deepfake'
     | '/dashboard/domains'
+    | '/dashboard/endpoints'
     | '/dashboard/influencers'
     | '/dashboard/legal'
     | '/dashboard/marketplace'
@@ -539,10 +855,36 @@ export interface FileRouteTypes {
     | '/dashboard/warroom'
     | '/dashboard/wrapped'
     | '/dashboard/'
+    | '/api/health/live'
+    | '/api/health/ready'
+    | '/api/v1/endpoints'
+    | '/api/v1/auth/accept-invite'
+    | '/api/v1/auth/login'
+    | '/api/v1/auth/logout'
+    | '/api/v1/auth/me'
+    | '/api/v1/auth/register'
+    | '/api/v1/auth/switch-organization'
+    | '/api/v1/endpoints/$code'
+    | '/api/v1/endpoints/bulk'
+    | '/api/v1/endpoints/master'
+    | '/api/v1/endpoints/preset'
+    | '/api/v1/endpoints/runs'
+    | '/api/v1/settings/email'
+    | '/api/v1/team/members'
+    | '/api/v1/team/roles'
+    | '/api/v1/endpoints/$code/test'
+    | '/api/v1/settings/email/test'
+    | '/api/v1/team/members/$memberUuid'
+    | '/api/v1/team/members/invite'
+    | '/api/v1/team/roles/$roleCode'
+    | '/api/v1/team/members/$memberUuid/resend-invite'
+    | '/api/v1/team/members/$memberUuid/set-password'
+    | '/api/v1/team/roles/$roleCode/permissions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcceptInviteRoute: typeof AcceptInviteRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   DiagnosticoRoute: typeof DiagnosticoRoute
@@ -556,6 +898,17 @@ export interface RootRouteChildren {
   Register2Route: typeof Register2Route
   SobreNosRoute: typeof SobreNosRoute
   StatusRoute: typeof StatusRoute
+  ApiHealthRoute: typeof ApiHealthRouteWithChildren
+  ApiV1EndpointsRoute: typeof ApiV1EndpointsRouteWithChildren
+  ApiV1AuthAcceptInviteRoute: typeof ApiV1AuthAcceptInviteRoute
+  ApiV1AuthLoginRoute: typeof ApiV1AuthLoginRoute
+  ApiV1AuthLogoutRoute: typeof ApiV1AuthLogoutRoute
+  ApiV1AuthMeRoute: typeof ApiV1AuthMeRoute
+  ApiV1AuthRegisterRoute: typeof ApiV1AuthRegisterRoute
+  ApiV1AuthSwitchOrganizationRoute: typeof ApiV1AuthSwitchOrganizationRoute
+  ApiV1SettingsEmailRoute: typeof ApiV1SettingsEmailRouteWithChildren
+  ApiV1TeamMembersRoute: typeof ApiV1TeamMembersRouteWithChildren
+  ApiV1TeamRolesRoute: typeof ApiV1TeamRolesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -649,6 +1002,13 @@ declare module '@tanstack/react-router' {
       path: '/como-funciona'
       fullPath: '/como-funciona'
       preLoaderRoute: typeof ComoFuncionaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accept-invite': {
+      id: '/accept-invite'
+      path: '/accept-invite'
+      fullPath: '/accept-invite'
+      preLoaderRoute: typeof AcceptInviteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -784,6 +1144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardInfluencersRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/dashboard/endpoints': {
+      id: '/dashboard/endpoints'
+      path: '/endpoints'
+      fullPath: '/dashboard/endpoints'
+      preLoaderRoute: typeof DashboardEndpointsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/dashboard/domains': {
       id: '/dashboard/domains'
       path: '/domains'
@@ -861,6 +1228,188 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardAdsRouteImport
       parentRoute: typeof DashboardRoute
     }
+    '/api/health': {
+      id: '/api/health'
+      path: '/api/health'
+      fullPath: '/api/health'
+      preLoaderRoute: typeof ApiHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/endpoints': {
+      id: '/api/v1/endpoints'
+      path: '/api/v1/endpoints'
+      fullPath: '/api/v1/endpoints'
+      preLoaderRoute: typeof ApiV1EndpointsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/health/ready': {
+      id: '/api/health/ready'
+      path: '/ready'
+      fullPath: '/api/health/ready'
+      preLoaderRoute: typeof ApiHealthReadyRouteImport
+      parentRoute: typeof ApiHealthRoute
+    }
+    '/api/health/live': {
+      id: '/api/health/live'
+      path: '/live'
+      fullPath: '/api/health/live'
+      preLoaderRoute: typeof ApiHealthLiveRouteImport
+      parentRoute: typeof ApiHealthRoute
+    }
+    '/api/v1/team/roles': {
+      id: '/api/v1/team/roles'
+      path: '/api/v1/team/roles'
+      fullPath: '/api/v1/team/roles'
+      preLoaderRoute: typeof ApiV1TeamRolesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/team/members': {
+      id: '/api/v1/team/members'
+      path: '/api/v1/team/members'
+      fullPath: '/api/v1/team/members'
+      preLoaderRoute: typeof ApiV1TeamMembersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/settings/email': {
+      id: '/api/v1/settings/email'
+      path: '/api/v1/settings/email'
+      fullPath: '/api/v1/settings/email'
+      preLoaderRoute: typeof ApiV1SettingsEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/endpoints/runs': {
+      id: '/api/v1/endpoints/runs'
+      path: '/runs'
+      fullPath: '/api/v1/endpoints/runs'
+      preLoaderRoute: typeof ApiV1EndpointsRunsRouteImport
+      parentRoute: typeof ApiV1EndpointsRoute
+    }
+    '/api/v1/endpoints/preset': {
+      id: '/api/v1/endpoints/preset'
+      path: '/preset'
+      fullPath: '/api/v1/endpoints/preset'
+      preLoaderRoute: typeof ApiV1EndpointsPresetRouteImport
+      parentRoute: typeof ApiV1EndpointsRoute
+    }
+    '/api/v1/endpoints/master': {
+      id: '/api/v1/endpoints/master'
+      path: '/master'
+      fullPath: '/api/v1/endpoints/master'
+      preLoaderRoute: typeof ApiV1EndpointsMasterRouteImport
+      parentRoute: typeof ApiV1EndpointsRoute
+    }
+    '/api/v1/endpoints/bulk': {
+      id: '/api/v1/endpoints/bulk'
+      path: '/bulk'
+      fullPath: '/api/v1/endpoints/bulk'
+      preLoaderRoute: typeof ApiV1EndpointsBulkRouteImport
+      parentRoute: typeof ApiV1EndpointsRoute
+    }
+    '/api/v1/endpoints/$code': {
+      id: '/api/v1/endpoints/$code'
+      path: '/$code'
+      fullPath: '/api/v1/endpoints/$code'
+      preLoaderRoute: typeof ApiV1EndpointsCodeRouteImport
+      parentRoute: typeof ApiV1EndpointsRoute
+    }
+    '/api/v1/auth/switch-organization': {
+      id: '/api/v1/auth/switch-organization'
+      path: '/api/v1/auth/switch-organization'
+      fullPath: '/api/v1/auth/switch-organization'
+      preLoaderRoute: typeof ApiV1AuthSwitchOrganizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/auth/register': {
+      id: '/api/v1/auth/register'
+      path: '/api/v1/auth/register'
+      fullPath: '/api/v1/auth/register'
+      preLoaderRoute: typeof ApiV1AuthRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/auth/me': {
+      id: '/api/v1/auth/me'
+      path: '/api/v1/auth/me'
+      fullPath: '/api/v1/auth/me'
+      preLoaderRoute: typeof ApiV1AuthMeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/auth/logout': {
+      id: '/api/v1/auth/logout'
+      path: '/api/v1/auth/logout'
+      fullPath: '/api/v1/auth/logout'
+      preLoaderRoute: typeof ApiV1AuthLogoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/auth/login': {
+      id: '/api/v1/auth/login'
+      path: '/api/v1/auth/login'
+      fullPath: '/api/v1/auth/login'
+      preLoaderRoute: typeof ApiV1AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/auth/accept-invite': {
+      id: '/api/v1/auth/accept-invite'
+      path: '/api/v1/auth/accept-invite'
+      fullPath: '/api/v1/auth/accept-invite'
+      preLoaderRoute: typeof ApiV1AuthAcceptInviteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/v1/team/roles/$roleCode': {
+      id: '/api/v1/team/roles/$roleCode'
+      path: '/$roleCode'
+      fullPath: '/api/v1/team/roles/$roleCode'
+      preLoaderRoute: typeof ApiV1TeamRolesRoleCodeRouteImport
+      parentRoute: typeof ApiV1TeamRolesRoute
+    }
+    '/api/v1/team/members/invite': {
+      id: '/api/v1/team/members/invite'
+      path: '/invite'
+      fullPath: '/api/v1/team/members/invite'
+      preLoaderRoute: typeof ApiV1TeamMembersInviteRouteImport
+      parentRoute: typeof ApiV1TeamMembersRoute
+    }
+    '/api/v1/team/members/$memberUuid': {
+      id: '/api/v1/team/members/$memberUuid'
+      path: '/$memberUuid'
+      fullPath: '/api/v1/team/members/$memberUuid'
+      preLoaderRoute: typeof ApiV1TeamMembersMemberUuidRouteImport
+      parentRoute: typeof ApiV1TeamMembersRoute
+    }
+    '/api/v1/settings/email/test': {
+      id: '/api/v1/settings/email/test'
+      path: '/test'
+      fullPath: '/api/v1/settings/email/test'
+      preLoaderRoute: typeof ApiV1SettingsEmailTestRouteImport
+      parentRoute: typeof ApiV1SettingsEmailRoute
+    }
+    '/api/v1/endpoints/$code/test': {
+      id: '/api/v1/endpoints/$code/test'
+      path: '/test'
+      fullPath: '/api/v1/endpoints/$code/test'
+      preLoaderRoute: typeof ApiV1EndpointsCodeTestRouteImport
+      parentRoute: typeof ApiV1EndpointsCodeRoute
+    }
+    '/api/v1/team/roles/$roleCode/permissions': {
+      id: '/api/v1/team/roles/$roleCode/permissions'
+      path: '/permissions'
+      fullPath: '/api/v1/team/roles/$roleCode/permissions'
+      preLoaderRoute: typeof ApiV1TeamRolesRoleCodePermissionsRouteImport
+      parentRoute: typeof ApiV1TeamRolesRoleCodeRoute
+    }
+    '/api/v1/team/members/$memberUuid/set-password': {
+      id: '/api/v1/team/members/$memberUuid/set-password'
+      path: '/set-password'
+      fullPath: '/api/v1/team/members/$memberUuid/set-password'
+      preLoaderRoute: typeof ApiV1TeamMembersMemberUuidSetPasswordRouteImport
+      parentRoute: typeof ApiV1TeamMembersMemberUuidRoute
+    }
+    '/api/v1/team/members/$memberUuid/resend-invite': {
+      id: '/api/v1/team/members/$memberUuid/resend-invite'
+      path: '/resend-invite'
+      fullPath: '/api/v1/team/members/$memberUuid/resend-invite'
+      preLoaderRoute: typeof ApiV1TeamMembersMemberUuidResendInviteRouteImport
+      parentRoute: typeof ApiV1TeamMembersMemberUuidRoute
+    }
   }
 }
 
@@ -876,6 +1425,7 @@ interface DashboardRouteChildren {
   DashboardDarkwebRoute: typeof DashboardDarkwebRoute
   DashboardDeepfakeRoute: typeof DashboardDeepfakeRoute
   DashboardDomainsRoute: typeof DashboardDomainsRoute
+  DashboardEndpointsRoute: typeof DashboardEndpointsRoute
   DashboardInfluencersRoute: typeof DashboardInfluencersRoute
   DashboardLegalRoute: typeof DashboardLegalRoute
   DashboardMarketplaceRoute: typeof DashboardMarketplaceRoute
@@ -908,6 +1458,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardDarkwebRoute: DashboardDarkwebRoute,
   DashboardDeepfakeRoute: DashboardDeepfakeRoute,
   DashboardDomainsRoute: DashboardDomainsRoute,
+  DashboardEndpointsRoute: DashboardEndpointsRoute,
   DashboardInfluencersRoute: DashboardInfluencersRoute,
   DashboardLegalRoute: DashboardLegalRoute,
   DashboardMarketplaceRoute: DashboardMarketplaceRoute,
@@ -932,8 +1483,123 @@ const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
   DashboardRouteChildren,
 )
 
+interface ApiHealthRouteChildren {
+  ApiHealthLiveRoute: typeof ApiHealthLiveRoute
+  ApiHealthReadyRoute: typeof ApiHealthReadyRoute
+}
+
+const ApiHealthRouteChildren: ApiHealthRouteChildren = {
+  ApiHealthLiveRoute: ApiHealthLiveRoute,
+  ApiHealthReadyRoute: ApiHealthReadyRoute,
+}
+
+const ApiHealthRouteWithChildren = ApiHealthRoute._addFileChildren(
+  ApiHealthRouteChildren,
+)
+
+interface ApiV1EndpointsCodeRouteChildren {
+  ApiV1EndpointsCodeTestRoute: typeof ApiV1EndpointsCodeTestRoute
+}
+
+const ApiV1EndpointsCodeRouteChildren: ApiV1EndpointsCodeRouteChildren = {
+  ApiV1EndpointsCodeTestRoute: ApiV1EndpointsCodeTestRoute,
+}
+
+const ApiV1EndpointsCodeRouteWithChildren =
+  ApiV1EndpointsCodeRoute._addFileChildren(ApiV1EndpointsCodeRouteChildren)
+
+interface ApiV1EndpointsRouteChildren {
+  ApiV1EndpointsCodeRoute: typeof ApiV1EndpointsCodeRouteWithChildren
+  ApiV1EndpointsBulkRoute: typeof ApiV1EndpointsBulkRoute
+  ApiV1EndpointsMasterRoute: typeof ApiV1EndpointsMasterRoute
+  ApiV1EndpointsPresetRoute: typeof ApiV1EndpointsPresetRoute
+  ApiV1EndpointsRunsRoute: typeof ApiV1EndpointsRunsRoute
+}
+
+const ApiV1EndpointsRouteChildren: ApiV1EndpointsRouteChildren = {
+  ApiV1EndpointsCodeRoute: ApiV1EndpointsCodeRouteWithChildren,
+  ApiV1EndpointsBulkRoute: ApiV1EndpointsBulkRoute,
+  ApiV1EndpointsMasterRoute: ApiV1EndpointsMasterRoute,
+  ApiV1EndpointsPresetRoute: ApiV1EndpointsPresetRoute,
+  ApiV1EndpointsRunsRoute: ApiV1EndpointsRunsRoute,
+}
+
+const ApiV1EndpointsRouteWithChildren = ApiV1EndpointsRoute._addFileChildren(
+  ApiV1EndpointsRouteChildren,
+)
+
+interface ApiV1SettingsEmailRouteChildren {
+  ApiV1SettingsEmailTestRoute: typeof ApiV1SettingsEmailTestRoute
+}
+
+const ApiV1SettingsEmailRouteChildren: ApiV1SettingsEmailRouteChildren = {
+  ApiV1SettingsEmailTestRoute: ApiV1SettingsEmailTestRoute,
+}
+
+const ApiV1SettingsEmailRouteWithChildren =
+  ApiV1SettingsEmailRoute._addFileChildren(ApiV1SettingsEmailRouteChildren)
+
+interface ApiV1TeamMembersMemberUuidRouteChildren {
+  ApiV1TeamMembersMemberUuidResendInviteRoute: typeof ApiV1TeamMembersMemberUuidResendInviteRoute
+  ApiV1TeamMembersMemberUuidSetPasswordRoute: typeof ApiV1TeamMembersMemberUuidSetPasswordRoute
+}
+
+const ApiV1TeamMembersMemberUuidRouteChildren: ApiV1TeamMembersMemberUuidRouteChildren =
+  {
+    ApiV1TeamMembersMemberUuidResendInviteRoute:
+      ApiV1TeamMembersMemberUuidResendInviteRoute,
+    ApiV1TeamMembersMemberUuidSetPasswordRoute:
+      ApiV1TeamMembersMemberUuidSetPasswordRoute,
+  }
+
+const ApiV1TeamMembersMemberUuidRouteWithChildren =
+  ApiV1TeamMembersMemberUuidRoute._addFileChildren(
+    ApiV1TeamMembersMemberUuidRouteChildren,
+  )
+
+interface ApiV1TeamMembersRouteChildren {
+  ApiV1TeamMembersMemberUuidRoute: typeof ApiV1TeamMembersMemberUuidRouteWithChildren
+  ApiV1TeamMembersInviteRoute: typeof ApiV1TeamMembersInviteRoute
+}
+
+const ApiV1TeamMembersRouteChildren: ApiV1TeamMembersRouteChildren = {
+  ApiV1TeamMembersMemberUuidRoute: ApiV1TeamMembersMemberUuidRouteWithChildren,
+  ApiV1TeamMembersInviteRoute: ApiV1TeamMembersInviteRoute,
+}
+
+const ApiV1TeamMembersRouteWithChildren =
+  ApiV1TeamMembersRoute._addFileChildren(ApiV1TeamMembersRouteChildren)
+
+interface ApiV1TeamRolesRoleCodeRouteChildren {
+  ApiV1TeamRolesRoleCodePermissionsRoute: typeof ApiV1TeamRolesRoleCodePermissionsRoute
+}
+
+const ApiV1TeamRolesRoleCodeRouteChildren: ApiV1TeamRolesRoleCodeRouteChildren =
+  {
+    ApiV1TeamRolesRoleCodePermissionsRoute:
+      ApiV1TeamRolesRoleCodePermissionsRoute,
+  }
+
+const ApiV1TeamRolesRoleCodeRouteWithChildren =
+  ApiV1TeamRolesRoleCodeRoute._addFileChildren(
+    ApiV1TeamRolesRoleCodeRouteChildren,
+  )
+
+interface ApiV1TeamRolesRouteChildren {
+  ApiV1TeamRolesRoleCodeRoute: typeof ApiV1TeamRolesRoleCodeRouteWithChildren
+}
+
+const ApiV1TeamRolesRouteChildren: ApiV1TeamRolesRouteChildren = {
+  ApiV1TeamRolesRoleCodeRoute: ApiV1TeamRolesRoleCodeRouteWithChildren,
+}
+
+const ApiV1TeamRolesRouteWithChildren = ApiV1TeamRolesRoute._addFileChildren(
+  ApiV1TeamRolesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcceptInviteRoute: AcceptInviteRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   DashboardRoute: DashboardRouteWithChildren,
   DiagnosticoRoute: DiagnosticoRoute,
@@ -947,6 +1613,17 @@ const rootRouteChildren: RootRouteChildren = {
   Register2Route: Register2Route,
   SobreNosRoute: SobreNosRoute,
   StatusRoute: StatusRoute,
+  ApiHealthRoute: ApiHealthRouteWithChildren,
+  ApiV1EndpointsRoute: ApiV1EndpointsRouteWithChildren,
+  ApiV1AuthAcceptInviteRoute: ApiV1AuthAcceptInviteRoute,
+  ApiV1AuthLoginRoute: ApiV1AuthLoginRoute,
+  ApiV1AuthLogoutRoute: ApiV1AuthLogoutRoute,
+  ApiV1AuthMeRoute: ApiV1AuthMeRoute,
+  ApiV1AuthRegisterRoute: ApiV1AuthRegisterRoute,
+  ApiV1AuthSwitchOrganizationRoute: ApiV1AuthSwitchOrganizationRoute,
+  ApiV1SettingsEmailRoute: ApiV1SettingsEmailRouteWithChildren,
+  ApiV1TeamMembersRoute: ApiV1TeamMembersRouteWithChildren,
+  ApiV1TeamRolesRoute: ApiV1TeamRolesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
