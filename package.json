@@ -21,7 +21,8 @@
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
     "worker:endpoints": "tsx scripts/worker-endpoints.ts",
-    "script:create-client-user": "tsx scripts/create-client-user.ts"
+    "script:create-client-user": "tsx scripts/create-client-user.ts",
+    "deploy:vps": "bash scripts/deploy-vps.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

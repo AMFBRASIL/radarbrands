@@ -46,6 +46,19 @@ Resposta padrão:
 
 ## Deploy no VPS (aaPanel)
 
+Script completo (recomendado):
+
+```bash
+cd /www/wwwroot/radarbrands
+bash scripts/deploy-vps.sh
+```
+
+O script faz: `git pull` → `npm install` → Prisma → seed → `build` → restart PM2 → health check.
+
+Flags: `--skip-git` `--skip-seed` `--skip-build` `--no-health`
+
+Manual:
+
 1. Instalar Node 20+, Redis (opcional mas recomendado).
 2. Clonar repo e `cp .env.example .env` (preencher credenciais).
 3. `npm ci && npm run db:generate`
