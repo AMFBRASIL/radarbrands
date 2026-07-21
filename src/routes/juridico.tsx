@@ -16,26 +16,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/landing/site-header";
 import { SiteFooter, CtaBand } from "@/components/landing/pricing-footer";
+import { buildPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/juridico")({
-  head: () => ({
-    meta: [
-      { title: "Jurídico · Radar | brands — Base legal e dossiê probatório" },
-      {
-        name: "description",
-        content:
-          "Brand bidding e uso indevido de marca sem autorização é concorrência desleal. A Radar | brands transforma cada detecção em dossiê probatório pronto para a mediação, notificação extrajudicial ou ação judicial.",
-      },
-      { property: "og:title", content: "Jurídico · Radar | brands" },
-      {
-        property: "og:description",
-        content:
-          "Base legal, dossiê probatório e rede de escritórios parceiros — a proteção jurídica da sua marca em três degraus.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    buildPageHead({
+      title: "Jurídico · Radar Brands — Brand bidding, LPI e dossiê probatório",
+      description:
+        "Brand bidding e uso indevido de marca. Radar Brands transforma cada detecção em dossiê para mediação, notificação extrajudicial ou ação judicial.",
+      path: "/juridico",
+    }),
   component: JuridicoPage,
 });
 

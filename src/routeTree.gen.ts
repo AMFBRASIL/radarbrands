@@ -15,6 +15,7 @@ import { Route as Register2RouteImport } from './routes/register2'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PropostaRouteImport } from './routes/proposta'
 import { Route as PlaygroundRouteImport } from './routes/playground'
+import { Route as MonitoramentoDeMarcaRouteImport } from './routes/monitoramento-de-marca'
 import { Route as Login2RouteImport } from './routes/login2'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JuridicoRouteImport } from './routes/juridico'
@@ -22,6 +23,7 @@ import { Route as DiferencialRouteImport } from './routes/diferencial'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
+import { Route as AlternativasRouteImport } from './routes/alternativas'
 import { Route as AcceptInviteRouteImport } from './routes/accept-invite'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
@@ -111,6 +113,11 @@ const PlaygroundRoute = PlaygroundRouteImport.update({
   path: '/playground',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MonitoramentoDeMarcaRoute = MonitoramentoDeMarcaRouteImport.update({
+  id: '/monitoramento-de-marca',
+  path: '/monitoramento-de-marca',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Login2Route = Login2RouteImport.update({
   id: '/login2',
   path: '/login2',
@@ -144,6 +151,11 @@ const DashboardRoute = DashboardRouteImport.update({
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   id: '/como-funciona',
   path: '/como-funciona',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlternativasRoute = AlternativasRouteImport.update({
+  id: '/alternativas',
+  path: '/alternativas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AcceptInviteRoute = AcceptInviteRouteImport.update({
@@ -445,6 +457,7 @@ const ApiV1TeamMembersMemberUuidResendInviteRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accept-invite': typeof AcceptInviteRoute
+  '/alternativas': typeof AlternativasRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/diagnostico': typeof DiagnosticoRoute
@@ -452,6 +465,7 @@ export interface FileRoutesByFullPath {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/login2': typeof Login2Route
+  '/monitoramento-de-marca': typeof MonitoramentoDeMarcaRoute
   '/playground': typeof PlaygroundRoute
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
@@ -518,12 +532,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accept-invite': typeof AcceptInviteRoute
+  '/alternativas': typeof AlternativasRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/diagnostico': typeof DiagnosticoRoute
   '/diferencial': typeof DiferencialRoute
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/login2': typeof Login2Route
+  '/monitoramento-de-marca': typeof MonitoramentoDeMarcaRoute
   '/playground': typeof PlaygroundRoute
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
@@ -591,6 +607,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/accept-invite': typeof AcceptInviteRoute
+  '/alternativas': typeof AlternativasRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/diagnostico': typeof DiagnosticoRoute
@@ -598,6 +615,7 @@ export interface FileRoutesById {
   '/juridico': typeof JuridicoRoute
   '/login': typeof LoginRoute
   '/login2': typeof Login2Route
+  '/monitoramento-de-marca': typeof MonitoramentoDeMarcaRoute
   '/playground': typeof PlaygroundRoute
   '/proposta': typeof PropostaRoute
   '/register': typeof RegisterRoute
@@ -666,6 +684,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/accept-invite'
+    | '/alternativas'
     | '/como-funciona'
     | '/dashboard'
     | '/diagnostico'
@@ -673,6 +692,7 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/login2'
+    | '/monitoramento-de-marca'
     | '/playground'
     | '/proposta'
     | '/register'
@@ -739,12 +759,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/accept-invite'
+    | '/alternativas'
     | '/como-funciona'
     | '/diagnostico'
     | '/diferencial'
     | '/juridico'
     | '/login'
     | '/login2'
+    | '/monitoramento-de-marca'
     | '/playground'
     | '/proposta'
     | '/register'
@@ -811,6 +833,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/accept-invite'
+    | '/alternativas'
     | '/como-funciona'
     | '/dashboard'
     | '/diagnostico'
@@ -818,6 +841,7 @@ export interface FileRouteTypes {
     | '/juridico'
     | '/login'
     | '/login2'
+    | '/monitoramento-de-marca'
     | '/playground'
     | '/proposta'
     | '/register'
@@ -885,6 +909,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcceptInviteRoute: typeof AcceptInviteRoute
+  AlternativasRoute: typeof AlternativasRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   DashboardRoute: typeof DashboardRouteWithChildren
   DiagnosticoRoute: typeof DiagnosticoRoute
@@ -892,6 +917,7 @@ export interface RootRouteChildren {
   JuridicoRoute: typeof JuridicoRoute
   LoginRoute: typeof LoginRoute
   Login2Route: typeof Login2Route
+  MonitoramentoDeMarcaRoute: typeof MonitoramentoDeMarcaRoute
   PlaygroundRoute: typeof PlaygroundRoute
   PropostaRoute: typeof PropostaRoute
   RegisterRoute: typeof RegisterRoute
@@ -955,6 +981,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlaygroundRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/monitoramento-de-marca': {
+      id: '/monitoramento-de-marca'
+      path: '/monitoramento-de-marca'
+      fullPath: '/monitoramento-de-marca'
+      preLoaderRoute: typeof MonitoramentoDeMarcaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login2': {
       id: '/login2'
       path: '/login2'
@@ -1002,6 +1035,13 @@ declare module '@tanstack/react-router' {
       path: '/como-funciona'
       fullPath: '/como-funciona'
       preLoaderRoute: typeof ComoFuncionaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alternativas': {
+      id: '/alternativas'
+      path: '/alternativas'
+      fullPath: '/alternativas'
+      preLoaderRoute: typeof AlternativasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/accept-invite': {
@@ -1600,6 +1640,7 @@ const ApiV1TeamRolesRouteWithChildren = ApiV1TeamRolesRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcceptInviteRoute: AcceptInviteRoute,
+  AlternativasRoute: AlternativasRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   DashboardRoute: DashboardRouteWithChildren,
   DiagnosticoRoute: DiagnosticoRoute,
@@ -1607,6 +1648,7 @@ const rootRouteChildren: RootRouteChildren = {
   JuridicoRoute: JuridicoRoute,
   LoginRoute: LoginRoute,
   Login2Route: Login2Route,
+  MonitoramentoDeMarcaRoute: MonitoramentoDeMarcaRoute,
   PlaygroundRoute: PlaygroundRoute,
   PropostaRoute: PropostaRoute,
   RegisterRoute: RegisterRoute,

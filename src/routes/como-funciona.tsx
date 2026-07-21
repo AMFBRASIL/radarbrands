@@ -20,26 +20,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/landing/site-header";
 import { SiteFooter, CtaBand } from "@/components/landing/pricing-footer";
+import { buildPageHead, organizationJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/como-funciona")({
-  head: () => ({
-    meta: [
-      { title: "Como funciona · Radar | brands — Proteção de marca com IA" },
-      {
-        name: "description",
-        content:
-          "Do monitoramento 24/7 à mediação humana: entenda o ciclo Radar | brands que combina inteligência artificial e especialistas para blindar sua marca em domínios, redes sociais, Ads e marketplaces.",
-      },
-      { property: "og:title", content: "Como funciona · Radar | brands" },
-      {
-        property: "og:description",
-        content:
-          "Monitoria, Inteligência, Mediação e Sucesso — o método Radar | brands para proteger sua marca em tempo real.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    buildPageHead({
+      title: "Como funciona · Radar Brands — Monitoramento de Marca com IA",
+      description:
+        "Do monitoramento 24/7 à mediação humana: entenda o ciclo Radar Brands que combina inteligência artificial e especialistas para blindar sua marca em domínios, redes sociais, Ads e marketplaces.",
+      path: "/como-funciona",
+      jsonLd: [organizationJsonLd()],
+    }),
   component: HowItWorksPage,
 });
 

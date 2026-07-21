@@ -1,0 +1,20 @@
+# Radar Brands — humans.txt
+# https://radarbrands.com.br
+
+/* TEAM */
+Company: Radar Brands
+Site: https://radarbrands.com.br
+Contact: contato@radarbrands.com.br
+
+/* SITE */
+Standards: HTML5, Schema.org JSON-LD, Open Graph, llms.txt
+Language: Portuguese (Brazil)
+Doctype: HTML5
+Components: TanStack Start, React
+
+/* SEO / AI */
+Sitemap: /sitemap.xml
+Robots: /robots.txt
+LLMs: /llms.txt
+AI: /ai.txt
+Manifest: /manifest.webmanifest

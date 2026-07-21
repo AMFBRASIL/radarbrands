@@ -1,0 +1,20 @@
+{
+  "name": "Radar Brands",
+  "short_name": "Radar Brands",
+  "description": "Monitoramento e proteção de marca 24/7 com IA. Brand monitoring, brand bidding e inteligência de marca.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050b14",
+  "theme_color": "#050b14",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "security"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon",
+      "purpose": "any"
+    }
+  ]
+}

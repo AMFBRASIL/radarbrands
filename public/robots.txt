@@ -1,3 +1,76 @@
 User-agent: *
 Allow: /
+Allow: /llms.txt
+Allow: /sitemap.xml
+Allow: /manifest.webmanifest
 Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /accept-invite
+Disallow: /login2
+Disallow: /register2
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /dashboard
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /dashboard
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl / AI training corpora
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Cohere / Diffbot / Bytespider
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Sitemap: https://radarbrands.com.br/sitemap.xml
+Host: https://radarbrands.com.br

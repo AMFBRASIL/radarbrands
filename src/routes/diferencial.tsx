@@ -19,26 +19,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/landing/site-header";
 import { SiteFooter, CtaBand } from "@/components/landing/pricing-footer";
+import { buildPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/diferencial")({
-  head: () => ({
-    meta: [
-      { title: "Diferencial · Radar | brands vs. concorrentes" },
-      {
-        name: "description",
-        content:
-          "Comparativo entre Radar | brands e as demais plataformas de proteção de marca: Threat Graph, IA preditiva, deepfake, dark web, playbooks e ROI em tempo real.",
-      },
-      { property: "og:title", content: "Radar | brands vs. concorrentes" },
-      {
-        property: "og:description",
-        content:
-          "Veja por que a Radar | brands vai muito além do brand bidding — 12 diferenciais que ninguém mais entrega.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    buildPageHead({
+      title: "Diferencial · Radar Brands vs ferramentas de monitoramento de marca",
+      description:
+        "Compare Radar Brands com plataformas de proteção e monitor brands: Threat Graph, IA, brand bidding, mediação e ROI em tempo real.",
+      path: "/diferencial",
+    }),
   component: DiferencialPage,
 });
 

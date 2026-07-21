@@ -69,20 +69,22 @@ export function Hero() {
                 <span className="absolute inset-0 rounded-full bg-primary animate-pulse-dot" />
               </span>
               <span className="font-mono uppercase tracking-widest text-primary">
-                Brand Intelligence AI
+                Radar Brands
               </span>
-              <span className="text-muted-foreground">· monitoramento 24/7</span>
+              <span className="text-muted-foreground">· brand monitoring 24/7</span>
             </div>
 
             <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] md:text-6xl">
-              Proteja sua marca antes que
-              <span className="text-gradient"> alguém use ela contra você</span>
+              <span className="text-gradient">Radar Brands</span>
+              <span className="block mt-2 text-[0.72em] font-semibold leading-tight text-foreground md:mt-3">
+                Proteja sua marca antes que alguém use ela contra você
+              </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-              Nossa inteligência artificial monitora internet, redes sociais, anúncios,
-              domínios e marketplaces 24/7 para identificar riscos, fraudes e uso indevido
-              da sua marca — em tempo real.
+              Monitoramento de marca com IA — alternativa a Branddi, Make Brands e Search Brands.
+              Vigilância 24/7 em Google Ads, domínios, redes sociais e marketplaces, com mediação
+              humana e proteção jurídica.
             </p>
 
             <div id="scan" className="mt-8 rounded-2xl glass-strong p-4 ring-gradient">

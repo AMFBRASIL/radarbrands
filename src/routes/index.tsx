@@ -23,8 +23,32 @@ import {
 } from "@/components/landing/brand-bidding";
 import { Contact, WhatsAppFab } from "@/components/landing/contact";
 import { CtaBand, SiteFooter } from "@/components/landing/pricing-footer";
+import { SeoKeywordBand } from "@/components/landing/seo-keyword-band";
+import {
+  buildPageHead,
+  DEFAULT_DESCRIPTION,
+  faqJsonLd,
+  HOME_FAQ,
+  organizationJsonLd,
+  softwareApplicationJsonLd,
+  websiteJsonLd,
+} from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
+  head: () =>
+    buildPageHead({
+      title:
+        "Radar Brands — Monitoramento e Proteção de Marca com IA | Monitor Brands",
+      description: DEFAULT_DESCRIPTION,
+      path: "/",
+      keywords: ["radar brands", "monitor brands", "branddi", "make brands", "search brands"],
+      jsonLd: [
+        organizationJsonLd(),
+        websiteJsonLd(),
+        softwareApplicationJsonLd(),
+        faqJsonLd(HOME_FAQ),
+      ],
+    }),
   component: LandingPage,
 });
 
@@ -34,6 +58,7 @@ function LandingPage() {
       <SiteHeader />
       <main>
         <Hero />
+        <SeoKeywordBand />
         <WhyNow />
         <LossSimulator />
         <SilentAttack />

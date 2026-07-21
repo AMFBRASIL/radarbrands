@@ -11,6 +11,7 @@ import {
   Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HOME_FAQ } from "@/lib/seo";
 
 /* ---------------- Seção: Por que agora (IA + brand search) ---------------- */
 export function WhyNow() {
@@ -383,40 +384,7 @@ export function ToolVsSpecialist() {
 
 /* ---------------- FAQ ---------------- */
 export function BrandFAQ() {
-  const faq = [
-    {
-      q: "Comprar o nome de uma marca concorrente no Google é legal?",
-      a: "Não. A prática de brand bidding não autorizado é enquadrada como concorrência desleal pelo art. 195 da Lei de Propriedade Industrial (LPI). A jurisprudência brasileira tem reconhecido o direito à cessação e à indenização quando comprovado o uso indevido do nome.",
-    },
-    {
-      q: "Em quanto tempo o meu CPC começa a cair?",
-      a: "As primeiras mediações costumam fechar em 7 a 14 dias. A queda de CPC aparece nos leilões seguintes — a maioria dos clientes vê impacto mensurável em 30 dias.",
-    },
-    {
-      q: "Vocês monitoram só o Google?",
-      a: "A operação nasce no Google (busca e Shopping), onde está a maior parte do prejuízo, e se estende para redes sociais, marketplaces, domínios e menções — tudo dentro do mesmo dashboard.",
-    },
-    {
-      q: "Como é a mediação na prática?",
-      a: "Nosso time entra em contato direto com o anunciante com evidência empacotada e base legal. Em 80% dos casos o brand bidding cessa antes de qualquer notificação formal.",
-    },
-    {
-      q: "E se o concorrente não parar?",
-      a: "Avançamos para notificação extrajudicial e, se necessário, ação judicial — com o dossiê probatório já formado. Você pode usar o jurídico interno ou nossa rede de escritórios parceiros.",
-    },
-    {
-      q: "Vocês geram falso positivo?",
-      a: "Não. Cada detecção passa por classificação humana antes de virar caso. O que chega no seu dashboard é acionável.",
-    },
-    {
-      q: "Como é o contrato?",
-      a: "Flexível, sem setup fee e sem fidelidade longa. O investimento é calibrado pelo porte da sua operação.",
-    },
-    {
-      q: "Radar | brands substitui uma ferramenta de monitoramento?",
-      a: "Sim. Você deixa de pagar uma ferramenta que só alerta e passa a ter uma operação completa: monitoramento + mediação + escalada jurídica no mesmo lugar.",
-    },
-  ];
+  const faq = HOME_FAQ.map((item) => ({ q: item.question, a: item.answer }));
   return (
     <section id="faq" className="scroll-mt-24 py-20 md:py-28">
       <div className="mx-auto max-w-4xl px-4">
@@ -425,8 +393,8 @@ export function BrandFAQ() {
             Dúvidas frequentes
           </div>
           <h2 className="mt-4 font-display text-3xl font-bold md:text-5xl">
-            Brand bidding em
-            <span className="text-gradient"> 8 perguntas.</span>
+            Radar Brands e monitoramento de marca em
+            <span className="text-gradient"> perguntas.</span>
           </h2>
         </div>
 

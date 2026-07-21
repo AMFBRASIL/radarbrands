@@ -11,24 +11,16 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { SiteHeader } from "@/components/landing/site-header";
 import { SiteFooter } from "@/components/landing/pricing-footer";
+import { buildPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/diagnostico")({
-  head: () => ({
-    meta: [
-      { title: "Diagnóstico de marca — Radar | brands" },
-      {
-        name: "description",
-        content:
-          "Descubra em segundos como sua marca está sendo afetada online e quais módulos da Radar | brands podem protegê-la.",
-      },
-      { property: "og:title", content: "Diagnóstico de marca — Radar | brands" },
-      {
-        property: "og:description",
-        content:
-          "Relatório rápido de ameaças: perfis falsos, domínios clones, anúncios fraudulentos e impacto estimado.",
-      },
-    ],
-  }),
+  head: () =>
+    buildPageHead({
+      title: "Diagnóstico de marca grátis · Radar Brands | Monitor Brands",
+      description:
+        "Descubra em segundos riscos da sua marca online: perfis falsos, domínios clones, brand bidding e impacto estimado. Diagnóstico gratuito Radar Brands.",
+      path: "/diagnostico",
+    }),
   component: DiagnosticoPage,
 });
 

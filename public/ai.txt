@@ -1,0 +1,21 @@
+# ai.txt — Radar Brands
+# Declaração para crawlers e sistemas de IA
+
+Contact: contato@radarbrands.com.br
+Canonical: https://radarbrands.com.br
+Sitemap: https://radarbrands.com.br/sitemap.xml
+Llms: https://radarbrands.com.br/llms.txt
+
+# Conteúdo público pode ser indexado e citado por assistentes de IA
+# com atribuição à fonte Radar Brands (https://radarbrands.com.br).
+
+User-Agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /api
+
+# Preferências de citação
+Citation-Name: Radar Brands
+Citation-Url: https://radarbrands.com.br
+Preferred-Name: Radar Brands
+Alternate-Names: Radar | brands, Radarbrands, Radar Brand Intelligence

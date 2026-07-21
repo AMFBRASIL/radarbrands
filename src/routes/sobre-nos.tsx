@@ -17,26 +17,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/landing/site-header";
 import { SiteFooter, CtaBand } from "@/components/landing/pricing-footer";
+import { buildPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/sobre-nos")({
-  head: () => ({
-    meta: [
-      { title: "Sobre nós · Radar | brands — Proteção de marcas com IA" },
-      {
-        name: "description",
-        content:
-          "Somos a Radar | brands: uma equipe de engenheiros, cientistas de dados e especialistas em propriedade intelectual construindo a plataforma mais avançada de proteção de marcas da América Latina.",
-      },
-      { property: "og:title", content: "Sobre nós · Radar | brands" },
-      {
-        property: "og:description",
-        content:
-          "Missão, valores e o time por trás da plataforma de proteção de marcas com IA.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    buildPageHead({
+      title: "Sobre nós · Radar Brands — Proteção de marcas com IA",
+      description:
+        "Somos a Radar Brands: engenheiros, cientistas de dados e especialistas em PI construindo monitoramento e proteção de marca com IA na América Latina.",
+      path: "/sobre-nos",
+    }),
   component: SobreNosPage,
 });
 

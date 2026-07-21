@@ -158,36 +158,73 @@ export function SiteFooter() {
             </div>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-            Proteção e inteligência de marca com IA. Monitoramento 24/7 em todas as superfícies
-            digitais.
+            Monitoramento e proteção de marca com IA. Alternativa a Branddi, Make Brands e Search
+            Brands — brand monitoring 24/7 no Brasil.
           </p>
         </div>
         <FooterCol
           title="Produto"
-          items={["Plataforma", "Brand Monitor", "Ads Guardian", "Trademark Center"]}
+          items={[
+            { label: "Monitoramento de marca", to: "/monitoramento-de-marca" },
+            { label: "Como funciona", to: "/como-funciona" },
+            { label: "Diagnóstico", to: "/diagnostico" },
+            { label: "Alternativas", to: "/alternativas" },
+          ]}
         />
-        <FooterCol title="Empresa" items={["Sobre", "Clientes", "Segurança", "Contato"]} />
+        <FooterCol
+          title="Empresa"
+          items={[
+            { label: "Sobre", to: "/sobre-nos" },
+            { label: "Diferencial", to: "/diferencial" },
+            { label: "Jurídico", to: "/juridico" },
+            { label: "Contato", href: "/#contato" },
+          ]}
+        />
       </div>
       <div className="mx-auto mt-10 flex max-w-7xl flex-col items-center justify-between gap-3 border-t border-border/60 px-4 pt-6 text-xs text-muted-foreground md:flex-row">
         <span>© {new Date().getFullYear()} Radar | brands · Todos os direitos reservados</span>
-        <span className="font-mono">SOC2 · LGPD · ISO 27001</span>
+        <span className="font-mono">
+          <a className="hover:text-foreground" href="/sitemap.xml">
+            Sitemap
+          </a>
+          {" · "}
+          <a className="hover:text-foreground" href="/llms.txt">
+            llms.txt
+          </a>
+          {" · "}
+          <a className="hover:text-foreground" href="/robots.txt">
+            robots
+          </a>
+        </span>
       </div>
     </footer>
   );
 }
 
-function FooterCol({ title, items }: { title: string; items: string[] }) {
+function FooterCol({
+  title,
+  items,
+}: {
+  title: string;
+  items: Array<{ label: string; to?: string; href?: string }>;
+}) {
   return (
     <div>
       <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
         {title}
       </div>
       <ul className="mt-3 space-y-2 text-sm">
-        {items.map((i) => (
-          <li key={i}>
-            <a className="text-foreground/80 hover:text-foreground" href="#">
-              {i}
-            </a>
+        {items.map((item) => (
+          <li key={item.label}>
+            {item.to ? (
+              <Link to={item.to} className="text-foreground/80 hover:text-foreground">
+                {item.label}
+              </Link>
+            ) : (
+              <a href={item.href ?? "#"} className="text-foreground/80 hover:text-foreground">
+                {item.label}
+              </a>
+            )}
           </li>
         ))}
       </ul>

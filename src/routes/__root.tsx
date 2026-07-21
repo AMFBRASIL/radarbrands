@@ -78,20 +78,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Radar | brands — Proteção e monitoramento de marca com IA" },
+      { title: "Radar Brands — Monitoramento e Proteção de Marca com IA" },
       {
         name: "description",
         content:
-          "Plataforma de inteligência artificial que monitora domínios, redes sociais, anúncios e marketplaces 24/7 para proteger sua marca contra fraudes e uso indevido.",
+          "Radar Brands: monitoramento e proteção de marca 24/7 com IA. Alternativa a Branddi, Make Brands e Search Brands — domínios, Google Ads, redes sociais e marketplaces.",
       },
       { name: "author", content: "Radar | brands" },
-      { property: "og:title", content: "Radar | brands — Proteção e monitoramento de marca com IA" },
+      { name: "theme-color", content: "#050b14" },
+      { name: "application-name", content: "Radar Brands" },
+      {
+        name: "robots",
+        content:
+          "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:site_name", content: "Radar | brands" },
+      { property: "og:title", content: "Radar Brands — Proteção e monitoramento de marca com IA" },
       {
         property: "og:description",
         content:
           "Plataforma de inteligência artificial que monitora domínios, redes sociais, anúncios e marketplaces 24/7 para proteger sua marca contra fraudes e uso indevido.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://radarbrands.com.br/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@RadarBrand" },
       { name: "twitter:title", content: "Radar | brands — Proteção e monitoramento de marca com IA" },
@@ -108,6 +118,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "canonical", href: "https://radarbrands.com.br/" },
+      { rel: "author", href: "/humans.txt" },
     ],
   }),
   shellComponent: RootShell,

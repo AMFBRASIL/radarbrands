@@ -6,11 +6,11 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 const nav: { label: string; href: string; to?: string }[] = [
   { label: "Plataforma", href: "#plataforma" },
+  { label: "Monitorar", href: "/monitoramento-de-marca", to: "/monitoramento-de-marca" },
   { label: "Diagnóstico", href: "/diagnostico", to: "/diagnostico" },
   { label: "Como funciona", href: "/como-funciona", to: "/como-funciona" },
-  { label: "Diferencial", href: "/diferencial", to: "/diferencial" },
+  { label: "Alternativas", href: "/alternativas", to: "/alternativas" },
   { label: "Jurídico", href: "/juridico", to: "/juridico" },
-  { label: "Sobre", href: "/sobre-nos", to: "/sobre-nos" },
   { label: "Contato", href: "/#contato" },
 ];
 
