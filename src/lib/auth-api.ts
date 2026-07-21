@@ -41,7 +41,18 @@ type ApiResponse<T> = {
 async function parseApiResponse<T>(response: Response): Promise<T> {
   const payload = (await response.json()) as ApiResponse<T>;
   if (!payload.success) {
-    throw new Error(payload.error?.message ?? "Erro na requisição");
+    const details = payload.error?.details as
+      | { fieldErrors?: Record<string, string[]>; formErrors?: string[] }
+      | undefined;
+    const fieldMessages = details?.fieldErrors
+      ? Object.values(details.fieldErrors).flat().filter(Boolean)
+      : [];
+    const message =
+      fieldMessages[0] ??
+      details?.formErrors?.[0] ??
+      payload.error?.message ??
+      "Erro na requisição";
+    throw new Error(message);
   }
   return payload.data;
 }

@@ -111,6 +111,7 @@ function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••••••"
+              minLength={8}
               className="w-full bg-transparent py-3 text-sm outline-none placeholder:text-white/25"
             />
             <button

@@ -1,8 +1,15 @@
 import { z } from "zod";
 
 export const loginSchema = z.object({
-  email: z.string().email().max(255).transform((v) => v.trim().toLowerCase()),
-  password: z.string().min(8).max(128),
+  email: z
+    .string({ required_error: "Informe o e-mail" })
+    .email("E-mail inválido")
+    .max(255)
+    .transform((v) => v.trim().toLowerCase()),
+  password: z
+    .string({ required_error: "Informe a senha" })
+    .min(8, "A senha deve ter pelo menos 8 caracteres")
+    .max(128),
   rememberMe: z.boolean().optional().default(true),
 });
 
